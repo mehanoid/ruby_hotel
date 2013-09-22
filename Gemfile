@@ -62,6 +62,13 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  gem "rb-inotify", require: false
+  gem 'guard'
+  gem 'guard-cucumber'
+  gem 'guard-rspec'
+
+  gem 'guard-spork'
 end
 
 
