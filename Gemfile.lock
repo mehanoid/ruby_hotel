@@ -100,6 +100,8 @@ GEM
     guard-cucumber (1.4.0)
       cucumber (>= 1.2.0)
       guard (>= 1.1.0)
+    guard-rails (0.4.7)
+      guard (>= 0.2.2)
     guard-rspec (3.0.3)
       guard (>= 1.8)
       rspec (~> 2.13)
@@ -249,6 +251,7 @@ DEPENDENCIES
   factory_girl_rails
   guard
   guard-cucumber
+  guard-rails
   guard-rspec
   guard-spork
   jbuilder (~> 1.2)
