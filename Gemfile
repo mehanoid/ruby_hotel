@@ -65,8 +65,10 @@ group :development do
 
   gem "rb-inotify", require: false
   gem 'guard'
-  gem 'guard-spork'
   gem 'guard-rails'
+  gem 'guard-spork'
+  gem 'spork', '~> 1.0.0rc4'
+  gem 'spork-rails'
 
   gem 'guard-cucumber'
   gem 'guard-rspec'
