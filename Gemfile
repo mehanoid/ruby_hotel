@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 1.2'
 
 # Markup
 gem 'slim-rails'
+gem 'simple_form', '~> 3.0.0'
 
 # Active Record queries
 gem 'squeel'

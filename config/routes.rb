@@ -1,6 +1,9 @@
 RubyHotel::Application.routes.draw do
-  root "home#show"
-  get "admin" => 'admin#show'
+  resources :room_categories
+
+  root 'home#show'
+  get 'admin' => 'admin#show'
+  get 'admin/hotel_data'
   devise_for :users, path_prefix: :admin
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
