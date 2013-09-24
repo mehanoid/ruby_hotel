@@ -1,5 +1,10 @@
 RubyHotel::Application.routes.draw do
-  resources :room_categories
+
+
+  resources :room_categories do
+    resources :rooms, only: [:new, :create]
+  end
+  resources :rooms, except: [:new, :create]
 
   root 'home#show'
   get 'admin' => 'admin#show'

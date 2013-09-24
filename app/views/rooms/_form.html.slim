@@ -1,0 +1,9 @@
+= simple_form_for shallow_args(@category, @room) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :number
+    = f.association :category
+
+  .form-actions
+    = f.button :submit, 'Сохранить'

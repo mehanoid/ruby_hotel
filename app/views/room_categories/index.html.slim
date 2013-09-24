@@ -1,18 +1,11 @@
 h1 Listing room_categories
 
 table
-  tr
-    th Name
-    th Description
-    th
-    th
-    th
 
   - @room_categories.each do |room_category|
     tr
-      td = room_category.name
+      td = link_to room_category.name, room_category
       td = room_category.description
-      td = link_to 'Show', room_category
       td = link_to 'Edit', edit_room_category_path(room_category)
       td = link_to 'Destroy', room_category, :confirm => 'Are you sure?', :method => :delete
 

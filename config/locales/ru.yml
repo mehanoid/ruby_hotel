@@ -23,7 +23,10 @@ ru:
   activerecord:
     models:
       room_category: Категория комнат
+      room: Комната
     attributes:
       room_category:
         name: Название
         description: Описание
+      room:
+        number: №
