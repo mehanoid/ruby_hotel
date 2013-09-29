@@ -23,3 +23,7 @@ end
 То(/должен увидеть "([^"]*)"$/) do |text|
   page.should have_content text
 end
+
+То(/не должен видеть "([^"]*)"$/) do |text|
+  page.should_not have_content text
+end
