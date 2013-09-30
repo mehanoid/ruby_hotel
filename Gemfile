@@ -37,9 +37,12 @@ gem 'simple_form', '~> 3.0.0'
 # Active Record queries
 gem 'squeel'
 
-# authentication
+# authorization
 gem 'devise'
 gem 'devise-russian'
+gem 'cancan'
+
+gem 'enumerize'
 
 gem 'russian'
 

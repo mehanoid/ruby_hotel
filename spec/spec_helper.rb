@@ -15,6 +15,7 @@ Spork.prefork do
     $:.unshift(File.expand_path("rb/testing/patch/bdd", ENV["RUBYMINE_HOME"]))
   end
 
+  #For reload routes with Spork
   require "rails/application"
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
 
@@ -91,6 +92,7 @@ Spork.prefork do
     #     --seed 1234
     config.order = "random"
     config.include FactoryGirl::Syntax::Methods
+    config.include Devise::TestHelpers, type: :controller
   end
 end
 

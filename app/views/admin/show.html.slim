@@ -9,4 +9,4 @@ p Find me in app/views/admin/show.html.slim
     = link_to('Login', new_user_session_path)
 
 
-= link_to 'Данные об отеле', admin_hotel_data_path
+= link_to 'Данные об отеле', admin_hotel_data_path if can?(:manage, :hotel_data)
