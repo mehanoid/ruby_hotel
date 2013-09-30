@@ -1,0 +1,19 @@
+h1 Listing rooms
+
+table
+  tr
+    th Number
+    th Category
+    th
+    th
+    th
+
+  - @rooms.each do |room|
+    tr
+      td = room.number
+      td = room.category
+      td = link_to 'Show', [:admin, room]
+      td = link_to 'Edit', edit_admin_room_path(room)
+      td = link_to 'Destroy', [:admin, room], :confirm => 'Are you sure?', :method => :delete
+
+br

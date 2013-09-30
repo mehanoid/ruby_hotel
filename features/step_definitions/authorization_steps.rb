@@ -13,7 +13,7 @@ end
 World(AuthorizationHelpers)
 
 Допустим(/зашёл на главную страницу для сотрудников$/) do
-  visit admin_path
+  visit admin_root_path
 end
 
 Допустим(/^существует пользователь с email "([^"]*)" и паролем "([^"]*)"$/) do |email, password|
