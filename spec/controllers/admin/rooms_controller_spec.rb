@@ -20,13 +20,9 @@ require 'spec_helper'
 
 describe Admin::RoomsController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Room. As you add validations to Room, be sure to
-  # adjust the attributes here as well.
+  let!(:room) { create(:room_with_category) }
+  let(:category) { room.category }
   let(:valid_attributes) { attributes_for(:room) }
-  #let(:valid_attributes) { { "number" => "1" } }
-  let(:category) { create(:room_category) }
-  let(:room) { create(:room_with_category) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -53,7 +49,6 @@ describe Admin::RoomsController do
 
   describe "GET new" do
     it "assigns a new room as @room" do
-      category = create(:room_category)
       get :new, {room_category_id: category.id}, valid_session
       assigns(:room).should be_a_new(Room)
     end
@@ -148,9 +143,6 @@ describe Admin::RoomsController do
   end
 
   describe "DELETE destroy" do
-    before do
-      room
-    end
 
     it "destroys the requested room" do
       expect {
