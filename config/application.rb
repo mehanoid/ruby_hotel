@@ -26,6 +26,7 @@ module RubyHotel
     config.i18n.default_locale = :ru
     config.generators do |g|
       g.stylesheets false
+      g.test_framework :rspec, view_specs: false, request_specs: false
     end
   end
 end

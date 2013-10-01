@@ -1,6 +1,8 @@
 RubyHotel::Application.routes.draw do
 
 
+  resources :reservations
+
   root 'home#show'
   controller 'home' do
     get 'rooms'

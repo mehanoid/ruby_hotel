@@ -4,7 +4,7 @@ h1 Номера
   div.category
     h3 = room_category.name
     p = simple_format(room_category.description)
-    button.btn.btn-primary Забронировать
+    = link_to 'Забронировать', new_reservation_path(room_category_id: room_category.id), class: 'btn btn-primary'
 
 br
 

@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Room:
+  = @reservation.room
+p
+  strong Arrival:
+  = @reservation.arrival
+p
+  strong Departure:
+  = @reservation.departure
+
+= link_to 'Edit', edit_reservation_path(@reservation)
+'|
+= link_to 'Back', reservations_path
