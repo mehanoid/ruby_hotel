@@ -1,3 +1,7 @@
+Допустим(/зашёл на сайт отеля$/) do
+  visit root_url
+end
+
 Если(/заполняю форму следующими данными:$/) do |table|
   table.hashes.each do |hash|
     fill_in hash['Поле'], with: hash['Значение']

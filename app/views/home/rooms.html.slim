@@ -1,0 +1,12 @@
+h1 Номера
+
+- @room_categories.each do |room_category|
+  div.category
+    h3 = room_category.name
+    p = simple_format(room_category.description)
+    button.btn.btn-primary Забронировать
+
+br
+
+= link_to 'Добавить категорию номеров', new_admin_room_category_path
+

@@ -71,6 +71,7 @@ group :development do
   gem "rb-inotify", require: false
   gem 'guard'
   gem 'guard-rails'
+  gem 'guard-livereload'
   gem 'guard-spork'
   gem 'spork', '~> 1.0.0rc4'
   gem 'spork-rails'
@@ -90,4 +91,5 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'shoulda-matchers'
+  gem 'launchy'
 end

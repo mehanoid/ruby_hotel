@@ -2,6 +2,9 @@ RubyHotel::Application.routes.draw do
 
 
   root 'home#show'
+  controller 'home' do
+    get 'rooms'
+  end
 
   namespace :admin do
     root 'home#show'
