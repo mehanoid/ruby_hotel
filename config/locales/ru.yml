@@ -24,9 +24,13 @@ ru:
     models:
       room_category: Категория комнат
       room: Комната
+      reservation: Бронь
     attributes:
       room_category:
         name: Название
         description: Описание
       room:
         number: №
+      reservation:
+        arrival: Дата заезда
+        departure: Дата выезда
