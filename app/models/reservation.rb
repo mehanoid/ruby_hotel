@@ -3,6 +3,12 @@ class Reservation < ActiveRecord::Base
 
   validates :room, presence: true
 
+  validate do
+    if room.reservations.where { sift(:overlapping_reservations, arrival, departure) }.any?
+      errors.add(:room, 'занята на выбранном периоде')
+    end
+  end
+
   before_validation do |reservation|
     unless reservation.room
       category = RoomCategory.find(room_category_id)
@@ -15,4 +21,10 @@ class Reservation < ActiveRecord::Base
   def room_category_id
     @room_category_id ||= room.try(:category_id) || nil
   end
+
+  sifter :overlapping_reservations do |arrival, departure|
+    ((reservations.arrival < departure) & (reservations.departure > arrival)) |
+        ((reservations.departure > arrival) & (reservations.arrival < departure))
+  end
+
 end

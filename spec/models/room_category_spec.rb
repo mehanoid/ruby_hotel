@@ -41,8 +41,6 @@ describe RoomCategory do
         end
 
         it 'returns nil' do
-          puts 'reservations!!!'
-          p Reservation.all
           free_room.should be_nil
         end
       end
