@@ -4,8 +4,10 @@ class Reservation < ActiveRecord::Base
   validates :room, presence: true
 
   before_validation do |reservation|
-    category = RoomCategory.find(room_category_id)
-    reservation.room = category.find_free_room(arrival, departure)
+    unless reservation.room
+      category = RoomCategory.find(room_category_id)
+      reservation.room = category.free_room(arrival, departure)
+    end
   end
 
   attr_writer :room_category_id

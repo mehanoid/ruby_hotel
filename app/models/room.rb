@@ -4,4 +4,8 @@ class Room < ActiveRecord::Base
 
   validates :number, uniqueness: true
   validates :number, :category, presence: true
+
+  #def inspect
+  #  "Room #{number}"
+  #end
 end

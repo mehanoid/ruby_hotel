@@ -36,7 +36,7 @@ gem 'slim-rails'
 gem 'simple_form', '~> 3.0.0'
 
 # Active Record queries
-gem 'squeel'
+gem 'squeel', git: 'git://github.com/ernie/squeel.git'
 
 # authorization
 gem 'devise'
