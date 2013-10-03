@@ -4,7 +4,11 @@ class Reservation < ActiveRecord::Base
   validates :room, :arrival, :departure, presence: true
 
   validate do
-    if room.reservations.where { sift(:overlapping_reservations, arrival, departure) }.any?
+    if departure && arrival && departure <= arrival
+      errors.add(:departure, 'должна быть позднее даты заезда')
+    end
+
+    if room && room.reservations.where { sift(:overlapping_reservations, arrival, departure) }.any?
       errors.add(:room, 'занята на выбранном периоде')
     end
   end
