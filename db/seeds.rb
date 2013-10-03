@@ -15,3 +15,5 @@ RoomCategory.delete_all
 Room.delete_all
 FactoryGirl.create(:room_category_with_rooms, :standard, rooms_count: 10)
 FactoryGirl.create(:room_category_with_rooms, :deluxe, rooms_count: 5)
+
+Reservation.delete_all
