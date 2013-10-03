@@ -1,7 +1,7 @@
 class Reservation < ActiveRecord::Base
   belongs_to :room
 
-  validates :room, presence: true
+  validates :room, :arrival, :departure, presence: true
 
   validate do
     if room.reservations.where { sift(:overlapping_reservations, arrival, departure) }.any?

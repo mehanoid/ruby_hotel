@@ -1,15 +1,10 @@
-p#notice = notice
-
 p
-  strong Room:
-  = @reservation.room
+  strong Комната:
+  = @reservation.room.number
 p
-  strong Arrival:
+  strong Дата заезда:
   = @reservation.arrival
 p
-  strong Departure:
+  strong Дата выезда:
   = @reservation.departure
 
-= link_to 'Edit', edit_reservation_path(@reservation)
-'|
-= link_to 'Back', reservations_path
