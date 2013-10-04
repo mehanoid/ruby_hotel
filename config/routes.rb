@@ -12,6 +12,8 @@ RubyHotel::Application.routes.draw do
       get 'hotel_data'
     end
 
+    resources :reservations
+
     resources :room_categories do
       resources :rooms, only: [:new, :create]
     end

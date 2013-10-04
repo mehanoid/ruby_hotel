@@ -10,3 +10,4 @@ p Find me in app/views/admin/show.html.slim
 
 
 = link_to 'Данные об отеле', admin_hotel_data_path if can?(:manage, :hotel_data)
+= link_to 'Брони', admin_reservations_path

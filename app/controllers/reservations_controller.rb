@@ -9,8 +9,8 @@ class ReservationsController < ApplicationController
   #
   ## GET /reservations/1
   ## GET /reservations/1.json
-  #def show
-  #end
+  def show
+  end
 
   # GET /reservations/new
   def new

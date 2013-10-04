@@ -1,0 +1,10 @@
+= simple_form_for(@reservation) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :arrival, as: :string, input_html: { class: 'datepicker' }
+    = f.input :departure, as: :string, input_html: { class: 'datepicker' }
+    = f.input :room_category_id, as: :hidden
+
+  .form-actions
+    = f.button :submit, 'Отправить'

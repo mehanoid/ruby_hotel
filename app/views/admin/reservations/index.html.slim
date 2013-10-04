@@ -1,0 +1,23 @@
+h1 Listing reservations
+
+table
+  tr
+    th Room
+    th Arrival
+    th Departure
+    th
+    th
+    th
+
+  - @reservations.each do |reservation|
+    tr
+      td = reservation.room
+      td = reservation.arrival
+      td = reservation.departure
+      td = link_to 'Show', reservation
+      td = link_to 'Edit', edit_reservation_path(reservation)
+      td = link_to 'Destroy', reservation, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Reservation', new_reservation_path
