@@ -70,7 +70,7 @@ group :development do
   gem 'binding_of_caller'
 
   gem "rb-inotify", require: false
-  gem 'guard'
+  gem 'guard', '~> 1.8.3'
   gem 'guard-rails'
   gem 'guard-livereload'
   gem 'guard-spork'
