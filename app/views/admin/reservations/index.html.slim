@@ -2,16 +2,16 @@ h1 Listing reservations
 
 table
   tr
-    th Room
-    th Arrival
-    th Departure
+    th Комната
+    th Дата заезда
+    th Дата выезда
     th
     th
     th
 
   - @reservations.each do |reservation|
     tr
-      td = reservation.room
+      td = reservation.room.number
       td = reservation.arrival
       td = reservation.departure
       td = link_to 'Show', reservation
