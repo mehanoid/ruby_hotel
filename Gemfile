@@ -40,7 +40,6 @@ gem 'squeel', git: 'git://github.com/ernie/squeel.git'
 
 # authorization
 gem 'devise'
-gem 'devise-russian'
 gem 'cancan'
 
 gem 'enumerize'
@@ -77,8 +76,8 @@ group :development do
   gem 'spork', '~> 1.0.0rc4'
   gem 'spork-rails'
 
-  gem 'guard-cucumber'
-  gem 'guard-rspec'
+  #gem 'guard-cucumber'
+  #gem 'guard-rspec'
 
 end
 
