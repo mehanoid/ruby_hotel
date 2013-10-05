@@ -25,6 +25,7 @@ ru:
       room_category: Категория комнат
       room: Комната
       reservation: Бронь
+      user: Пользователь
     attributes:
       room_category:
         name: Название
@@ -34,3 +35,5 @@ ru:
       reservation:
         arrival: Дата заезда
         departure: Дата выезда
+      user:
+        password: Пароль

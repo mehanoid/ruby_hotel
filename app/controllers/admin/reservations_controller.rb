@@ -1,5 +1,5 @@
 module Admin
-  class ReservationsController < ApplicationController
+  class ReservationsController < AdminController
     before_action :set_reservation, only: [:show]
 
     #GET /reservations

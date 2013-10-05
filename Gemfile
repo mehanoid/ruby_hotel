@@ -40,6 +40,7 @@ gem 'squeel', git: 'git://github.com/ernie/squeel.git'
 
 # authorization
 gem 'devise'
+gem 'devise-i18n'
 gem 'cancan'
 
 gem 'enumerize'
@@ -88,7 +89,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', require: false
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'launchy'

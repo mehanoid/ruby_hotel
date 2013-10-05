@@ -6,8 +6,8 @@ module AuthorizationHelpers
   def sign_in(user)
     visit new_user_session_path
     fill_in "Email", with: user.email
-    fill_in "Password", with: password
-    click_button "Sign in"
+    fill_in "Пароль", with: password
+    click_button "Войти"
   end
 end
 World(AuthorizationHelpers)

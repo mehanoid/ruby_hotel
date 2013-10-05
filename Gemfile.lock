@@ -53,6 +53,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.0.0)
+      capybara (~> 2.0, >= 2.0.2)
+      json
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.2.8)
@@ -89,6 +92,7 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-i18n (0.9.1)
     diff-lcs (1.2.4)
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
@@ -262,11 +266,13 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 2.3.2.2)
   cancan
+  capybara-webkit
   coffee-rails (~> 4.0.0)
   compass-rails (~> 2.0.alpha.0)
   cucumber-rails
   database_cleaner
   devise
+  devise-i18n
   enumerize
   factory_girl_rails
   guard (~> 1.8.3)
