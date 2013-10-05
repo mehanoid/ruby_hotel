@@ -73,6 +73,7 @@ group :development do
   gem 'guard', '~> 1.8.3'
   gem 'guard-rails'
   gem 'guard-livereload'
+  gem 'rack-livereload'
   gem 'guard-spork'
   gem 'spork', '~> 1.0.0rc4'
   gem 'spork-rails'

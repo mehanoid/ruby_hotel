@@ -29,4 +29,6 @@ RubyHotel::Application.configure do
   config.assets.debug = true
   config.sass.debug_info = true
   config.sass.preferred_syntax = :sass
+
+  config.middleware.use Rack::LiveReload
 end
