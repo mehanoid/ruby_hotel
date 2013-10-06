@@ -1,5 +1,7 @@
 = simple_form_for(@reservation) do |f|
-  = f.error_notification
+
+  - @reservation.errors[:base].each do |error|
+    .alert.alert-error = error
 
   .form-inputs
     = f.input :arrival, as: :string, input_html: { class: 'datepicker' }
