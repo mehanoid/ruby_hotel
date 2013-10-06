@@ -17,6 +17,8 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+# Fix syntax errors line numbers
+gem 'coffee-script', github: 'niallsmart/ruby-coffee-script'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -36,7 +38,7 @@ gem 'slim-rails'
 gem 'simple_form', '~> 3.0.0'
 
 # Active Record queries
-gem 'squeel', git: 'git://github.com/ernie/squeel.git'
+gem 'squeel', github: 'ernie/squeel'
 
 # authorization
 gem 'devise'
@@ -70,7 +72,7 @@ group :development do
   gem 'binding_of_caller'
 
   gem "rb-inotify", require: false
-  gem 'guard', '~> 1.8.3'
+  gem 'guard', '~> 2.0.1'
   gem 'guard-rails'
   gem 'guard-livereload'
   gem 'rack-livereload'
