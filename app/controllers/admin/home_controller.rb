@@ -1,10 +1,7 @@
 module Admin
   class HomeController < AdminController
     def show
-    end
-
-    def hotel_data
-
+      authorize! :read, :admin_home
     end
   end
 end

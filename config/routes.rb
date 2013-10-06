@@ -8,10 +8,6 @@ RubyHotel::Application.routes.draw do
   namespace :admin do
     root 'home#show'
 
-    controller 'home' do
-      get 'hotel_data'
-    end
-
     resources :reservations
 
     resources :room_categories do

@@ -17,7 +17,7 @@ World(AuthorizationHelpers)
 end
 
 Допустим(/^существует пользователь с email "([^"]*)" и паролем "([^"]*)"$/) do |email, password|
-  @user = User.create(email: email, password: password)
+  @user = create(:user, email: email, password: password)
 end
 
 Допустим(/не залогинен$/) do

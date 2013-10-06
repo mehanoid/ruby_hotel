@@ -1,34 +1,12 @@
 module Admin
   class RoomsController < AdminController
-    before_action :set_room, only: [:show, :edit, :update, :destroy]
     before_action :set_category, only: [:new, :create]
+    before_action :room_for_create, only: [:create]
 
-    # GET /rooms
-    # GET /rooms.json
-    def index
-      @rooms = Room.all
-    end
+    load_and_authorize_resource
 
-    ## GET /rooms/1
-    ## GET /rooms/1.json
-    def show
-    end
 
-    # GET /rooms/new
-    def new
-      @category = RoomCategory.find(params[:room_category_id])
-      @room = Room.new
-    end
-
-    # GET /rooms/1/edit
-    def edit
-    end
-
-    # POST /rooms
-    # POST /rooms.json
     def create
-      @room = @category.rooms.build(room_params)
-
       respond_to do |format|
         if @room.save
           format.html { redirect_to [:admin, @room], notice: 'Номер сохранён' }
@@ -40,8 +18,6 @@ module Admin
       end
     end
 
-    # PATCH/PUT /rooms/1
-    # PATCH/PUT /rooms/1.json
     def update
       respond_to do |format|
         if @room.update(room_params)
@@ -54,8 +30,6 @@ module Admin
       end
     end
 
-    # DELETE /rooms/1
-    # DELETE /rooms/1.json
     def destroy
       @room.destroy
       respond_to do |format|
@@ -65,13 +39,13 @@ module Admin
     end
 
     private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_room
-      @room = Room.find(params[:id])
-    end
 
     def set_category
       @category = RoomCategory.find(params[:room_category_id])
+    end
+
+    def room_for_create
+      @room = @category.rooms.build(room_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

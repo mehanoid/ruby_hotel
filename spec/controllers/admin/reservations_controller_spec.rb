@@ -21,7 +21,7 @@ require 'spec_helper'
 describe Admin::ReservationsController do
 
   before do
-    sign_in create(:user)
+    sign_in create(:user, role: :reservation_manager)
   end
 
   # This should return the minimal set of attributes required to create a valid
