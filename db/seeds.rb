@@ -9,7 +9,9 @@
 require 'factory_girl_rails'
 
 User.delete_all
-FactoryGirl.create(:admin, email: 'admin@example.com')
+User::ROLES.each do |role|
+  FactoryGirl.create(:user, role: role, email: "#{role}@example.com")
+end
 
 RoomCategory.delete_all
 Room.delete_all
