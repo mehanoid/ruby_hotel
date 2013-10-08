@@ -8,7 +8,9 @@ RubyHotel::Application.routes.draw do
   namespace :admin do
     root 'home#show'
 
-    resources :reservations
+    resources :reservations do
+      patch 'cancel', on: :member
+    end
 
     resources :room_categories do
       resources :rooms, only: [:new, :create]

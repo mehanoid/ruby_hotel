@@ -162,4 +162,19 @@ describe Admin::ReservationsController do
   #  end
   #end
 
+  describe "PATCH cancel" do
+    it "cancels the requested reservation" do
+      reservation = Reservation.create! valid_attributes
+      expect {
+        patch :cancel, {:id => reservation.to_param}, valid_session
+      }.to change(Reservation, :count).by(-1)
+    end
+
+    it "redirects to the reservations list" do
+      reservation = Reservation.create! valid_attributes
+      patch :cancel, {:id => reservation.to_param}, valid_session
+      response.should redirect_to(admin_reservations_url)
+    end
+  end
+
 end

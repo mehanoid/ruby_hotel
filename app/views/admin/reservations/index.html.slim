@@ -1,22 +1,19 @@
 h1 Listing reservations
 
-table
-  tr
-    th Комната
-    th Дата заезда
-    th Дата выезда
-    th
-    th
-    th
-
-  - @reservations.each do |reservation|
+-if @reservations.any?
+  table
     tr
-      td = reservation.room.number
-      td = reservation.arrival
-      td = reservation.departure
-      td = link_to 'Show', [:admin, reservation]
-      td = link_to 'Edit', edit_admin_reservation_path(reservation)
-      td = link_to 'Destroy', reservation, :confirm => 'Are you sure?', :method => :delete
+      th Комната
+      th Дата заезда
+      th Дата выезда
+      th
+
+    - @reservations.each do |reservation|
+      tr
+        td = reservation.room.number
+        td = reservation.arrival
+        td = reservation.departure
+        td = link_to 'Show', [:admin, reservation]
 
 br
 

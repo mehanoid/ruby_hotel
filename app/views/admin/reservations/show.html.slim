@@ -8,3 +8,6 @@ p
   strong> Дата выезда:
   = @reservation.departure
 
+=button_group
+  = bs_button_to 'Аннулировать', cancel_admin_reservation_path, method: :patch
+  = bs_button_to 'Изменить', edit_admin_reservation_path(@reservation)

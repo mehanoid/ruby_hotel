@@ -46,6 +46,14 @@ module Admin
     #  end
     #end
 
+    def cancel
+      @reservation.cancel
+      respond_to do |format|
+        format.html { redirect_to admin_reservations_url }
+        format.json { head :no_content }
+      end
+    end
+
     private
 
     def reservation_for_create
