@@ -21,3 +21,17 @@ end
     room.reservations.create(arrival: '2013-10-01', departure: '2013-10-05')
   end
 end
+
+Допустим(/^существуют несколько броней$/) do
+  create(:reservation)
+end
+
+Если(/^выбираю первую бронь в списке$/) do
+  reservation = find('.reservation')
+  @reservation_text = reservation.text
+  find('.reservation').click
+end
+
+То(/^я не должен видеть аннулированную бронь в общем списке$/) do
+  page.should_not have_content(@reservation_text)
+end

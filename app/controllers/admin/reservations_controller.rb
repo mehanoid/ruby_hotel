@@ -49,7 +49,7 @@ module Admin
     def cancel
       @reservation.cancel
       respond_to do |format|
-        format.html { redirect_to admin_reservations_url }
+        format.html { redirect_to admin_reservations_url, notice: 'Бронь аннулирована' }
         format.json { head :no_content }
       end
     end

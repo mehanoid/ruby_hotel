@@ -29,6 +29,6 @@ end
       'администратор' => :admin,
       'менеджер по бронированию' => :reservation_manager
   }
-  user = create(:admin, password: password, role: roles[role.strip])
+  user = create(:user, password: password, role: roles[role.strip])
   sign_in user
 end

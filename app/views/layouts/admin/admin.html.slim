@@ -3,8 +3,8 @@ html
   head
     title
       | RubyHotel
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body class=([controller_name, action_name])
     .navbar.navbar-fixed-top
@@ -14,7 +14,7 @@ html
           ul.nav
             -if can?(:manage, :hotel_data)
               li.dropdown
-                = link_to '#', class: 'dropdown-toggle', data: {toggle: "dropdown"} do
+                = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
                   | Данные об отеле
                   b.caret
                 ul.dropdown-menu
