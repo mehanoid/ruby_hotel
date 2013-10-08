@@ -14,10 +14,10 @@ table
       td = reservation.room.number
       td = reservation.arrival
       td = reservation.departure
-      td = link_to 'Show', reservation
-      td = link_to 'Edit', edit_reservation_path(reservation)
+      td = link_to 'Show', [:admin, reservation]
+      td = link_to 'Edit', edit_admin_reservation_path(reservation)
       td = link_to 'Destroy', reservation, :confirm => 'Are you sure?', :method => :delete
 
 br
 
-= link_to 'New Reservation', new_reservation_path
+= link_to 'New Reservation', new_admin_reservation_path
