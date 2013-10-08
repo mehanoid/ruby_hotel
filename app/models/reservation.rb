@@ -24,6 +24,8 @@ class Reservation < ActiveRecord::Base
         ((reservations.departure > arrival) & (reservations.arrival < departure))
   end
 
+  default_scope { where canceled: false }
+
   private
 
   def departure_later_than_arrival
