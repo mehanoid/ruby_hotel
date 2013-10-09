@@ -8,6 +8,9 @@ p
   strong> Дата выезда:
   = @reservation.departure
 
-=button_group
-  = bs_button_to 'Изменить', edit_admin_reservation_path(@reservation), class: 'btn-primary'
-  = bs_button_to 'Аннулировать', cancel_admin_reservation_path, data: { confirm: 'Вы действительно хотите аннулировать эту бронь?' }, method: :patch
+.row
+  .span6
+    = link_to 'Назад', admin_room_categories_path, class: :btn
+  .span6
+    = link_to 'Изменить', edit_admin_reservation_path(@reservation), class: :btn
+    = link_to 'Аннулировать', cancel_admin_reservation_path, class: :btn, data: { confirm: 'Вы действительно хотите аннулировать эту бронь?' }, method: :patch

@@ -1,13 +1,14 @@
-h1 Listing room_categories
+h1 Категории номеров
 
-table
-
+table.table
+  tr
+    th Название
+    th Число номеров
   - @room_categories.each do |room_category|
     tr
       td = link_to room_category.name, [:admin, room_category]
-      td = link_to 'Edit', edit_admin_room_category_path(room_category)
-      td = link_to 'Destroy', [:admin, room_category], :confirm => 'Are you sure?', :method => :delete
+      td = room_category.rooms.count
 
 br
 
-= link_to 'Добавить категорию номеров', new_admin_room_category_path
+= link_to 'Добавить категорию', new_admin_room_category_path, class: :btn

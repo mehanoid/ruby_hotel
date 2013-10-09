@@ -1,12 +1,8 @@
-p
-  strong Name:
-  = @room_category.name
-p
-  strong Description:
-  = simple_format @room_category.description
+= render partial: 'room_categories/room_category', locals: { room_category: @room_category, }
 
-= link_to 'Edit', edit_admin_room_category_path(@room_category)
-'|
-= link_to 'Back', admin_room_categories_path
-
-p = link_to 'Добавить номер', new_admin_room_category_room_path(@room_category)
+.row
+  .span6
+    = link_to 'Назад', admin_room_categories_path, class: :btn
+  .span6
+    = link_to 'Изменить', edit_admin_room_category_path(@room_category), class: :btn
+    = link_to 'Добавить номер', new_admin_room_category_room_path(@room_category), class: :btn
