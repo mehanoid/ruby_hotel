@@ -3,7 +3,7 @@ p
   = @room_category.name
 p
   strong Description:
-  = @room_category.description
+  = simple_format @room_category.description
 
 = link_to 'Edit', edit_admin_room_category_path(@room_category)
 '|

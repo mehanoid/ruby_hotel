@@ -12,6 +12,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'compass-rails',  '~> 2.0.alpha.0'
 gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'rails-bootstrap-helpers'
+gem 'data-confirm-modal', github: 'mehanoid/data-confirm-modal'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

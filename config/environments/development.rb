@@ -32,3 +32,5 @@ RubyHotel::Application.configure do
 
   config.middleware.use Rack::LiveReload
 end
+
+Slim::Engine.set_default_options pretty: true, sort_attrs: true

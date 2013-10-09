@@ -5,7 +5,6 @@ table
   - @room_categories.each do |room_category|
     tr
       td = link_to room_category.name, [:admin, room_category]
-      td = room_category.description
       td = link_to 'Edit', edit_admin_room_category_path(room_category)
       td = link_to 'Destroy', [:admin, room_category], :confirm => 'Are you sure?', :method => :delete
 

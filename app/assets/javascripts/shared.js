@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require data-confirm-modal
 //= require turbolinks
-//= require page_fade
+//= require_tree ./shared
