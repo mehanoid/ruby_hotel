@@ -74,12 +74,8 @@ group :development do
 
   gem "rb-inotify", require: false
   gem 'guard', '~> 2.0.1'
-  gem 'guard-rails'
   gem 'guard-livereload'
   gem 'rack-livereload'
-  gem 'guard-spork'
-  gem 'spork', '~> 1.0.0rc4'
-  gem 'spork-rails'
 
   #gem 'guard-cucumber'
   #gem 'guard-rspec'
