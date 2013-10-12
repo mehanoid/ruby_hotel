@@ -72,13 +72,11 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 
-  gem "rb-inotify", require: false
-  gem 'guard', '~> 2.0.1'
+  gem 'guard', '~> 2.0.5'
+  gem 'guard-rails'
   gem 'guard-livereload'
   gem 'rack-livereload'
-
-  #gem 'guard-cucumber'
-  #gem 'guard-rspec'
+  gem 'zeus'
 
 end
 
