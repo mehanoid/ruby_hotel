@@ -38,6 +38,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'slim-rails'
 gem 'simple_form', '~> 3.0.0'
 
+gem 'active_attr'
+
 # Active Record queries
 gem 'squeel', github: 'ernie/squeel'
 
@@ -71,6 +73,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'quiet_assets'
 
   gem 'guard', '~> 2.0.5'
   gem 'guard-rails'

@@ -37,3 +37,10 @@ ru:
         departure: Дата выезда
       user:
         password: Пароль
+  activemodel:
+#    models:
+#      rooms_form: Форма
+    attributes:
+      rooms_form:
+        number_range_start: Начало диапазона
+        number_range_end: Конец диапазона

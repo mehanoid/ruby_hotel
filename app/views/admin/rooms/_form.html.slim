@@ -1,10 +1,13 @@
 = simple_form_for @rooms_form, url: admin_room_category_rooms_path do |f|
   = f.error_notification
 
+  - @rooms_form.errors[:base].each do |error|
+    .alert.alert-error = error
+
   .form-inputs
-    = f.label :number_range_start, 'Диапазон номеров'
-    = f.input_field :number_range_start
-    = f.input_field :number_range_end
+    = f.input :number_range_start, label: 'Диапазон номеров', input_html: { class: 'input-mini' }
+    | —
+    = f.input :number_range_end, label: false, input_html: { class: 'input-mini' }, error_html: { class: 'lolo' }
 
   .form-actions
     = f.button :submit, 'Сохранить'

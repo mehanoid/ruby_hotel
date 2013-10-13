@@ -65,12 +65,12 @@ describe Admin::RoomsController do
   describe "POST create" do
     let(:category) { create(:room_category) }
     describe "with valid params" do
-      let(:valid_params) { {rooms_form: {number_range_start: '1', number_range_end: '5'}, room_category_id: category.id} }
+      let(:valid_params) { {rooms_form: {number_range_start: '1', number_range_end: '3'}, room_category_id: category.id} }
 
       it "creates a new Rooms" do
         expect {
           post :create, valid_params, valid_session
-        }.to change(Room, :count).by(5)
+        }.to change(Room, :count).by(3)
       end
 
       it "assigns a newly created rooms form as @rooms_form" do
