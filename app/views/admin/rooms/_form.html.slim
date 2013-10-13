@@ -1,10 +1,10 @@
-= simple_form_for [:admin, @category, @room] do |f|
+= simple_form_for @rooms_form, url: admin_room_category_rooms_path do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :number, as: :string
-    /= f.input :number
-    = f.association :category
+    = f.label :number_range_start, 'Диапазон номеров'
+    = f.input_field :number_range_start
+    = f.input_field :number_range_end
 
   .form-actions
     = f.button :submit, 'Сохранить'
