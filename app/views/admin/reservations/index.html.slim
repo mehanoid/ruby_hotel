@@ -1,15 +1,15 @@
 h1 Брони
 
 -if @reservations.any?
-  table.table.table-hover
+  table.table
     tr
       th Код брони
       th Номер
       th Дата заезда
       th Дата выезда
     - @reservations.each do |reservation|
-      tr.reservation data-link=url_for([:admin, reservation])
-        td = reservation.id
+      tr.row-link.reservation
+        td = link_to reservation.id, [:admin, reservation]
         td = reservation.room.number
         td = reservation.arrival
         td = reservation.departure

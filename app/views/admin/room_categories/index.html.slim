@@ -5,7 +5,7 @@ table.table
     th Название
     th Число номеров
   - @room_categories.each do |room_category|
-    tr
+    tr.row-link
       td = link_to room_category.name, [:admin, room_category]
       td = room_category.rooms.count
 
