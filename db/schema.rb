@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008102851) do
+ActiveRecord::Schema.define(version: 20131019130835) do
+
+  create_table "accommodations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "placements", force: true do |t|
+    t.integer  "room_id"
+    t.date     "arrival"
+    t.date     "departure"
+    t.integer  "accommodation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "placements", ["accommodation_id"], name: "index_placements_on_accommodation_id"
+  add_index "placements", ["room_id"], name: "index_placements_on_room_id"
 
   create_table "reservations", force: true do |t|
     t.integer  "room_id"

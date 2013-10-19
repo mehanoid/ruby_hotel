@@ -1,0 +1,25 @@
+h1 Listing placements
+
+table
+  tr
+    th Room
+    th Arrival
+    th Departure
+    th Accommodation
+    th
+    th
+    th
+
+  - @placements.each do |placement|
+    tr
+      td = placement.room
+      td = placement.arrival
+      td = placement.departure
+      td = placement.accommodation
+      td = link_to 'Show', placement
+      td = link_to 'Edit', edit_placement_path(placement)
+      td = link_to 'Destroy', placement, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Placement', new_placement_path

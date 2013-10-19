@@ -12,6 +12,9 @@ RubyHotel::Application.routes.draw do
       patch 'cancel', on: :member
     end
 
+    resources :placements
+    resources :accommodations
+
     resources :room_categories do
       resources :rooms, only: [:new, :create]
     end

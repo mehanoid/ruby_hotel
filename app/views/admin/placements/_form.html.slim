@@ -1,0 +1,11 @@
+= simple_form_for(@placement) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :room
+    = f.input :arrival
+    = f.input :departure
+    = f.association :accommodation
+
+  .form-actions
+    = f.button :submit

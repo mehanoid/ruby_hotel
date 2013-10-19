@@ -12,6 +12,8 @@ class Ability
       can :manage, Reservation
     elsif user.receptionist?
       can :manage, Reservation
+      can :manage, Accommodation
+      can :manage, Placement
     end
   end
 end

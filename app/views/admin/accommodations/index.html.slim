@@ -1,0 +1,17 @@
+h1 Listing accommodations
+
+table
+  tr
+    th
+    th
+    th
+
+  - @accommodations.each do |accommodation|
+    tr
+      td = link_to 'Show', accommodation
+      td = link_to 'Edit', edit_accommodation_path(accommodation)
+      td = link_to 'Destroy', accommodation, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Accommodation', new_accommodation_path
