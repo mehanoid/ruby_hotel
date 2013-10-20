@@ -38,7 +38,7 @@ describe Admin::AccommodationsController do
 
   describe 'GET index' do
     it 'assigns all accommodations as @accommodations' do
-      accommodation = Accommodation.create! accommodation_attributes
+      accommodation = create(:accommodation)
       get :index, {}, valid_session
       assigns(:accommodations).should eq([accommodation])
     end
@@ -46,7 +46,7 @@ describe Admin::AccommodationsController do
 
   describe 'GET show' do
     it 'assigns the requested accommodation as @accommodation' do
-      accommodation = Accommodation.create! accommodation_attributes
+      accommodation = create(:accommodation)
       get :show, {id: accommodation.to_param}, valid_session
       assigns(:accommodation).should eq(accommodation)
     end

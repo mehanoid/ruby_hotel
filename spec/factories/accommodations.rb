@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :accommodation do
+    placements { [build(:placement)] }
   end
 end

@@ -20,7 +20,7 @@ FactoryGirl.define do
 
 
     trait :deluxe do
-      name "Люкс"
+      name 'Люкс'
       description <<-EOS.strip_heredoc
         * Wi-fi
         * Кабельное телевидение
@@ -38,6 +38,7 @@ FactoryGirl.define do
 
 
     deluxe
+    sequence(:name) { |n| "Люкс #{n}" }
 
     factory :room_category_with_rooms do
       ignore do

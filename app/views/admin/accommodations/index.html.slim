@@ -8,10 +8,10 @@ table
 
   - @accommodations.each do |accommodation|
     tr
-      td = link_to 'Show', accommodation
-      td = link_to 'Edit', edit_accommodation_path(accommodation)
-      td = link_to 'Destroy', accommodation, :confirm => 'Are you sure?', :method => :delete
+      td = link_to 'Show', [:admin, accommodation]
+      td = link_to 'Edit', edit_admin_accommodation_path(accommodation)
+      td = link_to 'Destroy', [:admin, accommodation], :confirm => 'Are you sure?', :method => :delete
 
 br
 
-= link_to 'New Accommodation', new_accommodation_path
+= link_to 'New Accommodation', new_admin_accommodation_path
