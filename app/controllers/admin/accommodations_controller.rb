@@ -1,5 +1,5 @@
 module Admin
-  class AccommodationsController < ApplicationController
+  class AccommodationsController < AdminController
     before_action :set_accommodation_for_create, only: [:create]
 
     load_and_authorize_resource
