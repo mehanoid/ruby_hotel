@@ -1,6 +1,6 @@
 module ReservationHelpers
   def arrival
-    '01.10.2013'
+    '02.10.2013'
   end
 
   def departure

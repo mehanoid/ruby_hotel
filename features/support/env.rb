@@ -60,3 +60,11 @@ Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 World(FactoryGirl::Syntax::Methods)
+
+Before do
+  Timecop.travel Date.parse('2013-10-01')
+end
+
+After do
+  Timecop.return
+end

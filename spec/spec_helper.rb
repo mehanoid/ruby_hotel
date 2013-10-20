@@ -43,4 +43,13 @@ RSpec.configure do |config|
   config.render_views
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
+
+
+  config.before(:all) do
+    Timecop.travel Date.parse('2013-10-01')
+  end
+
+  config.after(:all) do
+    Timecop.return
+  end
 end

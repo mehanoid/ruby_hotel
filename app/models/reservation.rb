@@ -2,7 +2,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :room
 
   validates :room, :arrival, :departure, presence: true
-  validate :room_not_occupied, :departure_later_than_arrival
+  validate :room_not_occupied, :departure_later_than_arrival, :arrival_later_than_today
 
   before_validation do |reservation|
     unless reservation.room
@@ -28,6 +28,12 @@ class Reservation < ActiveRecord::Base
   end
 
   private
+
+  def arrival_later_than_today
+    if arrival <= Date.today
+      errors.add(:arrival, 'не может быть раньше, чем завтра')
+    end
+  end
 
   def departure_later_than_arrival
     if departure && arrival && departure <= arrival
