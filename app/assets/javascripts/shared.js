@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require data-confirm-modal
+//= require twitter/bootstrap/rails/confirm
 //= require turbolinks
 //= require_tree ./shared
