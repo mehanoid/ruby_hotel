@@ -2,7 +2,8 @@ class Reservation < ActiveRecord::Base
   belongs_to :room
 
   validates :room, :arrival, :departure, presence: true
-  validate :room_not_occupied, :departure_later_than_arrival, :arrival_later_than_today
+  validate :room_not_occupied, :departure_later_than_arrival
+  validate :arrival_later_than_today, on: :create
 
   before_validation do |reservation|
     unless reservation.room
