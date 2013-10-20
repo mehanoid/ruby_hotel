@@ -60,10 +60,12 @@ describe Admin::AccommodationsController do
   end
 
   describe 'GET edit' do
-    it 'assigns the requested accommodation as @accommodation' do
-      accommodation = Accommodation.create! accommodation_attributes
-      get :edit, {id: accommodation.to_param}, valid_session
-      assigns(:accommodation).should eq(accommodation)
+    pending do
+      it 'assigns the requested accommodation as @accommodation' do
+        accommodation = Accommodation.create! accommodation_attributes
+        get :edit, {id: accommodation.to_param}, valid_session
+        assigns(:accommodation).should eq(accommodation)
+      end
     end
   end
 
@@ -126,45 +128,47 @@ describe Admin::AccommodationsController do
   end
 
   describe 'PUT update' do
-    describe 'with valid params' do
-      it 'updates the requested accommodation' do
-        accommodation = Accommodation.create! accommodation_attributes
-        # Assuming there are no other accommodations in the database, this
-        # specifies that the Accommodation created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Accommodation.any_instance.should_receive(:update).with({'these' => 'params'})
-        put :update, {id: accommodation.to_param, :accommodation => {'these' => 'params'}}, valid_session
+    pending do
+      describe 'with valid params' do
+        it 'updates the requested accommodation' do
+          accommodation = Accommodation.create! accommodation_attributes
+          # Assuming there are no other accommodations in the database, this
+          # specifies that the Accommodation created on the previous line
+          # receives the :update_attributes message with whatever params are
+          # submitted in the request.
+          Accommodation.any_instance.should_receive(:update).with({'these' => 'params'})
+          put :update, {id: accommodation.to_param, :accommodation => {'these' => 'params'}}, valid_session
+        end
+
+        it 'assigns the requested accommodation as @accommodation' do
+          accommodation = Accommodation.create! accommodation_attributes
+          put :update, {:id => accommodation.to_param, :accommodation => accommodation_attributes}, valid_session
+          assigns(:accommodation).should eq(accommodation)
+        end
+
+        it 'redirects to the accommodation' do
+          accommodation = Accommodation.create! accommodation_attributes
+          put :update, {:id => accommodation.to_param, :accommodation => accommodation_attributes}, valid_session
+          response.should redirect_to(accommodation)
+        end
       end
 
-      it 'assigns the requested accommodation as @accommodation' do
-        accommodation = Accommodation.create! accommodation_attributes
-        put :update, {:id => accommodation.to_param, :accommodation => accommodation_attributes}, valid_session
-        assigns(:accommodation).should eq(accommodation)
-      end
+      describe 'with invalid params' do
+        it 'assigns the accommodation as @accommodation' do
+          accommodation = Accommodation.create! accommodation_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          Accommodation.any_instance.stub(:save).and_return(false)
+          put :update, {id: accommodation.to_param, accommodation: {}}, valid_session
+          assigns(:accommodation).should eq(accommodation)
+        end
 
-      it 'redirects to the accommodation' do
-        accommodation = Accommodation.create! accommodation_attributes
-        put :update, {:id => accommodation.to_param, :accommodation => accommodation_attributes}, valid_session
-        response.should redirect_to(accommodation)
-      end
-    end
-
-    describe 'with invalid params' do
-      it 'assigns the accommodation as @accommodation' do
-        accommodation = Accommodation.create! accommodation_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Accommodation.any_instance.stub(:save).and_return(false)
-        put :update, {id: accommodation.to_param, accommodation: {}}, valid_session
-        assigns(:accommodation).should eq(accommodation)
-      end
-
-      it "re-renders the 'edit' template" do
-        accommodation = Accommodation.create! accommodation_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Accommodation.any_instance.stub(:save).and_return(false)
-        put :update, {id: accommodation.to_param, accommodation: {}}, valid_session
-        response.should render_template('edit')
+        it "re-renders the 'edit' template" do
+          accommodation = Accommodation.create! accommodation_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          Accommodation.any_instance.stub(:save).and_return(false)
+          put :update, {id: accommodation.to_param, accommodation: {}}, valid_session
+          response.should render_template('edit')
+        end
       end
     end
   end
