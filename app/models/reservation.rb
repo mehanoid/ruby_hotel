@@ -1,7 +1,9 @@
 class Reservation < ActiveRecord::Base
+  include Concerns::ArrivalDeparture
+
   belongs_to :room
 
-  validates :room, :arrival, :departure, presence: true
+  validates :room, presence: true
   validate :room_not_occupied, :departure_later_than_arrival
   validate :arrival_later_than_today, on: :create
 
@@ -16,12 +18,7 @@ class Reservation < ActiveRecord::Base
 
   attr_accessor :room_category_id
 
-  def self.overlapping_reservations(arrival, departure)
-    where { ((reservations.arrival < departure) & (reservations.departure > arrival)) |
-        ((reservations.departure > arrival) & (reservations.arrival < departure)) }
-  end
-
-  scope :active, -> { where{ (canceled == false) & (arrival >= Date.today) } }
+  scope :active, -> { where { (canceled == false) & (arrival >= Date.today) } }
 
   default_scope { active }
 
@@ -33,19 +30,13 @@ class Reservation < ActiveRecord::Base
   private
 
   def arrival_later_than_today
-    if arrival <= Date.today
+    if arrival && arrival <= Date.today
       errors.add(:arrival, 'не может быть раньше, чем завтра')
     end
   end
 
-  def departure_later_than_arrival
-    if departure && arrival && departure <= arrival
-      errors.add(:departure, 'должна быть позднее даты заезда')
-    end
-  end
-
   def room_not_occupied
-    if room && room_id_changed? && room.reservations.overlapping_reservations(arrival, departure).any?
+    if room && room_id_changed? && room.reservations.overlapping_with(arrival, departure).any?
       errors.add(:room, 'занята на выбранном периоде')
     end
   end
