@@ -21,7 +21,9 @@ class Reservation < ActiveRecord::Base
         ((reservations.departure > arrival) & (reservations.arrival < departure)) }
   end
 
-  default_scope { where canceled: false }
+  scope :active, -> { where{ (canceled == false) & (arrival >= Date.today) } }
+
+  default_scope { active }
 
   def cancel
     self.canceled = true
