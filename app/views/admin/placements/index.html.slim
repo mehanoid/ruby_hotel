@@ -10,15 +10,7 @@ table
     th
     th
 
-  - @placements.each do |placement|
-    tr
-      td = placement.room
-      td = placement.arrival
-      td = placement.departure
-      td = placement.accommodation
-      td = link_to 'Show', placement
-      td = link_to 'Edit', edit_placement_path(placement)
-      td = link_to 'Destroy', placement, :confirm => 'Are you sure?', :method => :delete
+  = render @placements
 
 br
 

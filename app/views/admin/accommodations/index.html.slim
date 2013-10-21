@@ -1,16 +1,16 @@
 h1 Listing accommodations
 
-table
-  tr
-    th
-    th
-    th
 
-  - @accommodations.each do |accommodation|
+- @accommodations.each do |accommodation|
+  = link_to 'Show', [:admin, accommodation]
+  = link_to 'Edit', edit_admin_accommodation_path(accommodation)
+  = link_to 'Destroy', [:admin, accommodation], :confirm => 'Are you sure?', :method => :delete
+  table
     tr
-      td = link_to 'Show', [:admin, accommodation]
-      td = link_to 'Edit', edit_admin_accommodation_path(accommodation)
-      td = link_to 'Destroy', [:admin, accommodation], :confirm => 'Are you sure?', :method => :delete
+      th Номер
+      th Заселение
+      th Выселение
+    = render accommodation.placements
 
 br
 

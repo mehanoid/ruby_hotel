@@ -7,6 +7,7 @@ module Admin
     # GET /accommodations
     # GET /accommodations.json
     def index
+      @accommodations = @accommodations.includes(:placements)
     end
 
     # GET /accommodations/1

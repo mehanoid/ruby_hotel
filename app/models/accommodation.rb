@@ -14,7 +14,7 @@ class Accommodation < ActiveRecord::Base
   def get_data_from_reservation
     return unless reservation_id
     reservation = Reservation.find(reservation_id)
-    placements.build(arrival: reservation.arrival, departure: reservation.departure, room_id: reservation.room_id)
+    placements.build(arrival: reservation.arrival, departure: reservation.departure, room: reservation.room)
     reservation.cancel
   end
 end

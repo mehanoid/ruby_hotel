@@ -81,6 +81,7 @@ group :development do
   gem 'rack-livereload'
   gem 'zeus'
 
+  gem 'hirb'
 end
 
 

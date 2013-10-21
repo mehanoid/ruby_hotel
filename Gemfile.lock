@@ -135,6 +135,7 @@ GEM
     guard-rails (0.4.7)
       guard (>= 0.2.2)
     hike (1.2.3)
+    hirb (0.7.1)
     http_parser.rb (0.5.3)
     i18n (0.6.5)
     jbuilder (1.5.2)
@@ -296,6 +297,7 @@ DEPENDENCIES
   guard (~> 2.0.5)
   guard-livereload
   guard-rails
+  hirb
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails
