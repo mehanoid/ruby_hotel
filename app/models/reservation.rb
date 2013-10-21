@@ -16,9 +16,9 @@ class Reservation < ActiveRecord::Base
 
   attr_accessor :room_category_id
 
-  sifter :overlapping_reservations do |arrival, departure|
-    ((reservations.arrival < departure) & (reservations.departure > arrival)) |
-        ((reservations.departure > arrival) & (reservations.arrival < departure))
+  def self.overlapping_reservations(arrival, departure)
+    where { ((reservations.arrival < departure) & (reservations.departure > arrival)) |
+        ((reservations.departure > arrival) & (reservations.arrival < departure)) }
   end
 
   default_scope { where canceled: false }
@@ -43,7 +43,7 @@ class Reservation < ActiveRecord::Base
   end
 
   def room_not_occupied
-    if room && room_id_changed? && room.reservations.where { sift(:overlapping_reservations, arrival, departure) }.any?
+    if room && room_id_changed? && room.reservations.overlapping_reservations(arrival, departure).any?
       errors.add(:room, 'занята на выбранном периоде')
     end
   end
