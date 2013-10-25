@@ -1,0 +1,11 @@
+= simple_form_for(@passport) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :number
+    = f.input :date_of_issue
+    = f.input :issuing_authority
+    = f.association :client
+
+  .form-actions
+    = f.button :submit

@@ -11,12 +11,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131019130835) do
+ActiveRecord::Schema.define(version: 20131025184707) do
 
   create_table "accommodations", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "clients", force: true do |t|
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.date     "birsday"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contact_informations", force: true do |t|
+    t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contact_informations", ["client_id"], name: "index_contact_informations_on_client_id"
+
+  create_table "emails", force: true do |t|
+    t.string   "address"
+    t.integer  "contact_information_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "emails", ["contact_information_id"], name: "index_emails_on_contact_information_id"
+
+  create_table "passports", force: true do |t|
+    t.string   "number"
+    t.date     "date_of_issue"
+    t.string   "issuing_authority"
+    t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "passports", ["client_id"], name: "index_passports_on_client_id"
+
+  create_table "phones", force: true do |t|
+    t.string   "number"
+    t.integer  "contact_information_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "phones", ["contact_information_id"], name: "index_phones_on_contact_information_id"
 
   create_table "placements", force: true do |t|
     t.integer  "room_id"

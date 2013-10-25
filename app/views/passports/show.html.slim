@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Number:
+  = @passport.number
+p
+  strong Date of issue:
+  = @passport.date_of_issue
+p
+  strong Issuing authority:
+  = @passport.issuing_authority
+p
+  strong Client:
+  = @passport.client
+
+= link_to 'Edit', edit_passport_path(@passport)
+'|
+= link_to 'Back', passports_path

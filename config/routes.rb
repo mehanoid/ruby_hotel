@@ -1,6 +1,16 @@
 RubyHotel::Application.routes.draw do
 
 
+  resources :emails
+
+  resources :phones
+
+  resources :contact_informations
+
+  resources :passports
+
+  resources :clients
+
   resources :reservations
 
   root 'home#rooms'

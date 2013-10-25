@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong First name:
+  = @client.first_name
+p
+  strong Middle name:
+  = @client.middle_name
+p
+  strong Last name:
+  = @client.last_name
+p
+  strong Birsday:
+  = @client.birsday
+
+= link_to 'Edit', edit_client_path(@client)
+'|
+= link_to 'Back', clients_path

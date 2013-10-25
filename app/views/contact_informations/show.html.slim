@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Client:
+  = @contact_information.client
+
+= link_to 'Edit', edit_contact_information_path(@contact_information)
+'|
+= link_to 'Back', contact_informations_path
