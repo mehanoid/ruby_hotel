@@ -75,7 +75,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'quiet_assets'
 
-  gem 'guard', '~> 2.0.5'
+  gem 'guard', '~> 2.2.2'
   gem 'guard-rails'
   gem 'guard-livereload'
   gem 'rack-livereload'
