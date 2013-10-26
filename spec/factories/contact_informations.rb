@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :contact_information do
-    client nil
+    emails { [build(:email)] }
+    phones { [build(:phone)] }
   end
 end

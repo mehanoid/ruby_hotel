@@ -15,6 +15,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
+    @reservation.build_client_data
     @reservation.room_category_id = params[:room_category_id]
   end
 
@@ -32,6 +33,7 @@ class ReservationsController < ApplicationController
         format.html { redirect_to @reservation, notice: 'Номер забронирован.' }
         format.json { render action: 'show', status: :created, location: @reservation }
       else
+        @reservation.build_client_data
         format.html { render action: 'new' }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
@@ -70,7 +72,23 @@ class ReservationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def reservation_params
-    params.require(:reservation).permit(:room_category_id, :arrival, :departure)
+    params.require(:reservation).permit(
+        :room_category_id,
+        :arrival,
+        :departure,
+        client_attributes: [
+            :first_name,
+            :last_name,
+            :middle_name,
+            {
+                contact_information_attributes: [
+                    {
+                        emails_attributes: [:address],
+                        phones_attributes: [:number]
+                    }
+                ]
+            }
+        ])
   end
 
 end

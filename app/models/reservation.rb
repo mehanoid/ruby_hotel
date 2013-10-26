@@ -4,7 +4,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :room
   belongs_to :client
 
-  validates :room, presence: true
+  validates :room, :client, presence: true
   validate :room_not_occupied, :departure_later_than_arrival
   validate :arrival_later_than_today, on: :create
 
@@ -15,9 +15,11 @@ class Reservation < ActiveRecord::Base
         errors[:base] << 'Извините, нет свободных номеров за выбранный период'
       end
     end
+    reservation.build_client unless reservation.client
   end
 
   attr_accessor :room_category_id
+  accepts_nested_attributes_for :client
 
   scope :active, -> { where { (canceled == false) & (arrival >= Date.today) } }
 
@@ -26,6 +28,15 @@ class Reservation < ActiveRecord::Base
   def cancel
     self.canceled = true
     save
+  end
+
+  def build_client_data
+    build_client unless client
+    client.build_contact_information unless client.contact_information
+    contact = client.contact_information
+    contact.phones.build unless contact.phones.any?
+    contact.emails.build unless contact.emails.any?
+    client
   end
 
   private

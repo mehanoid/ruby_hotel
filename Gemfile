@@ -72,7 +72,7 @@ end
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller'
+  #gem 'binding_of_caller'
   gem 'quiet_assets'
 
   gem 'guard', '~> 2.2.2'
@@ -95,7 +95,6 @@ group :test do
   gem 'capybara-webkit'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
-  gem 'shoulda-matchers'
   gem 'timecop'
   gem 'launchy'
 end

@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :email do
-    address "MyString"
-    contact_information nil
+    address 'ivan@gmail.com'
   end
 end

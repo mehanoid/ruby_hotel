@@ -2,9 +2,10 @@
 
 FactoryGirl.define do
   factory :client do
-    first_name "MyString"
-    middle_name "MyString"
-    last_name "MyString"
-    birsday "2013-10-25"
+    first_name 'Иван'
+    middle_name 'Иванович'
+    last_name 'Иванов'
+    birsday '1990-10-25'
+    association :contact_information
   end
 end

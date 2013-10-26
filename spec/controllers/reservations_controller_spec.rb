@@ -24,7 +24,17 @@ describe ReservationsController do
   # Reservation. As you add validations to Reservation, be sure to
   # adjust the attributes here as well.
   let(:category) { create(:room_category_with_rooms) }
-  let(:valid_attributes) { attributes_for(:reservation, room: nil, room_category_id: category.id) }
+  let(:valid_attributes) {
+    attributes_for(:reservation,
+      room: nil,
+      room_category_id: category.id,
+      client_attributes: attributes_for(:client,
+        contact_information_attributes: {
+          phones_attributes: [attributes_for(:phone)],
+          emails_attributes: [attributes_for(:email)],
+        }
+      )
+    )}
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -39,16 +49,16 @@ describe ReservationsController do
   #  end
   #end
   #
-  describe "GET show" do
-    it "assigns the requested reservation as @reservation" do
+  describe 'GET show' do
+    it 'assigns the requested reservation as @reservation' do
       reservation = Reservation.create! valid_attributes
       get :show, {:id => reservation.to_param}, valid_session
       assigns(:reservation).should eq(reservation)
     end
   end
 
-  describe "GET new" do
-    it "assigns a new reservation as @reservation" do
+  describe 'GET new' do
+    it 'assigns a new reservation as @reservation' do
       get :new, {room_category_id: '1'}, valid_session
       assigns(:reservation).should be_a_new(Reservation)
     end
@@ -62,39 +72,39 @@ describe ReservationsController do
   #  end
   #end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Reservation" do
+  describe 'POST create' do
+    describe 'with valid params' do
+      it 'creates a new Reservation' do
         expect {
           post :create, {reservation: valid_attributes}, valid_session
         }.to change(Reservation, :count).by(1)
       end
 
-      it "assigns a newly created reservation as @reservation" do
+      it 'assigns a newly created reservation as @reservation' do
         post :create, {:reservation => valid_attributes}, valid_session
         assigns(:reservation).should be_a(Reservation)
         assigns(:reservation).should be_persisted
       end
 
-      it "redirects to the created reservation" do
+      it 'redirects to the created reservation' do
         post :create, {:reservation => valid_attributes}, valid_session
         response.should redirect_to(Reservation.last)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved reservation as @reservation" do
+    describe 'with invalid params' do
+      it 'assigns a newly created but unsaved reservation as @reservation' do
         # Trigger the behavior that occurs when invalid params are submitted
         Reservation.any_instance.stub(:save).and_return(false)
-        post :create, {:reservation => { "room" => "invalid value" }}, valid_session
+        post :create, {:reservation => { room: 'invalid value'}}, valid_session
         assigns(:reservation).should be_a_new(Reservation)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Reservation.any_instance.stub(:save).and_return(false)
-        post :create, {:reservation => { "room" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        post :create, {:reservation => { room: 'invalid value'}}, valid_session
+        response.should render_template('new')
       end
     end
   end
