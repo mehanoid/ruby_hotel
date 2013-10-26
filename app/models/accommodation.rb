@@ -2,6 +2,7 @@ class Accommodation < ActiveRecord::Base
 
   attr_accessor :reservation_id
 
+  belongs_to :client
   has_many :placements, inverse_of: :accommodation
   accepts_nested_attributes_for :placements
 
