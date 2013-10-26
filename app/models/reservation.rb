@@ -2,6 +2,7 @@ class Reservation < ActiveRecord::Base
   include Concerns::ArrivalDeparture
 
   belongs_to :room
+  belongs_to :client
 
   validates :room, presence: true
   validate :room_not_occupied, :departure_later_than_arrival
