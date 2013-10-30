@@ -1,9 +1,8 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-notification :off
 
-guard 'rails', zeus: true, timeout: 5 do
+guard 'rails' do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
 end

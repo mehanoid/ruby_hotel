@@ -51,7 +51,7 @@ describe ReservationsController do
   #
   describe 'GET show' do
     it 'assigns the requested reservation as @reservation' do
-      reservation = Reservation.create! valid_attributes
+      reservation = create(:reservation)
       get :show, {:id => reservation.to_param}, valid_session
       assigns(:reservation).should eq(reservation)
     end

@@ -29,7 +29,7 @@ end
 
 Допустим(/^нет свободных номеров за выбранный период$/) do
   Room.all.each do |room|
-    room.reservations.create(arrival: arrival, departure: departure)
+    create(:reservation, room: room, arrival: arrival, departure: departure)
   end
 end
 

@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe RoomCategory do
-  it { should validate_uniqueness_of(:name) }
-  it { should validate_presence_of(:name) }
 
   describe 'free_room' do
     context 'with 2 rooms' do
@@ -15,7 +13,7 @@ describe RoomCategory do
 
       context 'with first room reserved within given period' do
         before do
-          first_room.reservations.create(arrival: arrival, departure: departure)
+          create(:reservation, room: first_room, arrival: arrival, departure: departure)
         end
 
         it 'returns second room' do
@@ -26,8 +24,8 @@ describe RoomCategory do
       context 'with first room reserved before and after given period' do
         before do
           Timecop.travel 10.days.ago do
-            first_room.reservations.create(arrival: arrival - 10.days, departure: departure - 10.days)
-            first_room.reservations.create(arrival: arrival + 10.days, departure: departure + 10.days)
+            create(:reservation, room: first_room, arrival: arrival - 10.days, departure: departure - 10.days)
+            create(:reservation, room: first_room, arrival: arrival + 10.days, departure: departure + 10.days)
           end
         end
 
@@ -38,8 +36,8 @@ describe RoomCategory do
 
       context 'without free rooms' do
         before do
-          first_room.reservations.create(arrival: arrival, departure: departure)
-          second_room.reservations.create(arrival: arrival, departure: departure)
+          create(:reservation, room: first_room, arrival: arrival, departure: departure)
+          create(:reservation, room: second_room, arrival: arrival, departure: departure)
         end
 
         it 'returns nil' do
