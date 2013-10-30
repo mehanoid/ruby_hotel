@@ -1,5 +1,6 @@
 class Reservation < ActiveRecord::Base
   include Concerns::ArrivalDeparture
+  include Concerns::NestedClientBuilder
 
   belongs_to :room
   belongs_to :client
@@ -28,15 +29,6 @@ class Reservation < ActiveRecord::Base
   def cancel
     self.canceled = true
     save
-  end
-
-  def build_client_data
-    build_client unless client
-    client.build_contact_information unless client.contact_information
-    contact = client.contact_information
-    contact.phones.build unless contact.phones.any?
-    contact.emails.build unless contact.emails.any?
-    client
   end
 
   private

@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:change', ->
-  $('input#reservation_arrival, input#reservation_departure').datepicker()
+  $('input.datepicker').datepicker()

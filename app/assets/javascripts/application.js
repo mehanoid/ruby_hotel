@@ -12,6 +12,4 @@
 //
 
 //= require shared
-//= require jquery.ui.datepicker
-//= require jquery.ui.datepicker-ru
 //= require_tree ./application

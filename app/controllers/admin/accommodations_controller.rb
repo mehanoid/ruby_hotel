@@ -9,6 +9,10 @@ module Admin
       @accommodations = @accommodations.includes(:placements)
     end
 
+    def new
+      @accommodation.build_client
+    end
+
     private
     def permitted_params
       params.permit(accommodation: [
