@@ -49,9 +49,26 @@ ru:
       email:
         address: E-mail
   activemodel:
-#    models:
-#      rooms_form: Форма
     attributes:
       rooms_form:
         number_range_start: Начало диапазона
         number_range_end: Конец диапазона
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} сохранён"
+      update:
+        notice: "%{resource_name} сохранён"
+      destroy:
+        notice: "%{resource_name} успешно уничтожен"
+        alert: "%{resource_name} не может быть уничтожен"
+    reservations:
+      create:
+        notice: Номер забронирован
+    admin:
+      reservations:
+        create:
+          notice: Номер забронирован
+      room_categories:
+        create:
+          notice: Категория сохранена

@@ -66,8 +66,6 @@ describe ReservationsController do
   describe 'POST create' do
     describe 'with valid params' do
       it 'creates a new Reservation' do
-        puts 'valid_attributes'
-        p valid_attributes
         expect {
           post :create, {reservation: valid_attributes}, valid_session
         }.to change(Reservation, :count).by(1)
@@ -88,14 +86,12 @@ describe ReservationsController do
     describe 'with invalid params' do
       it 'assigns a newly created but unsaved reservation as @reservation' do
         # Trigger the behavior that occurs when invalid params are submitted
-        Reservation.any_instance.stub(:save).and_return(false)
         post :create, {:reservation => {room: 'invalid value'}}, valid_session
         assigns(:reservation).should be_a_new(Reservation)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Reservation.any_instance.stub(:save).and_return(false)
         post :create, {:reservation => {room: 'invalid value'}}, valid_session
         response.should render_template('new')
       end

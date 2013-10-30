@@ -1,64 +1,15 @@
 module Admin
   class ReservationsController < AdminController
     include Concerns::ReservationParams
-
-    before_action :reservation_for_create, only: [:create]
-
+    inherit_resources
+    respond_to :html
     load_and_authorize_resource
-
-
-    def new
-      @reservation.room_category_id = params[:room_category_id]
-    end
-
-    def create
-      respond_to do |format|
-        if @reservation.save
-          format.html { redirect_to @reservation, notice: 'Номер забронирован.' }
-          format.json { render action: 'show', status: :created, location: @reservation }
-        else
-          format.html { render action: 'new' }
-          format.json { render json: @reservation.errors, status: :unprocessable_entity }
-        end
-      end
-    end
-
-    ## PATCH/PUT /reservations/1
-    ## PATCH/PUT /reservations/1.json
-    #def update
-    #  respond_to do |format|
-    #    if @reservation.update(reservation_params)
-    #      format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
-    #      format.json { head :no_content }
-    #    else
-    #      format.html { render action: 'edit' }
-    #      format.json { render json: @reservation.errors, status: :unprocessable_entity }
-    #    end
-    #  end
-    #end
-    #
-    ## DELETE /reservations/1
-    ## DELETE /reservations/1.json
-    #def destroy
-    #  @reservation.destroy
-    #  respond_to do |format|
-    #    format.html { redirect_to reservations_url }
-    #    format.json { head :no_content }
-    #  end
-    #end
 
     def cancel
       @reservation.cancel
       respond_to do |format|
         format.html { redirect_to admin_reservations_url, notice: 'Бронь аннулирована' }
-        format.json { head :no_content }
       end
-    end
-
-    private
-
-    def reservation_for_create
-      @reservation = Reservation.new(reservation_params)
     end
   end
 end

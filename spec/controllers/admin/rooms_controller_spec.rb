@@ -48,8 +48,8 @@ describe Admin::RoomsController do
   #  end
   #end
 
-  describe "GET new" do
-    it "assigns a new rooms form as @rooms_form" do
+  describe 'GET new' do
+    it 'assigns a new rooms form as @rooms_form' do
       get :new, {room_category_id: category.id}, valid_session
       assigns(:rooms_form).should be_a(RoomsForm)
     end
@@ -62,40 +62,39 @@ describe Admin::RoomsController do
   #  end
   #end
 
-  describe "POST create" do
+  describe 'POST create' do
     let(:category) { create(:room_category) }
-    describe "with valid params" do
+    describe 'with valid params' do
       let(:valid_params) { {rooms_form: {number_range_start: '1', number_range_end: '3'}, room_category_id: category.id} }
 
-      it "creates a new Rooms" do
+      it 'creates a new Rooms' do
         expect {
           post :create, valid_params, valid_session
         }.to change(Room, :count).by(3)
       end
 
-      it "assigns a newly created rooms form as @rooms_form" do
+      it 'assigns a newly created rooms form as @rooms_form' do
         post :create, valid_params, valid_session
         assigns(:rooms_form).should be_a(RoomsForm)
       end
 
-      it "redirects to the rooms category" do
+      it 'redirects to the rooms category' do
         post :create, valid_params, valid_session
         response.should redirect_to([:admin, category])
       end
     end
 
-    describe "with invalid params" do
+    describe 'with invalid params' do
       let(:invalid_params) { {rooms_form: {number_range_start: 'fef'}, room_category_id: category.id} }
 
-      it "assigns a newly created but unsaved rooms form as @rooms_form" do
-        RoomsForm.any_instance.stub(:save).and_return(false)
+      it 'assigns a newly created but unsaved rooms form as @rooms_form' do
         post :create, invalid_params, valid_session
         assigns(:rooms_form).should be_a(RoomsForm)
       end
 
       it "re-renders the 'new' template" do
         post :create, invalid_params, valid_session
-        response.should render_template("new")
+        response.should render_template('new')
       end
     end
   end

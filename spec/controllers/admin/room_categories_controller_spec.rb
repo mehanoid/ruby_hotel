@@ -23,7 +23,8 @@ describe Admin::RoomCategoriesController do
   # This should return the minimal set of attributes required to create a valid
   # RoomCategory. As you add validations to RoomCategory, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { {room_category: {name: 'Люкс'}} }
+  let(:invalid_attributes) { {room_category: {neme: ''}} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -34,128 +35,120 @@ describe Admin::RoomCategoriesController do
     sign_in create(:admin)
   end
 
-  describe "GET index" do
-    it "assigns all room_categories as @room_categories" do
-      room_category = RoomCategory.create! valid_attributes
+  describe 'GET index' do
+    it 'assigns all room_categories as @room_categories' do
+      room_category = create(:room_category)
       get :index, {}, valid_session
       assigns(:room_categories).should eq([room_category])
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested room_category as @room_category" do
-      room_category = RoomCategory.create! valid_attributes
+  describe 'GET show' do
+    it 'assigns the requested room_category as @room_category' do
+      room_category = create(:room_category)
       get :show, {:id => room_category.to_param}, valid_session
       assigns(:room_category).should eq(room_category)
     end
   end
 
-  describe "GET new" do
-    it "assigns a new room_category as @room_category" do
+  describe 'GET new' do
+    it 'assigns a new room_category as @room_category' do
       get :new, {}, valid_session
       assigns(:room_category).should be_a_new(RoomCategory)
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested room_category as @room_category" do
-      room_category = RoomCategory.create! valid_attributes
+  describe 'GET edit' do
+    it 'assigns the requested room_category as @room_category' do
+      room_category = create(:room_category)
       get :edit, {:id => room_category.to_param}, valid_session
       assigns(:room_category).should eq(room_category)
     end
   end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new RoomCategory" do
+  describe 'POST create' do
+    describe 'with valid params' do
+      it 'creates a new RoomCategory' do
         expect {
-          post :create, {:room_category => valid_attributes}, valid_session
+          post :create, valid_attributes, valid_session
         }.to change(RoomCategory, :count).by(1)
       end
 
-      it "assigns a newly created room_category as @room_category" do
-        post :create, {:room_category => valid_attributes}, valid_session
+      it 'assigns a newly created room_category as @room_category' do
+        post :create, valid_attributes, valid_session
         assigns(:room_category).should be_a(RoomCategory)
         assigns(:room_category).should be_persisted
       end
 
-      it "redirects to the created room_category" do
-        post :create, {:room_category => valid_attributes}, valid_session
+      it 'redirects to the created room_category' do
+        post :create, valid_attributes, valid_session
         response.should redirect_to([:admin, RoomCategory.last])
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved room_category as @room_category" do
+    describe 'with invalid params' do
+      it 'assigns a newly created but unsaved room_category as @room_category' do
         # Trigger the behavior that occurs when invalid params are submitted
-        RoomCategory.any_instance.stub(:save).and_return(false)
-        post :create, {:room_category => { "name" => "invalid value" }}, valid_session
+        post :create, invalid_attributes, valid_session
         assigns(:room_category).should be_a_new(RoomCategory)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        RoomCategory.any_instance.stub(:save).and_return(false)
-        post :create, {:room_category => { "name" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        post :create, invalid_attributes, valid_session
+        response.should render_template('new')
       end
     end
   end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested room_category" do
-        room_category = RoomCategory.create! valid_attributes
+  describe 'PUT update' do
+    let!(:room_category) { create(:room_category) }
+    describe 'with valid params' do
+      it 'updates the requested room_category' do
         # Assuming there are no other room_categories in the database, this
         # specifies that the RoomCategory created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        RoomCategory.any_instance.should_receive(:update).with({ "name" => "MyString" })
-        put :update, {:id => room_category.to_param, :room_category => { "name" => "MyString" }}, valid_session
+        #RoomCategory.any_instance.should_receive(:update)
+        put :update, { id: room_category.id, room_category: {name: 'Суперлюкс'} }, valid_session
+        room_category.reload.name.should eq 'Суперлюкс'
       end
 
-      it "assigns the requested room_category as @room_category" do
-        room_category = RoomCategory.create! valid_attributes
+      it 'assigns the requested room_category as @room_category' do
         put :update, {:id => room_category.to_param, :room_category => valid_attributes}, valid_session
         assigns(:room_category).should eq(room_category)
       end
 
-      it "redirects to the room_category" do
-        room_category = RoomCategory.create! valid_attributes
+      it 'redirects to the room_category' do
         put :update, {:id => room_category.to_param, :room_category => valid_attributes}, valid_session
         response.should redirect_to([:admin, room_category])
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the room_category as @room_category" do
-        room_category = RoomCategory.create! valid_attributes
+    describe 'with invalid params' do
+      it 'assigns the room_category as @room_category' do
         # Trigger the behavior that occurs when invalid params are submitted
-        RoomCategory.any_instance.stub(:save).and_return(false)
-        put :update, {:id => room_category.to_param, :room_category => { "name" => "invalid value" }}, valid_session
+        put :update, {:id => room_category.to_param, :room_category => {name: ''}}, valid_session
         assigns(:room_category).should eq(room_category)
       end
 
       it "re-renders the 'edit' template" do
-        room_category = RoomCategory.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        RoomCategory.any_instance.stub(:save).and_return(false)
-        put :update, {:id => room_category.to_param, :room_category => { "name" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        put :update, {:id => room_category.to_param, :room_category => {name: ''}}, valid_session
+        response.should render_template('edit')
       end
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested room_category" do
-      room_category = RoomCategory.create! valid_attributes
+  describe 'DELETE destroy' do
+    let!(:room_category) { create(:room_category) }
+    it 'destroys the requested room_category' do
       expect {
         delete :destroy, {:id => room_category.to_param}, valid_session
       }.to change(RoomCategory, :count).by(-1)
     end
 
-    it "redirects to the room_categories list" do
-      room_category = RoomCategory.create! valid_attributes
+    it 'redirects to the room_categories list' do
       delete :destroy, {:id => room_category.to_param}, valid_session
       response.should redirect_to(admin_room_categories_url)
     end

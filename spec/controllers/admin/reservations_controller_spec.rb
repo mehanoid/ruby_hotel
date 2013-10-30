@@ -81,22 +81,20 @@ describe Admin::ReservationsController do
       end
 
       it 'redirects to the created reservation' do
-        post :create, {:reservation => valid_attributes}, valid_session
-        response.should redirect_to(Reservation.last)
+        post :create, {reservation: valid_attributes}, valid_session
+        response.should redirect_to([:admin, Reservation.last])
       end
     end
 
     describe 'with invalid params' do
       it 'assigns a newly created but unsaved reservation as @reservation' do
         # Trigger the behavior that occurs when invalid params are submitted
-        Reservation.any_instance.stub(:save).and_return(false)
-        post :create, {:reservation => {room: 'invalid value'}}, valid_session
+        post :create, {reservation: {room: 'invalid value'}}, valid_session
         assigns(:reservation).should be_a_new(Reservation)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Reservation.any_instance.stub(:save).and_return(false)
         post :create, {:reservation => {room: 'invalid value'}}, valid_session
         response.should render_template('new')
       end

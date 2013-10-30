@@ -1,8 +1,8 @@
 module Concerns
   module ReservationParams
     private
-    def reservation_params
-      params.require(:reservation).permit(
+    def permitted_params
+      params.permit(reservation: [
           :room_category_id,
           :arrival,
           :departure,
@@ -18,7 +18,8 @@ module Concerns
                       }
                   ]
               }
-          ])
+          ]
+      ])
     end
   end
 end
