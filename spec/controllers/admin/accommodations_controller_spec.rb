@@ -113,14 +113,12 @@ describe Admin::AccommodationsController do
 
       it 'assigns a newly created but unsaved accommodation as @accommodation' do
         # Trigger the behavior that occurs when invalid params are submitted
-        Accommodation.any_instance.stub(:save).and_return(false)
         post :create, invalid_attributes, valid_session
         assigns(:accommodation).should be_a_new(Accommodation)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Accommodation.any_instance.stub(:save).and_return(false)
         post :create, invalid_attributes, valid_session
         response.should render_template('new')
       end
