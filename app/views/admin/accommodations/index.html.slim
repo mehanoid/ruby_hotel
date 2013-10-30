@@ -2,9 +2,7 @@ h1 Listing accommodations
 
 
 - @accommodations.each do |accommodation|
-  = link_to 'Show', [:admin, accommodation]
-  = link_to 'Edit', edit_admin_accommodation_path(accommodation)
-  = link_to 'Destroy', [:admin, accommodation], :confirm => 'Are you sure?', :method => :delete
+  = link_to accommodation.client.full_name, [:admin, accommodation]
   table
     tr
       th Номер

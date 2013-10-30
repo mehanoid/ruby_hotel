@@ -6,7 +6,7 @@ class Accommodation < ActiveRecord::Base
   has_many :placements, inverse_of: :accommodation
   accepts_nested_attributes_for :placements
 
-  validates :placements, presence: true
+  validates :client, :placements, presence: true
 
   before_validation :get_data_from_reservation
 

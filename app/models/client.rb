@@ -11,4 +11,8 @@ class Client < ActiveRecord::Base
   before_validation do |client|
     client.build_contact_information unless client.contact_information
   end
+
+  def full_name
+    "#{last_name} #{first_name} #{middle_name}"
+  end
 end
