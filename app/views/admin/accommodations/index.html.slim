@@ -1,14 +1,22 @@
-h1 Listing accommodations
+h1 Проживающие клиенты
 
 
-- @accommodations.each do |accommodation|
-  = link_to accommodation.client.full_name, [:admin, accommodation]
-  table
-    tr
-      th Номер
-      th Заселение
-      th Выселение
-    = render accommodation.placements
+table.table
+  tr
+    th Фамилия
+    th Имя
+    th Отчество
+    th Номер
+    th Заселение
+    th Выселение
+  - @accommodations.each do |accommodation|
+    tr.row-link
+      td = link_to accommodation.client.last_name, [:admin, accommodation]
+      td = accommodation.client.first_name
+      td = accommodation.client.middle_name
+      td = accommodation.room.number
+      td = accommodation.arrival
+      td = accommodation.departure
 
 br
 

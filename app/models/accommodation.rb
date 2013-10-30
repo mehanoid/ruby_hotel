@@ -10,6 +10,19 @@ class Accommodation < ActiveRecord::Base
 
   before_validation :get_data_from_reservation
 
+
+  def arrival
+    placements.first.arrival
+  end
+
+  def departure
+    placements.last.arrival
+  end
+
+  def room
+    placements.last.room
+  end
+
   private
 
   def get_data_from_reservation
