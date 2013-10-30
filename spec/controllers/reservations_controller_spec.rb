@@ -24,17 +24,8 @@ describe ReservationsController do
   # Reservation. As you add validations to Reservation, be sure to
   # adjust the attributes here as well.
   let(:category) { create(:room_category_with_rooms) }
-  let(:valid_attributes) {
-    attributes_for(:reservation,
-      room: nil,
-      room_category_id: category.id,
-      client_attributes: attributes_for(:client,
-        contact_information_attributes: {
-          phones_attributes: [attributes_for(:phone)],
-          emails_attributes: [attributes_for(:email)],
-        }
-      )
-    )}
+
+  let(:valid_attributes) { attributes_for(:reservation, :with_nested_attributes, room: nil, room_category_id: category.id) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -75,6 +66,8 @@ describe ReservationsController do
   describe 'POST create' do
     describe 'with valid params' do
       it 'creates a new Reservation' do
+        puts 'valid_attributes'
+        p valid_attributes
         expect {
           post :create, {reservation: valid_attributes}, valid_session
         }.to change(Reservation, :count).by(1)
@@ -96,14 +89,14 @@ describe ReservationsController do
       it 'assigns a newly created but unsaved reservation as @reservation' do
         # Trigger the behavior that occurs when invalid params are submitted
         Reservation.any_instance.stub(:save).and_return(false)
-        post :create, {:reservation => { room: 'invalid value'}}, valid_session
+        post :create, {:reservation => {room: 'invalid value'}}, valid_session
         assigns(:reservation).should be_a_new(Reservation)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Reservation.any_instance.stub(:save).and_return(false)
-        post :create, {:reservation => { room: 'invalid value'}}, valid_session
+        post :create, {:reservation => {room: 'invalid value'}}, valid_session
         response.should render_template('new')
       end
     end

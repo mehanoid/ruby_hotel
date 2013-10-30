@@ -1,4 +1,6 @@
 class ReservationsController < ApplicationController
+  include Concerns::ReservationParams
+
   before_action :set_reservation, only: [:show]
 
   # GET /reservations
@@ -71,24 +73,4 @@ class ReservationsController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def reservation_params
-    params.require(:reservation).permit(
-        :room_category_id,
-        :arrival,
-        :departure,
-        client_attributes: [
-            :first_name,
-            :last_name,
-            :middle_name,
-            {
-                contact_information_attributes: [
-                    {
-                        emails_attributes: [:address],
-                        phones_attributes: [:number]
-                    }
-                ]
-            }
-        ])
-  end
-
 end

@@ -6,5 +6,9 @@ FactoryGirl.define do
     departure { arrival + 5.days }
     association :room, factory: :room_with_category
     association :client
+
+    trait :with_nested_attributes do
+      client_attributes { attributes_for(:client, :with_nested_attributes) }
+    end
   end
 end

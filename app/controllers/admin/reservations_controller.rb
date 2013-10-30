@@ -1,5 +1,6 @@
 module Admin
   class ReservationsController < AdminController
+    include Concerns::ReservationParams
 
     before_action :reservation_for_create, only: [:create]
 
@@ -58,11 +59,6 @@ module Admin
 
     def reservation_for_create
       @reservation = Reservation.new(reservation_params)
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def reservation_params
-      params.require(:reservation).permit(:room_category_id, :arrival, :departure)
     end
   end
 end
