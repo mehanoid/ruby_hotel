@@ -16,6 +16,7 @@ class Accommodation < ActiveRecord::Base
     return unless reservation_id
     reservation = Reservation.find(reservation_id)
     placements.build(arrival: reservation.arrival, departure: reservation.departure, room: reservation.room)
+    self.client = reservation.client
     reservation.cancel
   end
 end
