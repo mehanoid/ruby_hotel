@@ -7,8 +7,8 @@ table.table
     th Имя
     th Отчество
     th Номер
-    th Заселение
-    th Выселение
+    th Дата заезда
+    th Дата выезда
   - @accommodations.each do |accommodation|
     tr.row-link
       td = link_to accommodation.client.last_name, [:admin, accommodation]

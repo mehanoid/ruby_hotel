@@ -4,12 +4,18 @@ h1 Брони
   table.table
     tr
       th Код брони
+      th Фамилия
+      th Имя
+      th Отчество
       th Номер
       th Дата заезда
       th Дата выезда
     - @reservations.each do |reservation|
       tr.row-link.reservation
         td = link_to reservation.id, [:admin, reservation]
+        td = reservation.client.last_name
+        td = reservation.client.first_name
+        td = reservation.client.middle_name
         td = reservation.room.number
         td = reservation.arrival
         td = reservation.departure
