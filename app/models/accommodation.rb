@@ -4,7 +4,7 @@ class Accommodation < ActiveRecord::Base
 
   belongs_to :client
   has_many :placements, inverse_of: :accommodation
-  accepts_nested_attributes_for :placements
+  accepts_nested_attributes_for :client, :placements
 
   validates :client, :placements, presence: true
 

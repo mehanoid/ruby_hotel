@@ -6,7 +6,7 @@ FactoryGirl.define do
     middle_name 'Иванович'
     last_name 'Иванов'
     birsday '1990-10-25'
-    association :contact_information
+    contact_information
 
     trait :with_nested_attributes do
       contact_information_attributes { attributes_for(:contact_information, :with_nested_attributes) }
