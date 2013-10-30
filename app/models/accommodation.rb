@@ -16,7 +16,7 @@ class Accommodation < ActiveRecord::Base
   end
 
   def departure
-    placements.last.arrival
+    placements.last.departure
   end
 
   def room
