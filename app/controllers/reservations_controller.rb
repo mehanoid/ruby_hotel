@@ -1,5 +1,7 @@
-class ReservationsController < InheritedResources::Base
+class ReservationsController < ApplicationController
   include Concerns::ClientAttributes
+  inherit_resources
+  respond_to :html
 
   def new
     @reservation = Reservation.new

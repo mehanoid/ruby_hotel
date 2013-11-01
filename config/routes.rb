@@ -1,17 +1,7 @@
 RubyHotel::Application.routes.draw do
 
 
-  resources :emails
-
-  resources :phones
-
-  resources :contact_informations
-
-  resources :passports
-
-  resources :clients
-
-  resources :reservations
+  resources :reservations, only: %i[new create show]
 
   root 'home#rooms'
 
@@ -25,10 +15,16 @@ RubyHotel::Application.routes.draw do
     resources :placements
     resources :accommodations
 
+    resources :emails
+    resources :phones
+    resources :contact_informations
+    resources :passports
+    resources :clients
+
     resources :room_categories do
-      resources :rooms, only: [:new, :create]
+      resources :rooms, only: %i[new create]
     end
-    resources :rooms, except: [:new, :create]
+    resources :rooms, except: %i[new create]
   end
 
   devise_for :users, path_prefix: :admin
