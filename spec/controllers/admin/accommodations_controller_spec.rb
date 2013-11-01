@@ -88,7 +88,11 @@ describe Admin::AccommodationsController do
       end
 
       describe 'without reservation' do
-        let(:valid_attributes) { {accommodation: attributes_for(:accommodation, :with_nested_attributes) } }
+        let(:valid_attributes) { {
+            accommodation: attributes_for(:accommodation,
+              client_attributes: attributes_for(:client, :with_nested_attributes),
+              placements_attributes: [attributes_for(:placement, room_category_id: category.id)] )
+        } }
         it 'creates a new Accommodation' do
           expect {
             post :create, valid_attributes, valid_session

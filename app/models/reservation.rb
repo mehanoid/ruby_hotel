@@ -10,13 +10,12 @@ class Reservation < ActiveRecord::Base
   validate :arrival_later_than_today, on: :create
 
   before_validation do |reservation|
-    if !reservation.room && room_category_id
+    if !reservation.room && room_category_id.present?
       category = RoomCategory.find(room_category_id)
       unless (reservation.room = category.free_room(arrival, departure))
         errors[:base] << 'Извините, нет свободных номеров за выбранный период'
       end
     end
-    reservation.build_client unless reservation.client
   end
 
   attr_accessor :room_category_id

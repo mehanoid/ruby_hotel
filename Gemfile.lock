@@ -132,8 +132,6 @@ GEM
       em-websocket (~> 0.5)
       guard (~> 2.0)
       multi_json (~> 1.8)
-    guard-rails (0.4.7)
-      guard (>= 0.2.2)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -302,7 +300,6 @@ DEPENDENCIES
   factory_girl_rails
   guard (~> 2.2.2)
   guard-livereload
-  guard-rails
   hirb
   inherited_resources
   jbuilder (~> 1.2)

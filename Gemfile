@@ -78,7 +78,6 @@ group :development do
   gem 'quiet_assets'
 
   gem 'guard', '~> 2.2.2'
-  gem 'guard-rails'
   gem 'guard-livereload'
   gem 'rack-livereload'
   gem 'zeus'

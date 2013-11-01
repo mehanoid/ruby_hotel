@@ -1,9 +1,11 @@
 = simple_form_for([:admin, @accommodation]) do |f|
   = f.error_notification
+  - @accommodation.base_errors.each do |error|
+    .alert.alert-error = error
 
   .form-inputs
-    = f.input :room_category_id, as: :hidden
     = f.simple_fields_for(:placements) do |pf|
+      = pf.input :room_category_id, as: :select, collection: RoomCategory.all, prompt: 'Выберите категорию', required: true
       = pf.input :arrival, as: :string, input_html: { class: 'datepicker' }
       = pf.input :departure, as: :string, input_html: { class: 'datepicker' }
 
@@ -18,4 +20,4 @@
           = ef.input :address, required: false
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, 'Отправить'

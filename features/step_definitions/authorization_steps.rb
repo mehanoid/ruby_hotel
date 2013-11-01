@@ -27,7 +27,8 @@ end
 Допустим(/залогинен как (.*)$/) do |role|
   roles = {
       'администратор' => :admin,
-      'менеджер по бронированию' => :reservation_manager
+      'менеджер по бронированию' => :reservation_manager,
+      'портье' => :receptionist
   }
   user = create(:user, password: password, role: roles[role.strip])
   sign_in user

@@ -16,6 +16,10 @@ end
   fill_in field, with: text
 end
 
+Если(/выбираю "([^"]*)" в поле "([^"]*)"$/) do |option, field|
+  select option, from: field
+end
+
 Если(/нажимаю кнопку "([^"]*)"$/) do |button|
   click_button button
 end

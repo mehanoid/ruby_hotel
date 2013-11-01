@@ -25,6 +25,8 @@ ru:
       room_category: Категория комнат
       room: Комната
       reservation: Бронь
+      placements: Размещение
+      accommodation: Заселение
       user: Пользователь
       client: Клиент
       contact_information: Контактная информация
@@ -36,6 +38,10 @@ ru:
       room:
         number: №
       reservation:
+        arrival: Дата заезда
+        departure: Дата выезда
+      placement:
+        room_category_id: Категория комнаты
         arrival: Дата заезда
         departure: Дата выезда
       user:
@@ -69,6 +75,10 @@ ru:
       reservations:
         create:
           notice: Номер забронирован
+      accommodations:
+        create:
+          notice: Заселение выполнено успешно
       room_categories:
         create:
           notice: Категория сохранена
+
