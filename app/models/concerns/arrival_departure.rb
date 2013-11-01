@@ -7,7 +7,10 @@ module Concerns
       validate :departure_later_than_arrival
 
       def self.overlapping_with(arrival, departure)
-        where { |q| q.arrival.in(arrival..departure) | q.departure.in(arrival..departure) }
+        where { |q|
+          ((q.arrival >= arrival) & (q.arrival < departure))|
+          ((q.departure > arrival) & (q.departure <= departure))
+        }
       end
     end
 
