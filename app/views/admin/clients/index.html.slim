@@ -5,7 +5,7 @@ table
     th First name
     th Middle name
     th Last name
-    th Birsday
+    th Birthday
     th
     th
     th
@@ -15,7 +15,7 @@ table
       td = client.first_name
       td = client.middle_name
       td = client.last_name
-      td = client.birsday
+      td = client.birthday
       td = link_to 'Show', client
       td = link_to 'Edit', edit_client_path(client)
       td = link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete

@@ -70,7 +70,7 @@ module Admin
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:first_name, :middle_name, :last_name, :birsday)
+      params.require(:client).permit(:first_name, :middle_name, :last_name, :birthday)
     end
   end
 end

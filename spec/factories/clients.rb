@@ -5,7 +5,7 @@ FactoryGirl.define do
     first_name 'Иван'
     middle_name 'Иванович'
     last_name 'Иванов'
-    birsday '1990-10-25'
+    birthday '1990-10-25'
     contact_information
 
     trait :with_nested_attributes do

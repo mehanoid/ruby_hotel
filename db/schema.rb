@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026162647) do
+ActiveRecord::Schema.define(version: 20131101143641) do
 
   create_table "accommodations", force: true do |t|
     t.datetime "created_at"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20131026162647) do
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
-    t.date     "birsday"
+    t.date     "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
