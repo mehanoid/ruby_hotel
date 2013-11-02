@@ -1,9 +1,0 @@
-h1 Номера
-
-- @room_categories.each do |category|
-  div.category
-    = render category
-    div
-      = link_to 'Забронировать', new_reservation_path(room_category_id: category.id), class: 'btn btn-primary'
-
-br

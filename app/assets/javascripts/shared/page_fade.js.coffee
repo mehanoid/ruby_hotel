@@ -1,2 +1,2 @@
 $(document).on 'page:change', ->
-  $('#content').hide().fadeIn()
+  $('#content').hide().fadeIn('fast')

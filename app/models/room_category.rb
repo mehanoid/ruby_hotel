@@ -3,7 +3,7 @@ class RoomCategory < ActiveRecord::Base
 
   has_many :rooms, foreign_key: :category_id, inverse_of: :category, dependent: :destroy
 
-  def available_arrival_dates(range_length: 2.months.from_now)
+  def available_arrival_dates(range_length: 2.months)
     (Date.today...Date.today + range_length).select { |date| free_rooms(date, date + 1.day).any? }
   end
 

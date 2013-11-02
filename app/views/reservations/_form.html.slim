@@ -4,9 +4,15 @@
     .alert.alert-error = error
 
   .form-inputs
-    = f.input :arrival, as: :string, input_html: { class: 'datepicker' }
-    = f.input :departure, as: :string, input_html: { class: 'datepicker' }
-    = f.input :room_category_id, as: :hidden
+    = f.input :room_category_id, as: :select, collection: RoomCategory.all, prompt: 'Выберите категорию'
+
+    = f.label :arrival
+    = f.input :arrival, as: :hidden
+    .datepicker.arrival
+
+    = f.label :departure
+    = f.input :departure, as: :hidden
+    .datepicker.departure
 
     = f.simple_fields_for(:client) do |cf|
       = cf.input :last_name

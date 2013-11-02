@@ -3,14 +3,18 @@ html
   head
     title
       | RubyHotel
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body class=([controller_name, action_name])
-    #main role="main"
-      .container
-        .content
-          .row
-            .span12
-              = render 'layouts/messages'
-              = yield
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          = link_to 'RubyHotel', root_path, class: 'brand'
+          ul.nav
+            li = link_to 'Номера', root_path
+            li = link_to 'Онлайн-бронирование', new_reservation_path
+    .container
+      = render 'layouts/messages'
+      #content
+        = yield

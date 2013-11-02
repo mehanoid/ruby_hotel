@@ -1,15 +1,17 @@
 RubyHotel::Application.routes.draw do
 
+  root 'room_categories#index'
 
+  resources :room_categories, only: :index do
+    get :available_arrival_dates, on: :member
+  end
   resources :reservations, only: %i[new create show]
-
-  root 'home#rooms'
 
   namespace :admin do
     root 'home#show'
 
     resources :reservations do
-      patch 'cancel', on: :member
+      patch :cancel, on: :member
     end
 
     resources :placements

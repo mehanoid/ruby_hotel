@@ -4,5 +4,6 @@
 //= require twitter/bootstrap/rails/confirm
 //= require jquery.ui.datepicker
 //= require jquery.ui.datepicker-ru
+//= require js-routes
 //= require turbolinks
 //= require_tree ./shared
