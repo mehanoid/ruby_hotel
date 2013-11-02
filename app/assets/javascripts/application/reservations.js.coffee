@@ -22,10 +22,17 @@ $(document).on 'ready page:load', ->
 
     do ->
       request = null
-      $('select#reservation_room_category_id').change ->
+      $category_id = $('select#reservation_room_category_id')
+
+      update_dates = ->
         request.abort() if request?
-        category_id = $(@).val()
+        category_id = $category_id.val()
         unless category_id
           $arrival.datepicker('option', 'beforeShowDay', canArrival([]))
         request = $.getJSON Routes.available_arrival_dates_room_category_path(category_id), (availableDates) ->
           $arrival.datepicker('option', 'beforeShowDay', canArrival(availableDates))
+
+      if $category_id.val()
+        update_dates()
+
+      $category_id.change(update_dates)

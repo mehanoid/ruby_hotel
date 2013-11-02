@@ -49,14 +49,14 @@ describe RoomCategory do
     #assuming today is 2013-10-01
     before do
       subject.rooms.each do |room|
-        create(:reservation, room: room, arrival: Date.parse('2013-10-03'), departure: Date.parse('2013-10-05'))
+        create(:reservation, room: room, arrival: Date.parse('2013-10-03'), departure: Date.parse('2013-10-15'))
       end
     end
 
     it 'returns dates available for arrival' do
       dates = (Date.parse('2013-10-01')..Date.parse('2013-10-02')).to_a +
-              (Date.parse('2013-10-5')..Date.parse('2013-10-10')).to_a
-      subject.available_arrival_dates(range_length: 10.days).should eq dates
+              (Date.parse('2013-10-15')..Date.parse('2013-10-20')).to_a
+      subject.available_arrival_dates(range_length: 20.days).should eq dates
     end
   end
 end
