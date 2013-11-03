@@ -4,6 +4,7 @@ RubyHotel::Application.routes.draw do
 
   resources :room_categories, only: :index do
     get :available_arrival_dates, on: :member
+    get :available_departure_dates, on: :member
   end
   resources :reservations, only: %i[new create show]
 

@@ -4,7 +4,7 @@
     .alert.alert-error = error
 
   .form-inputs
-    = f.input :room_category_id, as: :select, collection: RoomCategory.all, prompt: 'Выберите категорию'
+    = f.input :room_category_id, as: :select, collection: RoomCategory.all, prompt: 'Выберите категорию', required: true
 
     = f.label :arrival
     = f.input :arrival, as: :hidden

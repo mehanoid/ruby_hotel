@@ -38,6 +38,7 @@ ru:
       room:
         number: №
       reservation:
+        room_category_id: Категория комнаты
         arrival: Дата заезда
         departure: Дата выезда
       placement:

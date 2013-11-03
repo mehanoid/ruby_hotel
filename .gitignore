@@ -15,5 +15,8 @@
 /log/*.log
 /tmp
 
-#Ignore cucumber rerun file
+# Ignore cucumber rerun file
 /rerun.txt
+
+# Ignore source maps
+/public/assets/source_maps

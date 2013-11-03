@@ -20,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # Fix syntax errors line numbers
 gem 'coffee-script', github: 'niallsmart/ruby-coffee-script'
+gem 'coffee-rails-source-maps'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
