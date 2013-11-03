@@ -11,6 +11,11 @@ module Concerns
       end
     end
 
+    def overlaps_with?(arrival, departure)
+      self.arrival < departure && self.departure > arrival
+    end
+
+    private
     def departure_later_than_arrival
       if departure && arrival && departure <= arrival
         errors.add(:departure, 'должна быть позднее даты заезда')

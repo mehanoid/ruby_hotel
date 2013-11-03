@@ -4,11 +4,21 @@ class RoomCategory < ActiveRecord::Base
   has_many :rooms, foreign_key: :category_id, inverse_of: :category, dependent: :destroy
 
   def available_arrival_dates(range_length: 2.months)
-    (Date.today ... Date.today + range_length).select { |date| free_rooms(date, date + 1.day).any? }
+    range = Date.today ... Date.today + range_length
+    reservations_and_placements = reservations_and_placements_for_range(range)
+
+    range.select do |date|
+      reservations_and_placements.none? { |r| r.overlaps_with?(date, date + 1.day) }
+    end
   end
 
   def available_departure_dates(arrival: Date.today, range_length: 2.months)
-    (arrival + 1.day .. Date.today + range_length).select { |date| free_rooms(arrival, date).any? }
+    range = arrival + 1.day .. Date.today + range_length + 1.day
+    reservations_and_placements = reservations_and_placements_for_range(range)
+
+    range.select do |date|
+      reservations_and_placements.none? { |r| r.overlaps_with?(arrival, date) }
+    end
   end
 
   def free_room(arrival, departure)
@@ -28,5 +38,12 @@ class RoomCategory < ActiveRecord::Base
 
   def occupied_rooms(arrival, departure)
     rooms.joins(:placements).merge(Placement.overlapping_with(arrival, departure))
+  end
+
+  private
+
+  def reservations_and_placements_for_range(range)
+    Reservation.overlapping_with(range.min, range.max).joins(:room).where { |q| q.room.category_id == id } +
+        Placement.overlapping_with(range.min, range.max).joins(:room).where { |q| q.room.category_id == id }
   end
 end
