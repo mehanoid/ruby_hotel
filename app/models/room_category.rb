@@ -3,17 +3,18 @@ class RoomCategory < ActiveRecord::Base
 
   has_many :rooms, foreign_key: :category_id, inverse_of: :category, dependent: :destroy
 
-  def available_arrival_dates(range_length: 2.months)
-    range = Date.today ... Date.today + range_length
+  def available_arrival_dates(for_reservation: false, range_length: 2.months)
+    range_start = for_reservation ? Date.tomorrow : Date.today
+    range = range_start ... Date.today + range_length
     reservations_and_placements = reservations_and_placements_for_range(range)
 
     range.select do |date|
-      reservations_and_placements.none? { |r| r.overlaps_with?(date, date + 1.day) }
+      reservations_and_placements.none? { |r| r.overlaps_with?(date, date.next_day) }
     end
   end
 
   def available_departure_dates(arrival: Date.today, range_length: 2.months)
-    range = arrival + 1.day .. Date.today + range_length + 1.day
+    range = arrival.next_day .. Date.today + range_length + 1.day
     reservations_and_placements = reservations_and_placements_for_range(range)
 
     range.select do |date|

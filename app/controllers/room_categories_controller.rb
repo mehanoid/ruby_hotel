@@ -4,7 +4,7 @@ class RoomCategoriesController < ApplicationController
   respond_to :json, only: %i[available_arrival_dates available_departure_dates]
 
   def available_arrival_dates
-    render json: RoomCategory.find(params[:id]).available_arrival_dates
+    render json: RoomCategory.find(params[:id]).available_arrival_dates(for_reservation: true)
   end
 
   def available_departure_dates
