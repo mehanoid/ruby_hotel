@@ -43,7 +43,7 @@ class RoomCategory < ActiveRecord::Base
   private
 
   def reservations_and_placements_for_range(range)
-    Reservation.overlapping_with(range.min, range.max).joins(:room).where { |q| q.room.category_id == id } +
-        Placement.overlapping_with(range.min, range.max).joins(:room).where { |q| q.room.category_id == id }
+    Reservation.overlapping_with(range.min, range.max).joins(:room).merge(rooms) +
+        Placement.overlapping_with(range.min, range.max).joins(:room).merge(rooms)
   end
 end
