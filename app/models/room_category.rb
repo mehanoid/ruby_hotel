@@ -14,8 +14,13 @@ class RoomCategory < ActiveRecord::Base
     [available_dates, range]
   end
 
-  def available_departure_dates(arrival: Date.today, range_length: 2.months)
-    range = arrival.next_day .. Date.today + range_length
+  def available_departure_dates(for_reservation: false, arrival: Date.today, range_length: 2.months)
+    range_start = for_reservation ? 2.days.from_now.to_date : Date.tomorrow
+    range_end = Date.today + range_length
+    unless arrival.in? range_start..range_end
+      return [[], nil]
+    end
+    range = arrival .. range_end
     reservations_and_placements = reservations_and_placements_for_range(range)
 
     available_dates = range.select do |date|

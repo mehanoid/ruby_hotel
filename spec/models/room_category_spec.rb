@@ -67,7 +67,7 @@ describe RoomCategory do
     describe 'available_departure_dates' do
       it 'returns dates available for departure' do
         dates = (Date.parse('2013-10-04')..Date.parse('2013-10-06')).to_a
-        available_dates, range = subject.available_departure_dates(arrival: Date.parse('2013-10-03'), range_length: 20.days)
+        available_dates, range = subject.available_departure_dates(arrival: Date.parse('2013-10-04'), range_length: 20.days)
 
         range.should eq Date.parse('2013-10-04') .. Date.parse('2013-10-21')
         available_dates.should eq dates
