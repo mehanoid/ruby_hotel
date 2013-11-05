@@ -21,11 +21,16 @@ class Datepicker
   datepicker: (args...) ->
     @$datepicker.datepicker(args...)
 
-  canArrival: (availableDates = []) ->
-    if availableDates.length
-      (date) ->
-        string = $.datepicker.formatDate('yy-mm-dd', date)
-        [ availableDates.indexOf(string) != -1 ]
+  canArrival: (dates = []) ->
+    range = Date.range(new Date(dates.range_begin), new Date(dates.range_end))
+    if dates.available_dates?
+      (date) =>
+        unless range.contains(date)
+          [false]
+        else if dates.available_dates.none(date.format('{yyyy}-{MM}-{dd}'))
+          [ false, 'datepicker-no-free-rooms', 'нет свободных номеров' ]
+        else
+          [true]
     else ->
       false
 
@@ -46,8 +51,8 @@ $(document).on 'ready page:load', ->
         unless category_id
           arrivalDatePicker.updateDates([])
         else
-          request = $.getJSON Routes.available_arrival_dates_room_category_path(category_id), (availableDates) ->
-            arrivalDatePicker.updateDates(availableDates)
+          request = $.getJSON Routes.available_arrival_dates_room_category_path(category_id), (dates) ->
+            arrivalDatePicker.updateDates(dates)
 
       if $category_id.val()
         updateArrivalDates()
@@ -64,8 +69,8 @@ $(document).on 'ready page:load', ->
         unless category_id and arrival
           departureDatePicker.updateDates([])
         else
-          request = $.getJSON Routes.available_departure_dates_room_category_path(category_id, arrival: arrival), (availableDates) ->
-            departureDatePicker.updateDates(availableDates)
+          request = $.getJSON Routes.available_departure_dates_room_category_path(category_id, arrival: arrival), (dates) ->
+            departureDatePicker.updateDates(dates)
 
       if arrivalDatePicker.date()
         updateDepartureDates(arrivalDatePicker.date())
