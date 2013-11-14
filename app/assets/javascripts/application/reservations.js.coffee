@@ -5,13 +5,13 @@ class Datepicker
     @datepicker
       altField: "#reservation_#{field}"
       defaultDate: @date()
-      beforeShowDay: @canArrival([])
+      beforeShowDay: @canSelect([])
 
   date: ->
     @datepicker('getDate')
 
   updateDates: (dates) ->
-    @datepicker('option', 'beforeShowDay', @canArrival(dates))
+    @datepicker('option', 'beforeShowDay', @canSelect(dates))
 
   #events
   change: (callback) ->
@@ -21,7 +21,7 @@ class Datepicker
   datepicker: (args...) ->
     @$datepicker.datepicker(args...)
 
-  canArrival: (dates = null) ->
+  canSelect: (dates = null) ->
     if dates? and dates.range_begin? and dates.range_begin?
       range = Date.range(new Date(dates.range_begin), new Date(dates.range_end))
       (date) =>

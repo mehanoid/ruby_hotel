@@ -13,10 +13,9 @@ World(ReservationHelpers)
   create(:room_category_with_rooms, name: category)
 end
 
-Если(/выбираю для бронирования категорию "([^"]*)"$/) do |category|
-  within 'div.category', text: Regexp.new(category) do
-    click_on 'Забронировать'
-  end
+Если(/выбираю на календаре дату заезда и дату выезда$/) do
+  find('#reservation_arrival').set(arrival)
+  find('#reservation_departure').set(departure)
 end
 
 Если(/выбираю дату заезда и дату выезда$/) do
