@@ -82,7 +82,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'quiet_assets'
 
-  gem 'guard', '~> 2.2.2'
+  gem 'guard', '~> 2.2.3'
   gem 'guard-livereload'
   gem 'rack-livereload'
   gem 'zeus'
