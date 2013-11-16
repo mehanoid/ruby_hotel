@@ -4,5 +4,6 @@
   .span6
     = link_to 'Назад', admin_room_categories_path, class: :btn
   .span6
+    = link_to 'Удалить', admin_room_category_path(@room_category), data: { confirm: 'Вы действительно хотите удалить категорию?' }, class: 'btn', method: :delete
     = link_to 'Изменить', edit_admin_room_category_path(@room_category), class: :btn
     = link_to 'Добавить номера', new_admin_room_category_room_path(@room_category), class: :btn

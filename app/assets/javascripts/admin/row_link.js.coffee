@@ -3,6 +3,5 @@ $(document).on 'ready page:load', ->
     $row = $(row)
     $a = $row.find('a').first()
     href = $a.attr('href')
-    $a.replaceWith($a.contents())
     $row.click ->
       Turbolinks.visit href

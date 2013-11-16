@@ -12,6 +12,6 @@ p
   .span6
     = link_to 'Назад', admin_room_categories_path, class: :btn
   .span6
-    = button_to 'Заселить', admin_accommodations_path(accommodation: {reservation_id: @reservation.id}), class: :btn, data: { confirm: 'Выполнить заселение?' }
-    = link_to 'Изменить', edit_admin_reservation_path(@reservation), class: :btn
     = link_to 'Аннулировать', cancel_admin_reservation_path, class: :btn, data: { confirm: 'Вы действительно хотите аннулировать эту бронь?',  'confirm-proceed-class' => 'btn-danger' }, method: :patch
+    = link_to 'Изменить', edit_admin_reservation_path(@reservation), class: :btn
+    = button_to 'Заселить', admin_accommodations_path(accommodation: {reservation_id: @reservation.id}), class: :btn, data: { confirm: 'Выполнить заселение?' }

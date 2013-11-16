@@ -67,8 +67,8 @@ ru:
       update:
         notice: "%{resource_name} сохранён"
       destroy:
-        notice: "%{resource_name} успешно уничтожен"
-        alert: "%{resource_name} не может быть уничтожен"
+        notice: "%{resource_name} успешно удалён"
+        alert: "%{resource_name} не может быть удалён"
     reservations:
       create:
         notice: Номер забронирован
@@ -82,4 +82,6 @@ ru:
       room_categories:
         create:
           notice: Категория сохранена
+        destroy:
+          notice: Категория удалена
 

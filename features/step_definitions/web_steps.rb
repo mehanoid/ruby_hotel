@@ -25,7 +25,7 @@ end
 end
 
 Если(/нажимаю "([^"]*)"$/) do |clickable|
-  click_on clickable
+  click_on clickable, exact: true
 end
 
 То(/должен увидеть "([^"]*)"$/) do |text|

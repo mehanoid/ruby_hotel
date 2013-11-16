@@ -32,7 +32,7 @@ class Datepicker
         else
           [true]
     else ->
-      false
+      [false]
 
 
 $(document).on 'ready page:load', ->
