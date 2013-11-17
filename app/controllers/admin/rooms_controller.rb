@@ -21,6 +21,12 @@ module Admin
       end
     end
 
+    def destroy_multiple
+      rooms_for_destroy = params[:rooms_for_destroy]
+      Room.where(category: @room_category).destroy(rooms_for_destroy) if rooms_for_destroy.present?
+      redirect_to :back
+    end
+
     private
 
     def room_params

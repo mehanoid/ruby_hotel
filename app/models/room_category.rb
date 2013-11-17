@@ -48,6 +48,10 @@ class RoomCategory < ActiveRecord::Base
     rooms.joins(:placements).merge(Placement.overlapping_with(arrival, departure))
   end
 
+  def to_s
+    name
+  end
+
   private
 
   def reservations_and_placements_for_range(range)

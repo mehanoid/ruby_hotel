@@ -1,4 +1,11 @@
-= render 'room_categories/room_category', room_category: @room_category
+h1 = @room_category.name
+p = simple_format @room_category.description
+
+p
+  = link_to admin_room_category_rooms_path(@room_category) do
+    strong> Число номеров:
+    = @room_category.rooms.count
+    = ' (нажмите, чтобы открыть список)'
 
 .row
   .span6

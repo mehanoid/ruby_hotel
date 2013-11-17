@@ -5,5 +5,8 @@
     = f.input :name
     = f.input :description
 
-  .form-actions
-    = f.button :submit, 'Сохранить'
+  .row
+    .span2
+      = link_to 'Назад', collection_path, class: :btn
+    .span1
+      = f.button :submit, 'Сохранить'

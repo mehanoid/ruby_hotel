@@ -25,9 +25,10 @@ RubyHotel::Application.routes.draw do
     resources :clients
 
     resources :room_categories do
-      resources :rooms, only: %i[new create]
+      resources :rooms, shallow: true, only: %i[index new create] do
+        delete :destroy_multiple, on: :collection
+      end
     end
-    resources :rooms, except: %i[new create]
   end
 
   devise_for :users, path_prefix: :admin

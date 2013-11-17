@@ -20,9 +20,8 @@ require 'spec_helper'
 
 describe Admin::RoomsController do
 
-  #let!(:room) { create(:room_with_category) }
-  #let(:category) { room.category }
-  let(:category) { create(:room_category) }
+  let!(:category) { create(:room_category) }
+  let!(:room) { create(:room, category: category)}
   let(:valid_attributes) { attributes_for(:room) }
 
   # This should return the minimal set of values that should be in the session
@@ -34,19 +33,12 @@ describe Admin::RoomsController do
     sign_in create(:admin)
   end
 
-  #describe "GET index" do
-  #  it "assigns all rooms as @rooms" do
-  #    get :index, {}, valid_session
-  #    assigns(:rooms).should eq([room])
-  #  end
-  #end
-  #
-  #describe "GET show" do
-  #  it "assigns the requested room as @room" do
-  #    get :show, {:id => room.to_param}, valid_session
-  #    assigns(:room).should eq(room)
-  #  end
-  #end
+  describe 'GET index' do
+    it 'assigns all rooms as @rooms' do
+      get :index, {room_category_id: category}, valid_session
+      assigns(:rooms).should eq([room])
+    end
+  end
 
   describe 'GET new' do
     it 'assigns a new rooms form as @rooms_form' do
@@ -54,13 +46,6 @@ describe Admin::RoomsController do
       assigns(:rooms_form).should be_a(RoomsForm)
     end
   end
-
-  #describe "GET edit" do
-  #  it "assigns the requested room as @room" do
-  #    get :edit, {:id => room.to_param}, valid_session
-  #    assigns(:room).should eq(room)
-  #  end
-  #end
 
   describe 'POST create' do
     let(:category) { create(:room_category) }
@@ -99,57 +84,21 @@ describe Admin::RoomsController do
     end
   end
 
-  #describe "PUT update" do
-  #  describe "with valid params" do
-  #    it "updates the requested room" do
-  #      # Assuming there are no other rooms in the database, this
-  #      # specifies that the Room created on the previous line
-  #      # receives the :update_attributes message with whatever params are
-  #      # submitted in the request.
-  #      Room.any_instance.should_receive(:update).with({"number" => "1"})
-  #      put :update, {:id => room.to_param, :room => {"number" => "1"}}, valid_session
-  #    end
-  #
-  #    it "assigns the requested room as @room" do
-  #      put :update, {:id => room.to_param, :room => valid_attributes}, valid_session
-  #      assigns(:room).should eq(room)
-  #    end
-  #
-  #    it "redirects to the room" do
-  #      put :update, {:id => room.to_param, :room => valid_attributes}, valid_session
-  #      response.should redirect_to([:admin, room])
-  #    end
-  #  end
-  #
-  #  describe "with invalid params" do
-  #    it "assigns the room as @room" do
-  #      # Trigger the behavior that occurs when invalid params are submitted
-  #      Room.any_instance.stub(:save).and_return(false)
-  #      put :update, {:id => room.to_param, :room => {"number" => "invalid value"}}, valid_session
-  #      assigns(:room).should eq(room)
-  #    end
-  #
-  #    it "re-renders the 'edit' template" do
-  #      # Trigger the behavior that occurs when invalid params are submitted
-  #      Room.any_instance.stub(:save).and_return(false)
-  #      put :update, {:id => room.to_param, :room => {"number" => "invalid value"}}, valid_session
-  #      response.should render_template("edit")
-  #    end
-  #  end
-  #end
-  #
-  #describe "DELETE destroy" do
-  #
-  #  it "destroys the requested room" do
-  #    expect {
-  #      delete :destroy, {:id => room.to_param}, valid_session
-  #    }.to change(Room, :count).by(-1)
-  #  end
-  #
-  #  it "redirects to the rooms list" do
-  #    delete :destroy, {:id => room.to_param}, valid_session
-  #    response.should redirect_to(admin_rooms_url)
-  #  end
-  #end
+  describe 'DELETE destroy_multiple' do
+    before do
+      request.env['HTTP_REFERER'] = 'where_i_came_from'
+    end
+
+    it 'destroys the requested rooms' do
+      expect {
+        delete :destroy_multiple, {room_category_id: category, rooms_for_destroy: [room.id]}, valid_session
+      }.to change(Room, :count).by(-1)
+    end
+
+    it 'redirects back' do
+      delete :destroy_multiple, {room_category_id: category, rooms_for_destroy: [room.id]}, valid_session
+      response.should redirect_to('where_i_came_from')
+    end
+  end
 
 end

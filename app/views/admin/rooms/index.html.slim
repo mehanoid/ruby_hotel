@@ -1,19 +1,14 @@
-h1 Listing rooms
+h1 Список номеров в категории "#{parent}"
 
-table
-  tr
-    th Number
-    th Category
-    th
-    th
-    th
-
+=form_tag destroy_multiple_admin_room_category_rooms_path, method: :delete do
   - @rooms.each do |room|
-    tr
-      td = room.number
-      td = room.category
-      td = link_to 'Show', [:admin, room]
-      td = link_to 'Edit', edit_admin_room_path(room)
-      td = link_to 'Destroy', [:admin, room], :confirm => 'Are you sure?', :method => :delete
+    label
+      = check_box_tag "rooms_for_destroy[]", room.id
+      = " № #{room.number}"
+  br
+  .row
+    .span6
+      = link_to 'Назад', parent_path, class: :btn
+    .span6
+      = submit_tag 'Удалить выбранные комнаты', class: :btn, data: { confirm: 'Вы действительно хотите удалить выбранные номера?' }
 
-br
