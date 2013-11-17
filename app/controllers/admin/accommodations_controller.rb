@@ -18,7 +18,7 @@ module Admin
     def permitted_params
       params.permit(accommodation: [
           :reservation_id,
-          placements_attributes: %i[room_category_id arrival departure room_id],
+          placements_attributes: %i[room_category_id departure room_id],
           client_attributes: client_attributes
       ])
     end

@@ -9,6 +9,7 @@ class Accommodation < ActiveRecord::Base
   validates :client, :placements, presence: true
 
   before_validation :get_data_from_reservation
+  before_validation :set_arrival, on: :create
 
   attr_accessor :reservation_id
 
@@ -40,5 +41,12 @@ class Accommodation < ActiveRecord::Base
     placements.build(arrival: reservation.arrival, departure: reservation.departure, room: reservation.room)
     self.client = reservation.client
     reservation.cancel
+  end
+
+  def set_arrival
+    placement = placements.try(:first)
+    if placement && !placement.arrival
+      placement.arrival = Date.today
+    end
   end
 end
