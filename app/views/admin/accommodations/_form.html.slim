@@ -12,11 +12,23 @@
       = cf.input :last_name
       = cf.input :first_name
       = cf.input :middle_name
-      = cf.simple_fields_for (:contact_information) do |cif|
-        = cif.simple_fields_for (:phones) do |pf|
+      = cf.input :birthday, as: :string, input_html: { class: 'datepicker' }
+      fieldset
+        legend Паспортные данные
+        = cf.simple_fields_for (:passport) do |pf|
           = pf.input :number
-        = cif.simple_fields_for (:emails) do |ef|
-          = ef.input :address, required: false
+          = pf.input :date_of_issue, as: :string, input_html: { class: 'datepicker' }
+          = pf.input :issuing_authority
+      fieldset
+        legend Контактные данные
+        = cf.simple_fields_for (:contact_information) do |cif|
+          = cif.simple_fields_for (:phones) do |pf|
+            = pf.input :number
+          = cif.simple_fields_for (:emails) do |ef|
+            = ef.input :address, required: false
 
-  .form-actions
-    = f.button :submit, 'Отправить'
+  .row
+    .span2
+      = link_to 'Назад', collection_path, class: :btn
+    .span1
+      = f.button :submit, 'Сохранить'

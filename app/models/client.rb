@@ -4,7 +4,7 @@ class Client < ActiveRecord::Base
   has_many :reservations
   has_many :accommodations
 
-  accepts_nested_attributes_for :contact_information
+  accepts_nested_attributes_for :passport, :contact_information
 
   validates :first_name, :last_name, :middle_name, :contact_information, presence: true
 

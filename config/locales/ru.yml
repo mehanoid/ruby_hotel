@@ -51,6 +51,11 @@ ru:
         last_name: Фамилия
         first_name: Имя
         middle_name: Отчество
+        birthday: Дата рождения
+      passport:
+        number: Номер паспорта
+        date_of_issue: Дата выдачи
+        issuing_authority: Кем выдан
       phone:
         number: Номер телефона
       email:

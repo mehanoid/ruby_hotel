@@ -19,7 +19,25 @@ module Admin
       params.permit(accommodation: [
           :reservation_id,
           placements_attributes: %i[room_category_id departure room_id],
-          client_attributes: client_attributes
+          client_attributes: [
+              :first_name,
+               :last_name,
+               :middle_name,
+               :birthday,
+               {
+                   contact_information_attributes: [
+                       {
+                           emails_attributes: [:address],
+                           phones_attributes: [:number]
+                       }
+                   ],
+                   passport_attributes: [
+                       :number,
+                       :date_of_issue,
+                       :issuing_authority
+                   ]
+               }
+          ]
       ])
     end
   end
