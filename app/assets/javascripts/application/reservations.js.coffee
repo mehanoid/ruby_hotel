@@ -1,9 +1,9 @@
 class Datepicker
-  constructor: (field) ->
-    @$datepicker = $("div.datepicker.#{field}")
-    @$input = $("#reservation_#{field}")
+  constructor: (@field) ->
+    @$datepicker = $("div.datepicker.#{@field}")
+    @$input = $("#reservation_#{@field}")
     @datepicker
-      altField: "#reservation_#{field}"
+      altField: "#reservation_#{@field}"
       defaultDate: @date()
       beforeShowDay: @canSelect([])
 
@@ -23,7 +23,7 @@ class Datepicker
 
   canSelect: (dates = null) ->
     if dates? and dates.range_begin? and dates.range_begin?
-      range = Date.range(new Date(dates.range_begin), new Date(dates.range_end))
+      range = Date.range(Date.create(dates.range_begin), Date.create(dates.range_end))
       (date) =>
         unless range.contains(date)
           [false]

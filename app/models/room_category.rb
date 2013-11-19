@@ -9,22 +9,22 @@ class RoomCategory < ActiveRecord::Base
     reservations_and_placements = reservations_and_placements_for_range(range)
 
     available_dates = range.select do |date|
-      reservations_and_placements.none? { |r| r.overlaps_with?(date, date.next_day) }
+      rooms.count > reservations_and_placements.count { |r| r.overlaps_with?(date, date.next_day) }
     end
     [available_dates, range]
   end
 
   def available_departure_dates(for_reservation: false, arrival: Date.today, range_length: 2.months)
-    range_start = for_reservation ? 2.days.from_now.to_date : Date.tomorrow
+    range_start = for_reservation ? Date.tomorrow : Date.today
     range_end = Date.today + range_length
     unless arrival.in? range_start..range_end
       return [[], nil]
     end
-    range = arrival .. range_end
+    range = arrival + 1.day .. range_end
     reservations_and_placements = reservations_and_placements_for_range(range)
 
     available_dates = range.select do |date|
-      reservations_and_placements.none? { |r| r.overlaps_with?(arrival, date) }
+      rooms.count > reservations_and_placements.count { |r| r.overlaps_with?(arrival, date) }
     end
     [available_dates, range]
   end
