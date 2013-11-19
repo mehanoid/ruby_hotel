@@ -76,7 +76,8 @@ describe Admin::AccommodationsController do
             accommodation: accommodation_attributes.merge(
                 reservation_id: reservation.id,
                 client_attributes: {
-                    birthday: '1990-10-25'
+                    birthday: '1990-10-25',
+                    passport_attributes: attributes_for(:passport)
                 }
             )
         } }
@@ -104,7 +105,7 @@ describe Admin::AccommodationsController do
       describe 'without reservation' do
         let(:valid_attributes) { {
             accommodation: attributes_for(:accommodation,
-              client_attributes: attributes_for(:client, :with_nested_attributes),
+              client_attributes: attributes_for(:client_for_accommodation),
               placements_attributes: [attributes_for(:placement, room_category_id: category.id)] )
         } }
         it 'creates a new Accommodation' do

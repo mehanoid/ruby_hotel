@@ -20,10 +20,6 @@ module Admin
       end
     end
 
-    #def create
-    #  @accommodation.save!
-    #end
-
     private
     def permitted_params
       params.permit(accommodation: [

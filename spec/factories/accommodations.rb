@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :accommodation do
     placements { [build(:placement)] }
-    client
+    association :client, factory: :client_for_accommodation
   end
 end

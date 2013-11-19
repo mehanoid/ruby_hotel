@@ -33,7 +33,7 @@ class Accommodation < ActiveRecord::Base
 
   def client_attributes=(attributes)
     @client_attributes = attributes
-    self.client = Client.new(attributes) unless client
+    self.client ||= Client.new
     client.assign_attributes(attributes)
   end
 
@@ -47,6 +47,10 @@ class Accommodation < ActiveRecord::Base
   end
 
   attr_reader :reservation_id
+
+  before_validation do |accommodation|
+    accommodation.client.all_data_should_be_present = true if accommodation.client
+  end
 
   private
 
