@@ -8,9 +8,8 @@ class Accommodation < ActiveRecord::Base
 
   validates :client, :placements, presence: true
 
-  before_validation :get_data_from_reservation, :set_arrival, on: :create
-
-  attr_accessor :reservation_id
+  before_validation :set_arrival, on: :create
+  before_create :cancel_reservation
 
   def arrival
     placements.first.arrival
@@ -34,18 +33,25 @@ class Accommodation < ActiveRecord::Base
 
   def client_attributes=(attributes)
     @client_attributes = attributes
-    self.client = Client.new(attributes)
+    self.client = Client.new(attributes) unless client
+    client.assign_attributes(attributes)
   end
+
+  def reservation_id=(id)
+    @reservation_id = id
+    return unless id
+    @reservation = Reservation.find(id)
+    placements.build(arrival: @reservation.arrival, departure: @reservation.departure, room: @reservation.room)
+    self.client = @reservation.client
+    client.assign_attributes(@client_attributes)
+  end
+
+  attr_reader :reservation_id
 
   private
 
-  def get_data_from_reservation
-    return unless reservation_id
-    reservation = Reservation.find(reservation_id)
-    placements.build(arrival: reservation.arrival, departure: reservation.departure, room: reservation.room)
-    self.client = reservation.client
-    client.assign_attributes(@client_attributes)
-    reservation.cancel
+  def cancel_reservation
+    @reservation.try(:cancel)
   end
 
   def set_arrival
