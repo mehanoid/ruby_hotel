@@ -10,8 +10,15 @@ module Admin
     end
 
     def new
-      @accommodation.build_client_data
-      @accommodation.placements.build
+      if params[:reservation_id]
+        @accommodation.reservation_id = params[:reservation_id]
+        @accommodation.client = Reservation.find(params[:reservation_id]).client
+        @accommodation.build_client_data
+        render 'new_from_reservation'
+      else
+        @accommodation.build_client_data
+        @accommodation.placements.build
+      end
     end
 
     private

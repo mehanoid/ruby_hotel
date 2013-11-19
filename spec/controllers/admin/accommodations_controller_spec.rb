@@ -72,7 +72,14 @@ describe Admin::AccommodationsController do
   describe 'POST create' do
     describe 'with valid params' do
       describe 'from reservation' do
-        let(:valid_attributes) { {accommodation: accommodation_attributes.merge(reservation_id: reservation.id)} }
+        let(:valid_attributes) { {
+            accommodation: accommodation_attributes.merge(
+                reservation_id: reservation.id,
+                client_attributes: {
+                    birthday: '1990-10-25'
+                }
+            )
+        } }
 
         it 'creates a new Accommodation' do
           expect {
@@ -84,6 +91,13 @@ describe Admin::AccommodationsController do
           post :create, valid_attributes, valid_session
           assigns(:accommodation).should be_a(Accommodation)
           assigns(:accommodation).should be_persisted
+        end
+
+        it 'get client from reservation and updates his attributes' do
+          post :create, valid_attributes, valid_session
+          client = assigns(:accommodation).client
+          client.should eq reservation.client
+          client.birthday.should eq Date.parse('1990-10-25')
         end
       end
 
