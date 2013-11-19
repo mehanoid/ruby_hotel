@@ -40,10 +40,10 @@ end
   create(:reservation)
 end
 
-Если(/^выбираю первую бронь в списке$/) do
+Если(/выбираю первую бронь в списке$/) do
   reservation = find('.reservation')
   @reservation_text = reservation.text
-  find('.reservation').click
+  find('.reservation a').click
 end
 
 То(/^я не должен видеть аннулированную бронь в общем списке$/) do
