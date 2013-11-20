@@ -1,0 +1,16 @@
+.reservation
+  p
+    strong> Код брони:
+    = reservation.id
+  p
+    strong> Номер:
+    = "№#{reservation.room.number}"
+  p
+    strong> Дата заезда:
+    = reservation.arrival
+  p
+    strong> Дата выезда:
+    = reservation.departure
+
+  h3 Данные о клиенте
+  = render 'clients/client', client: reservation.client

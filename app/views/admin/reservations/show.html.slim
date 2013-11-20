@@ -1,16 +1,10 @@
-p
-  strong> Комната:
-  = @reservation.room.number
-p
-  strong> Дата заезда:
-  = @reservation.arrival
-p
-  strong> Дата выезда:
-  = @reservation.departure
+h1 Данные брони
+= render 'reservations/reservation', reservation: @reservation
 
+br
 .row
   .span6
-    = link_to 'Назад', admin_room_categories_path, class: :btn
+    = link_to 'Назад', admin_reservations_path, class: :btn
   .span6
     = link_to 'Аннулировать', cancel_admin_reservation_path, class: :btn, data: { confirm: 'Вы действительно хотите аннулировать эту бронь?',  'confirm-proceed-class' => 'btn-danger' }, method: :patch
     = link_to 'Изменить', edit_admin_reservation_path(@reservation), class: :btn

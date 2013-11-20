@@ -1,5 +1,18 @@
-= render @accommodation.client
+h1 Данные заселения
 
-= link_to 'Edit', edit_admin_accommodation_path(@accommodation)
-'|
-= link_to 'Back', admin_accommodations_path
+p
+  strong> Номер:
+  = "№#{@accommodation.room.number}"
+p
+  strong> Дата заезда:
+  = @accommodation.arrival
+p
+  strong> Дата выезда:
+  = @accommodation.departure
+
+h3 Данные о клиенте
+= render 'clients/client', client: @accommodation.client
+
+.row
+  .span6
+    = link_to 'Назад', admin_accommodations_path, class: :btn

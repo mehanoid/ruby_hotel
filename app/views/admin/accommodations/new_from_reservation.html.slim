@@ -12,7 +12,7 @@ h1 Новое заселение
       = cf.input :last_name
       = cf.input :first_name
       = cf.input :middle_name
-      = cf.input :birthday, as: :string, input_html: { class: 'datepicker' }
+      = cf.input :birthday, as: :string, input_html: { class: 'datepicker' }, required: true
       fieldset
         legend Паспортные данные
         = cf.simple_fields_for (:passport) do |pf|

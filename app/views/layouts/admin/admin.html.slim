@@ -14,12 +14,7 @@ html
           = link_to 'RubyHotel', admin_root_path, class: 'brand'
           ul.nav
             -if can?(:manage, :hotel_data)
-              li.dropdown
-                = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
-                  | Данные об отеле
-                  b.caret
-                ul.dropdown-menu
-                  li = link_to 'Номера', admin_room_categories_path
+              li = link_to 'Номера', admin_room_categories_path
             li = link_to 'Брони', admin_reservations_path
             li = link_to 'Проживающие клиенты', admin_accommodations_path
           ul.nav.pull-right
