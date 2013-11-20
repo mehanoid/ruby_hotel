@@ -105,8 +105,8 @@ describe Admin::AccommodationsController do
       describe 'without reservation' do
         let(:valid_attributes) { {
             accommodation: attributes_for(:accommodation,
-              client_attributes: attributes_for(:client_for_accommodation),
-              placements_attributes: [attributes_for(:placement, room_category_id: category.id)] )
+                                          client_attributes: attributes_for(:client_for_accommodation),
+                                          placements_attributes: [attributes_for(:placement, room_category_id: category.id)])
         } }
         it 'creates a new Accommodation' do
           expect {
@@ -128,18 +128,34 @@ describe Admin::AccommodationsController do
     end
 
     describe 'with invalid params' do
-      let(:invalid_attributes) { {accommodation: {fail: false}} }
+      describe 'from reservation' do
+        let(:invalid_attributes) { {
+            accommodation: {
+                reservation_id: reservation.id
+            }
+        } }
 
-      it 'assigns a newly created but unsaved accommodation as @accommodation' do
-        # Trigger the behavior that occurs when invalid params are submitted
-        post :create, invalid_attributes, valid_session
-        assigns(:accommodation).should be_a_new(Accommodation)
+        it "re-renders the 'new_from_reservation' template" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          post :create, invalid_attributes, valid_session
+          response.should render_template('new_from_reservation')
+        end
       end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        post :create, invalid_attributes, valid_session
-        response.should render_template('new')
+      describe 'without reservation' do
+        let(:invalid_attributes) { {accommodation: {fail: false}} }
+
+        it 'assigns a newly created but unsaved accommodation as @accommodation' do
+          # Trigger the behavior that occurs when invalid params are submitted
+          post :create, invalid_attributes, valid_session
+          assigns(:accommodation).should be_a_new(Accommodation)
+        end
+
+        it "re-renders the 'new' template" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          post :create, invalid_attributes, valid_session
+          response.should render_template('new')
+        end
       end
     end
   end

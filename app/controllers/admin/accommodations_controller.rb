@@ -20,6 +20,18 @@ module Admin
       end
     end
 
+    def create
+      create! do |success, failure|
+        failure.html do
+          if @accommodation.reservation_id
+            render 'new_from_reservation'
+          else
+            render 'new'
+          end
+        end
+      end
+    end
+
     private
     def permitted_params
       params.permit(accommodation: [
@@ -27,22 +39,22 @@ module Admin
           placements_attributes: %i[room_category_id departure room_id],
           client_attributes: [
               :first_name,
-               :last_name,
-               :middle_name,
-               :birthday,
-               {
-                   contact_information_attributes: [
-                       {
-                           emails_attributes: [:address],
-                           phones_attributes: [:number]
-                       }
-                   ],
-                   passport_attributes: [
-                       :number,
-                       :date_of_issue,
-                       :issuing_authority
-                   ]
-               }
+              :last_name,
+              :middle_name,
+              :birthday,
+              {
+                  contact_information_attributes: [
+                      {
+                          emails_attributes: [:address],
+                          phones_attributes: [:number]
+                      }
+                  ],
+                  passport_attributes: [
+                      :number,
+                      :date_of_issue,
+                      :issuing_authority
+                  ]
+              }
           ]
       ])
     end
