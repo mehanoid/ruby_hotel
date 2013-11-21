@@ -4,7 +4,7 @@
     = passport.number
   p
     strong> Дата выдачи:
-    = passport.date_of_issue
+    = l passport.date_of_issue, format: :long
   p
     strong> Кем выдан:
     = passport.issuing_authority

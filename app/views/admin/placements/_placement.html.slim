@@ -1,5 +1,5 @@
 tr
   td = placement.room.number
-  td = placement.arrival
-  td = placement.departure
+  td = l placement.arrival, format: :long
+  td = l placement.departure, format: :long
   td = link_to 'Show', [:admin, placement]

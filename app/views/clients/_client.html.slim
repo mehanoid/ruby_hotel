@@ -11,7 +11,7 @@
   - if client.birthday
     p
       strong> Дата рождения:
-      = client.birthday
+      = l client.birthday, format: :long
   h3 Контактная информация
   = render 'contact_informations/contact_information', contact_information: client.contact_information
   - if client.passport
