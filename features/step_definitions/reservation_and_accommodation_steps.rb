@@ -37,13 +37,26 @@ end
 end
 
 Допустим(/^существуют несколько броней$/) do
-  create(:reservation)
+  2.times { create(:reservation) }
+end
+
+Допустим (/^в отеле проживают несколько клиентов$/) do
+  2.times { create(:accommodation) }
+  #create(:accommodation)
 end
 
 Если(/выбираю первую бронь в списке$/) do
-  reservation = find('.reservation')
-  @reservation_text = reservation.text
-  find('.reservation a').click
+  within 'table' do
+    reservation = first('.reservation')
+    @reservation_text = reservation.text
+    first('.reservation a').click
+  end
+end
+
+Если(/выбираю первого проживающего клиента в списке$/) do
+  within 'table' do
+    first('.accommodation a').click
+  end
 end
 
 То(/^я не должен видеть аннулированную бронь в общем списке$/) do

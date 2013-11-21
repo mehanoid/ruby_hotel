@@ -16,7 +16,9 @@ RubyHotel::Application.routes.draw do
     end
 
     resources :placements
-    resources :accommodations
+    resources :accommodations do
+      patch :finish, on: :member
+    end
 
     resources :emails
     resources :phones

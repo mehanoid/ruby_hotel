@@ -33,6 +33,13 @@ module Admin
       end
     end
 
+    def finish
+      @accommodation.finish
+      respond_with @accommodation do |format|
+        format.html { redirect_to admin_accommodations_url }
+      end
+    end
+
     private
     def permitted_params
       params.permit(accommodation: [

@@ -7,8 +7,8 @@ module Admin
 
     def cancel
       @reservation.cancel
-      respond_to do |format|
-        format.html { redirect_to admin_reservations_url, notice: 'Бронь аннулирована' }
+      respond_with @reservation do |format|
+        format.html { redirect_to admin_reservations_url }
       end
     end
   end

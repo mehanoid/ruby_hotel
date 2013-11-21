@@ -1,28 +1,8 @@
 = simple_form_for(@reservation) do |f|
-
   - @reservation.errors[:base].each do |error|
     .alert.alert-error = error
 
-  .form-inputs
-    = f.input :room_category_id, as: :select, collection: RoomCategory.all, prompt: 'Выберите категорию', required: true
-
-    = f.label :arrival
-    = f.input :arrival, as: :hidden
-    .datepicker.arrival
-
-    = f.label :departure
-    = f.input :departure, as: :hidden
-    .datepicker.departure
-
-    = f.simple_fields_for(:client) do |cf|
-      = cf.input :last_name
-      = cf.input :first_name
-      = cf.input :middle_name
-      = cf.simple_fields_for (:contact_information) do |cif|
-        = cif.simple_fields_for (:phones) do |pf|
-          = pf.input :number
-        = cif.simple_fields_for (:emails) do |ef|
-          = ef.input :address, required: false
+  = render 'reservations/form_fields', form: f
 
   .form-actions
     = f.button :submit, 'Отправить'

@@ -81,9 +81,13 @@ ru:
       reservations:
         create:
           notice: Номер забронирован
+        cancel:
+          notice: Бронь аннулирована
       accommodations:
         create:
           notice: Заселение выполнено успешно
+        finish:
+          notice: Выселение выполнено успешно
       room_categories:
         create:
           notice: Категория сохранена

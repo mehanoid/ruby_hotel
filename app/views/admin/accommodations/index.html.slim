@@ -10,7 +10,7 @@ h1 Проживающие клиенты
       th Дата заезда
       th Дата выезда
     - @accommodations.each do |accommodation|
-      tr.row-link
+      tr.row-link.accommodation
         td = link_to accommodation.client.last_name, [:admin, accommodation]
         td = accommodation.client.first_name
         td = accommodation.client.middle_name

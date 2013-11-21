@@ -1,0 +1,20 @@
+.form-inputs
+  = form.input :room_category_id, as: :select, collection: RoomCategory.all, prompt: 'Выберите категорию', required: true
+
+  = form.label :arrival
+  = form.input :arrival, as: :hidden
+  .datepicker.arrival
+
+  = form.label :departure
+  = form.input :departure, as: :hidden
+  .datepicker.departure
+
+  = form.simple_fields_for(:client) do |cf|
+    = cf.input :last_name
+    = cf.input :first_name
+    = cf.input :middle_name
+    = cf.simple_fields_for (:contact_information) do |cif|
+      = cif.simple_fields_for (:phones) do |pf|
+        = pf.input :number
+      = cif.simple_fields_for (:emails) do |ef|
+        = ef.input :address, required: false

@@ -206,19 +206,19 @@ describe Admin::AccommodationsController do
     end
   end
 
-  #describe 'DELETE destroy' do
-  #  it 'destroys the requested accommodation' do
-  #    accommodation = Accommodation.create! accommodation_attributes
-  #    expect {
-  #      delete :destroy, {id: accommodation.to_param}, valid_session
-  #    }.to change(Accommodation, :count).by(-1)
-  #  end
-  #
-  #  it 'redirects to the accommodations list' do
-  #    accommodation = Accommodation.create! accommodation_attributes
-  #    delete :destroy, {id: accommodation.to_param}, valid_session
-  #    response.should redirect_to(accommodations_url)
-  #  end
-  #end
+  describe 'PATCH finish' do
+    it 'finishes the requested accommodation' do
+      accommodation = create(:accommodation)
+      expect {
+        patch :finish, {:id => accommodation.to_param}, valid_session
+      }.to change(Accommodation, :count).by(-1)
+    end
+
+    it 'redirects to the reservations list' do
+      accommodation = create(:accommodation)
+      patch :finish, {:id => accommodation.to_param}, valid_session
+      response.should redirect_to(admin_accommodations_url)
+    end
+  end
 
 end

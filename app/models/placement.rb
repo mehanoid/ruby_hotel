@@ -16,4 +16,13 @@ class Placement < ActiveRecord::Base
       end
     end
   end
+
+  scope :active, -> { where finished: false }
+
+  default_scope { active }
+
+  def finish
+    self.finished = true
+    save
+  end
 end

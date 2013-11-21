@@ -25,6 +25,10 @@ end
 end
 
 Если(/нажимаю "([^"]*)"$/) do |clickable|
+  click_on clickable
+end
+
+Если(/отвечаю "([^"]*)"$/) do |clickable|
   click_on clickable, exact: true
 end
 

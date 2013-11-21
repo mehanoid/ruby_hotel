@@ -81,6 +81,7 @@ describe Admin::ReservationsController do
       end
 
       it 'redirects to the created reservation' do
+        #TODO: check!
         post :create, {reservation: valid_attributes}, valid_session
         response.should redirect_to([:admin, Reservation.last])
       end
@@ -145,20 +146,6 @@ describe Admin::ReservationsController do
   #  end
   #end
   #
-  #describe "DELETE destroy" do
-  #  it "destroys the requested reservation" do
-  #    reservation = Reservation.create! valid_attributes
-  #    expect {
-  #      delete :destroy, {:id => reservation.to_param}, valid_session
-  #    }.to change(Reservation, :count).by(-1)
-  #  end
-  #
-  #  it "redirects to the reservations list" do
-  #    reservation = Reservation.create! valid_attributes
-  #    delete :destroy, {:id => reservation.to_param}, valid_session
-  #    response.should redirect_to(reservations_url)
-  #  end
-  #end
 
   describe 'PATCH cancel' do
     it 'cancels the requested reservation' do

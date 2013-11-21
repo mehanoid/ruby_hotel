@@ -31,6 +31,10 @@ class Accommodation < ActiveRecord::Base
     end
   end
 
+  def finish
+    placements.last.finish
+  end
+
   def client_attributes=(attributes)
     @client_attributes = attributes
     self.client ||= Client.new
@@ -46,11 +50,19 @@ class Accommodation < ActiveRecord::Base
     client.assign_attributes(@client_attributes)
   end
 
+  def all_placements
+    placements.unscoped
+  end
+
   attr_reader :reservation_id
 
   before_validation do |accommodation|
     accommodation.client.all_data_should_be_present = true if accommodation.client
   end
+
+  scope :active, -> { joins(:placements).where { placements.finished == false }.distinct }
+
+  default_scope { active }
 
   private
 
