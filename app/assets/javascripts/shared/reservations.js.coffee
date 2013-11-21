@@ -36,7 +36,7 @@ class Datepicker
 
 
 $(document).on 'ready page:load', ->
-  if $('body').filter('.new, .create').length
+  if $('body.reservations').filter('.new, .create').length
 
     arrivalDatePicker = new Datepicker('arrival')
     departureDatePicker = new Datepicker('departure')

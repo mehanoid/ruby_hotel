@@ -1,22 +1,24 @@
 h1 Проживающие клиенты
 
-
-table.table
-  tr
-    th Фамилия
-    th Имя
-    th Отчество
-    th Номер
-    th Дата заезда
-    th Дата выезда
-  - @accommodations.each do |accommodation|
-    tr.row-link
-      td = link_to accommodation.client.last_name, [:admin, accommodation]
-      td = accommodation.client.first_name
-      td = accommodation.client.middle_name
-      td = accommodation.room.number
-      td = accommodation.arrival
-      td = accommodation.departure
+-if @accommodations.any?
+  table.table
+    tr
+      th Фамилия
+      th Имя
+      th Отчество
+      th Номер
+      th Дата заезда
+      th Дата выезда
+    - @accommodations.each do |accommodation|
+      tr.row-link
+        td = link_to accommodation.client.last_name, [:admin, accommodation]
+        td = accommodation.client.first_name
+        td = accommodation.client.middle_name
+        td = accommodation.room.number
+        td = accommodation.arrival
+        td = accommodation.departure
+- else
+  p Список проживающих клиентов пуст
 
 br
 

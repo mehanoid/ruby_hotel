@@ -4,7 +4,7 @@ class ContactInformation < ActiveRecord::Base
   has_many :emails
 
   accepts_nested_attributes_for :phones
-  accepts_nested_attributes_for :emails
+  accepts_nested_attributes_for :emails, reject_if: :all_blank
 
   validates :phones, presence: true
 

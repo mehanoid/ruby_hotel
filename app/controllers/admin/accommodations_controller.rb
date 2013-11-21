@@ -23,6 +23,7 @@ module Admin
     def create
       create! do |success, failure|
         failure.html do
+          @accommodation.build_client_data
           if @accommodation.reservation_id
             render 'new_from_reservation'
           else
