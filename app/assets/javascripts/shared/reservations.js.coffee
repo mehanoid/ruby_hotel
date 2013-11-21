@@ -4,7 +4,7 @@ class Datepicker
     @$input = $("#reservation_#{@field}")
     @datepicker
       altField: "#reservation_#{@field}"
-      defaultDate: @date()
+      defaultDate: @$input.val()
       beforeShowDay: @canSelect([])
 
   date: ->
