@@ -6,7 +6,10 @@
   .form-inputs
     = f.simple_fields_for(:placements) do |pf|
       = pf.input :room_category_id, as: :select, collection: RoomCategory.all, prompt: 'Выберите категорию', required: true
-      = pf.input :departure, as: :string, input_html: { class: 'datepicker' }
+
+      = pf.label :departure
+      = pf.input :departure, as: :hidden
+      .datepicker.accommodation_departure
 
     = f.simple_fields_for(:client) do |cf|
       = cf.input :last_name
