@@ -3,4 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:change', ->
-  $('input.datepicker').datepicker()
+  $('input.datepicker').datepicker
+    changeMonth: true
+    changeYear: true
+    yearRange: '-90:'
