@@ -3,9 +3,8 @@ class RoomCategory < ActiveRecord::Base
 
   has_many :rooms, foreign_key: :category_id, inverse_of: :category, dependent: :destroy
 
-  def available_arrival_dates(for_reservation: false, range_length: 2.months)
-    range_start = for_reservation ? Date.tomorrow : Date.today
-    range = range_start .. Date.today + range_length - 1.day
+  def available_arrival_dates(range_length: 2.months)
+    range = Date.today .. Date.today + range_length - 1.day
     reservations_and_placements = reservations_and_placements_for_range(range)
 
     available_dates = range.select do |date|
@@ -14,8 +13,8 @@ class RoomCategory < ActiveRecord::Base
     [available_dates, range]
   end
 
-  def available_departure_dates(for_reservation: false, arrival: Date.today, range_length: 2.months)
-    range_start = for_reservation ? Date.tomorrow : Date.today
+  def available_departure_dates(arrival: Date.today, range_length: 2.months)
+    range_start = Date.today
     range_end = Date.today + range_length
     unless arrival.in? range_start..range_end
       return [[], nil]

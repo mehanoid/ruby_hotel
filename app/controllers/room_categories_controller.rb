@@ -4,7 +4,7 @@ class RoomCategoriesController < ApplicationController
   respond_to :json, only: %i[available_arrival_dates available_departure_dates]
 
   def available_arrival_dates
-    dates, range = RoomCategory.find(params[:id]).available_arrival_dates(for_reservation: true)
+    dates, range = RoomCategory.find(params[:id]).available_arrival_dates
     render json: {
         range_begin: range.min,
         range_end: range.max,
@@ -14,7 +14,7 @@ class RoomCategoriesController < ApplicationController
 
   def available_departure_dates
     arrival = Date.parse(params[:arrival])
-    dates, range = RoomCategory.find(params[:id]).available_departure_dates(arrival: arrival, for_reservation: true)
+    dates, range = RoomCategory.find(params[:id]).available_departure_dates(arrival: arrival)
     render json: {
         range_begin: range.try(:min),
         range_end: range.try(:max),

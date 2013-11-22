@@ -7,7 +7,6 @@ class Reservation < ActiveRecord::Base
 
   validates :room, :client, presence: true
   validate :room_not_occupied, :departure_later_than_arrival
-  validate :arrival_later_than_today, on: :create
 
   before_validation do |reservation|
     if !reservation.room && room_category_id.present?
@@ -31,12 +30,6 @@ class Reservation < ActiveRecord::Base
   end
 
   private
-
-  def arrival_later_than_today
-    if arrival && arrival <= Date.today
-      errors.add(:arrival, 'не может быть раньше, чем завтра')
-    end
-  end
 
   def room_not_occupied
     if room && room_id_changed? && room.reservations.overlapping_with(arrival, departure).any?
