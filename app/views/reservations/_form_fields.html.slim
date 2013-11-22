@@ -3,11 +3,11 @@
 
   = form.label :arrival
   = form.input :arrival, as: :hidden
-  .datepicker.arrival
+  .datepicker.reservation_arrival
 
   = form.label :departure
   = form.input :departure, as: :hidden
-  .datepicker.departure
+  .datepicker.reservation_departure
 
   = form.simple_fields_for(:client) do |cf|
     = cf.input :last_name

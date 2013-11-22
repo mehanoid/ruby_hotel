@@ -1,45 +1,8 @@
-class Datepicker
-  constructor: (@field) ->
-    @$datepicker = $("div.datepicker.#{@field}")
-    @$input = $("#reservation_#{@field}")
-    @datepicker
-      altField: "#reservation_#{@field}"
-      defaultDate: @$input.val()
-      beforeShowDay: @canSelect([])
-
-  date: ->
-    @datepicker('getDate')
-
-  updateDates: (dates) ->
-    @datepicker('option', 'beforeShowDay', @canSelect(dates))
-
-  #events
-  change: (callback) ->
-    @datepicker('option', 'onSelect', callback)
-
-  #private
-  datepicker: (args...) ->
-    @$datepicker.datepicker(args...)
-
-  canSelect: (dates = null) ->
-    if dates? and dates.range_begin? and dates.range_begin?
-      range = Date.range(Date.create(dates.range_begin), Date.create(dates.range_end))
-      (date) =>
-        unless range.contains(date)
-          [false]
-        else if dates.available_dates?.none(date.format('{yyyy}-{MM}-{dd}'))
-          [ false, 'datepicker-no-free-rooms', 'нет свободных номеров' ]
-        else
-          [true]
-    else ->
-      [false]
-
-
 $(document).on 'ready page:load', ->
   if $('body.reservations').filter('.new, .create').length
 
-    arrivalDatePicker = new Datepicker('arrival')
-    departureDatePicker = new Datepicker('departure')
+    arrivalDatePicker = new ArrivalDepartureDatepicker('reservation_arrival')
+    departureDatePicker = new ArrivalDepartureDatepicker('reservation_departure')
     $category_id = $('select#reservation_room_category_id')
 
     do ->
