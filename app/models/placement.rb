@@ -5,6 +5,7 @@ class Placement < ActiveRecord::Base
   belongs_to :accommodation, inverse_of: :placements
 
   validates :room_category_id, presence: true, unless: :room_id?
+  validate :arrival_date_is_today, on: :create
 
   attr_accessor :room_category_id
 
@@ -24,5 +25,12 @@ class Placement < ActiveRecord::Base
   def finish
     self.finished = true
     save
+  end
+
+  private
+  def arrival_date_is_today
+    if arrival && !arrival.today?
+      errors[:arrival] << "Дата заезда должна быть сегодняшним числом, а не #{arrival}"
+    end
   end
 end

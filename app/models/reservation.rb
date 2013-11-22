@@ -22,11 +22,15 @@ class Reservation < ActiveRecord::Base
 
   scope :active, -> { where { (canceled == false) & (arrival >= Date.today) } }
 
-  default_scope { active }
+  default_scope { active.order(:arrival) }
 
   def cancel
     self.canceled = true
     save
+  end
+
+  def can_create_accomodation?
+    arrival.today?
   end
 
   private

@@ -11,7 +11,7 @@ h1 Брони
       th Дата заезда
       th Дата выезда
     - @reservations.each do |reservation|
-      tr.row-link.reservation
+      tr.row-link.reservation class=(:for_accommodation if reservation.can_create_accomodation?)
         td = link_to reservation.id, [:admin, reservation]
         td = reservation.client.last_name
         td = reservation.client.first_name
