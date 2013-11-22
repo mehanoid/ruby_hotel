@@ -13,18 +13,13 @@ World(ReservationHelpers)
   create(:room_category_with_rooms, name: category)
 end
 
-Если(/выбираю на календаре дату заезда и дату выезда$/) do
+Если(/выбираю дату заезда и дату выезда$/) do
   find('#reservation_arrival').set(arrival)
   find('#reservation_departure').set(departure)
 end
 
-Если(/выбираю дату заезда и дату выезда$/) do
-  fill_in 'Дата заезда', with: arrival
-  fill_in 'Дата выезда', with: departure
-end
-
 Если(/выбираю дату выезда$/) do
-  fill_in 'Дата выезда', with: departure
+  find('#accommodation_placements_attributes_0_departure').set(departure)
 end
 
 Допустим(/^есть свободные номера за выбранный период$/) do
