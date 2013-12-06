@@ -11,14 +11,15 @@ html
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          = link_to 'RubyHotel', admin_root_path, class: 'brand'
+          = link_to 'Управление отелем', admin_root_path, class: 'brand'
           ul.nav
-            -if can?(:manage, :users)
+            -if can?(:manage, User)
               li = link_to 'Пользователи', admin_users_path
             -if can?(:manage, :hotel_data)
               li = link_to 'Номера', admin_room_categories_path
             li = link_to 'Брони', admin_reservations_path
-            li = link_to 'Проживающие клиенты', admin_accommodations_path
+            -if can?(:manage, Accommodation)
+              li = link_to 'Проживающие клиенты', admin_accommodations_path
           ul.nav.pull-right
             li = link_to('Выход', destroy_user_session_path, method: :delete)
     .container

@@ -94,4 +94,7 @@ ru:
           notice: Категория сохранена
         destroy:
           notice: Категория удалена
-
+  roles:
+    admin: Системный адмминистратор
+    receptionist: Администратор отеля
+    reservation_manager: Менеджер по бронированию

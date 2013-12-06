@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
     role.in? EMPLOYEES_ROLES
   end
 
+  def human_role
+    I18n.t "roles.#{role}"
+  end
+
 end
