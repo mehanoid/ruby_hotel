@@ -1,14 +1,17 @@
 h1 Список номеров в категории "#{parent}"
 
 =form_tag destroy_multiple_admin_room_category_rooms_path, method: :delete do
-  - @rooms.each do |room|
-    label
-      = check_box_tag "rooms_for_destroy[]", room.id
-      = " № #{room.number}"
-  br
   .row
     .span6
       = link_to 'Назад', parent_path, class: :btn
     .span6
       = submit_tag 'Удалить выбранные комнаты', class: :btn, data: { confirm: 'Вы действительно хотите удалить выбранные номера?' }
+  br
+  .row
+    .span12
+      - @rooms.each do |room|
+        label
+          = check_box_tag "rooms_for_destroy[]", room.id
+          = " № #{room.number}"
+
 

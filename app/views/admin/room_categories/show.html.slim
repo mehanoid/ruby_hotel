@@ -1,11 +1,4 @@
 h1 = @room_category.name
-p = simple_format @room_category.description
-
-p
-  = link_to admin_room_category_rooms_path(@room_category) do
-    strong> Число номеров:
-    = @room_category.rooms.count
-    = ' (нажмите, чтобы открыть список)'
 
 .row
   .span6
@@ -14,3 +7,12 @@ p
     = link_to 'Удалить', admin_room_category_path(@room_category), data: { confirm: 'Вы действительно хотите удалить категорию?' }, class: 'btn', method: :delete
     = link_to 'Изменить', edit_admin_room_category_path(@room_category), class: :btn
     = link_to 'Добавить номера', new_admin_room_category_room_path(@room_category), class: :btn
+.row
+  .span12
+    p = simple_format @room_category.description
+    p
+      = link_to admin_room_category_rooms_path(@room_category) do
+        strong> Число номеров:
+        = @room_category.rooms.count
+        = ' (нажмите, чтобы открыть список)'
+

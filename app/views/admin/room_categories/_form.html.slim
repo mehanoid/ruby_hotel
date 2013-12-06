@@ -1,13 +1,15 @@
-= simple_form_for([:admin, @room_category]) do |f|
-  = f.error_notification
+.row
+  .span2
+    = link_to 'Назад', collection_path, class: :btn
+br
+.row
+  .span12
+    = simple_form_for([:admin, @room_category]) do |f|
+      = f.error_notification
 
-  .form-inputs
-    = f.input :name
-    = f.input :description
+      .form-inputs
+        = f.input :name
+        = f.input :description
 
-  .row
-    .span2
-      = link_to 'Назад', collection_path, class: :btn
-    .span1
       = f.button :submit, 'Сохранить'
 

@@ -1,14 +1,16 @@
 h1 Категории номеров
 
-table.table
-  tr
-    th Название
-    th Число номеров
-  - @room_categories.each do |room_category|
-    tr.row-link
-      td = link_to room_category.name, [:admin, room_category]
-      td = room_category.rooms.count
-
+.row
+  .span12
+    = link_to 'Добавить категорию', new_admin_room_category_path, class: :btn
 br
-
-= link_to 'Добавить категорию', new_admin_room_category_path, class: :btn
+.row
+  .span12
+    table.table
+      tr
+        th Название
+        th Число номеров
+      - @room_categories.each do |room_category|
+        tr.row-link
+          td = link_to room_category.name, [:admin, room_category]
+          td = room_category.rooms.count

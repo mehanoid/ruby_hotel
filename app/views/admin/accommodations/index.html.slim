@@ -1,25 +1,27 @@
 h1 Проживающие клиенты
 
--if @accommodations.any?
-  table.table
-    tr
-      th Фамилия
-      th Имя
-      th Отчество
-      th Номер
-      th Дата заезда
-      th Дата выезда
-    - @accommodations.each do |accommodation|
-      tr.row-link.accommodation
-        td = link_to accommodation.client.last_name, [:admin, accommodation]
-        td = accommodation.client.first_name
-        td = accommodation.client.middle_name
-        td = accommodation.room.number
-        td = l accommodation.arrival
-        td = l accommodation.departure
-- else
-  p Список проживающих клиентов пуст
-
+.row
+  .span12
+    = link_to 'Новое заселение', new_admin_accommodation_path, class: :btn
 br
-
-= link_to 'Новое заселение', new_admin_accommodation_path, class: :btn
+.row
+  .span12
+    -if @accommodations.any?
+      table.table
+        tr
+          th Фамилия
+          th Имя
+          th Отчество
+          th Номер
+          th Дата заезда
+          th Дата выезда
+        - @accommodations.each do |accommodation|
+          tr.row-link.accommodation
+            td = link_to accommodation.client.last_name, [:admin, accommodation]
+            td = accommodation.client.first_name
+            td = accommodation.client.middle_name
+            td = accommodation.room.number
+            td = l accommodation.arrival
+            td = l accommodation.departure
+    - else
+      p Список проживающих клиентов пуст
