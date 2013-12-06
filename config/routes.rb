@@ -8,6 +8,8 @@ RubyHotel::Application.routes.draw do
   end
   resources :reservations, only: %i[new create show]
 
+  devise_for :users, path_prefix: :admin
+
   namespace :admin do
     root 'home#show'
 
@@ -29,7 +31,6 @@ RubyHotel::Application.routes.draw do
     end
   end
 
-  devise_for :users, path_prefix: :admin
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
