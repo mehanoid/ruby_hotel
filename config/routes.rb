@@ -20,6 +20,8 @@ RubyHotel::Application.routes.draw do
       patch :finish, on: :member
     end
 
+    resources :users, except: %i[show]
+
     resources :room_categories do
       resources :rooms, shallow: true, only: %i[index new create] do
         delete :destroy_multiple, on: :collection

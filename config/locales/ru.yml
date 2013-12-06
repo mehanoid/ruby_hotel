@@ -47,6 +47,7 @@ ru:
         departure: Дата выезда
       user:
         password: Пароль
+        password_confirmation: Подтверждение пароля
       client:
         last_name: Фамилия
         first_name: Имя

@@ -1,0 +1,15 @@
+h1 Пользователи
+
+table.table
+
+  - @users.each do |user|
+    tr
+      td = user.email
+      td = user.password
+      td = user.password_confirmation
+      td = link_to 'Изменить', edit_admin_user_path(user)
+      td = link_to 'Удалить', [:admin, user], confirm: 'Вы действительно хотите удалить этого пользователя?', method: :delete
+
+br
+
+= link_to 'Добавить пользователя', new_admin_user_path, class: :btn

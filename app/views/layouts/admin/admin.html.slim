@@ -13,6 +13,8 @@ html
         .container
           = link_to 'RubyHotel', admin_root_path, class: 'brand'
           ul.nav
+            -if can?(:manage, :users)
+              li = link_to 'Пользователи', admin_users_path
             -if can?(:manage, :hotel_data)
               li = link_to 'Номера', admin_room_categories_path
             li = link_to 'Брони', admin_reservations_path
