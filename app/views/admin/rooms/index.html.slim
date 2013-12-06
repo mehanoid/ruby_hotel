@@ -10,7 +10,7 @@ h1 Список номеров в категории "#{parent}"
   .row
     .span12
       - @rooms.each do |room|
-        label
+        label.room
           = check_box_tag "rooms_for_destroy[]", room.id
           = " № #{room.number}"
 

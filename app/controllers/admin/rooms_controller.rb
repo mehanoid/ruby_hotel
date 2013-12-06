@@ -23,8 +23,12 @@ module Admin
 
     def destroy_multiple
       rooms_for_destroy = params[:rooms_for_destroy]
-      Room.where(category: @room_category).destroy(rooms_for_destroy) if rooms_for_destroy.present?
-      redirect_to :back
+      notice = nil
+      if rooms_for_destroy.present?
+        Room.where(category: @room_category).destroy(rooms_for_destroy)
+        notice = 'Номера успешно удалены'
+      end
+      redirect_to :back, notice: notice
     end
 
     private
