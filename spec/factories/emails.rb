@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :email do
-    address 'client@example.com'
+    sequence :address do |n|
+      "client#{n}@example.com"
+    end
   end
 end
