@@ -39,6 +39,10 @@ class Accommodation < ActiveRecord::Base
     placements.last.finish!
   end
 
+  def ready_for_finish?
+    departure <= Date.today
+  end
+
   def client_attributes=(attributes)
     @client_attributes = attributes
     self.client ||= Client.new

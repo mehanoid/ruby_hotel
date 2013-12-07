@@ -10,6 +10,7 @@ h1 Проживающие клиенты
         .row
           .span10
             -if @accommodations.any?
+              p Красным цветом обозначены клиенты с истёкшим сроком проживания
               table.table
                 tr
                   th Фамилия
@@ -19,7 +20,7 @@ h1 Проживающие клиенты
                   th Дата заезда
                   th Дата выезда
                 - @accommodations.each do |accommodation|
-                  tr.row-link.accommodation
+                  tr.row-link.accommodation class=(:ready_for_finish if accommodation.ready_for_finish?)
                     td = link_to accommodation.client.last_name, [:admin, accommodation]
                     td = accommodation.client.first_name
                     td = accommodation.client.middle_name
