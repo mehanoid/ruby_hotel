@@ -1,10 +1,10 @@
 class Datepicker
   constructor: (field) ->
     @_$datepicker = $("div.datepicker.#{field}")
-    input_name = "##{field}"
-    $input = $(input_name)
+    input_class = "input.#{field}"
+    $input = $(input_class)
     @_datepicker
-      altField: input_name
+      altField: input_class
       defaultDate: $input.val()
       beforeShowDay: @_canSelect([])
 

@@ -37,6 +37,6 @@ class Placement < ActiveRecord::Base
   end
 
   def set_cost
-    self.cost = (departure - arrival) * room.category.price
+    self.cost = (departure - arrival) * room.category.price if arrival && departure
   end
 end

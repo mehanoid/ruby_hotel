@@ -2,11 +2,11 @@
   = form.input :room_category_id, as: :select, collection: RoomCategory.all, prompt: 'Выберите категорию', required: true
 
   = form.label :arrival
-  = form.input :arrival, as: :hidden
+  = form.input :arrival, as: :hidden, input_html: { class: 'reservation_arrival' }
   .datepicker.reservation_arrival
 
   = form.label :departure
-  = form.input :departure, as: :hidden
+  = form.input :departure, as: :hidden, input_html: { class: 'reservation_departure' }
   .datepicker.reservation_departure
 
   = form.simple_fields_for(:client) do |cf|

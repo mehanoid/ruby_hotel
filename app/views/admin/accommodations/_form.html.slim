@@ -14,7 +14,7 @@ br
           = pf.input :room_category_id, as: :select, collection: RoomCategory.all, prompt: 'Выберите категорию', required: true
 
           = pf.label :departure
-          = pf.input :departure, as: :hidden
+          = pf.input :departure, as: :hidden, input_html: { class: 'accommodation_departure' }
           .datepicker.accommodation_departure
 
         = f.simple_fields_for(:client) do |cf|

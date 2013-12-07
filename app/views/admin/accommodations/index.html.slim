@@ -1,27 +1,55 @@
 h1 Проживающие клиенты
+.row
+  .span12
+    .row
+      .span10
+        .row
+          .span10
+            = link_to 'Новое заселение', new_admin_accommodation_path, class: :btn
+        br
+        .row
+          .span10
+            -if @accommodations.any?
+              table.table
+                tr
+                  th Фамилия
+                  th Имя
+                  th Отчество
+                  th Номер
+                  th Дата заезда
+                  th Дата выезда
+                - @accommodations.each do |accommodation|
+                  tr.row-link.accommodation
+                    td = link_to accommodation.client.last_name, [:admin, accommodation]
+                    td = accommodation.client.first_name
+                    td = accommodation.client.middle_name
+                    td = accommodation.room.number
+                    td = l accommodation.arrival
+                    td = l accommodation.departure
+            - else
+              p Не найдено ни одного проживающего клиента
+      .span2
+        = search_form_for [:admin, @q] do |f|
+          .form-inputs
+            = f.label :client_last_name_cont, 'Фамилия'
+            = f.text_field :client_last_name_cont
+            = f.label :client_first_name_cont, 'Имя'
+            = f.text_field :client_first_name_cont
+            = f.label :client_middle_name_cont, 'Отчество'
+            = f.text_field :client_middle_name_cont
+          = f.submit 'Поиск', class: :btn
+
+
+
+
+
+
+
+
 
 .row
   .span12
-    = link_to 'Новое заселение', new_admin_accommodation_path, class: :btn
+
 br
 .row
   .span12
-    -if @accommodations.any?
-      table.table
-        tr
-          th Фамилия
-          th Имя
-          th Отчество
-          th Номер
-          th Дата заезда
-          th Дата выезда
-        - @accommodations.each do |accommodation|
-          tr.row-link.accommodation
-            td = link_to accommodation.client.last_name, [:admin, accommodation]
-            td = accommodation.client.first_name
-            td = accommodation.client.middle_name
-            td = accommodation.room.number
-            td = l accommodation.arrival
-            td = l accommodation.departure
-    - else
-      p Список проживающих клиентов пуст

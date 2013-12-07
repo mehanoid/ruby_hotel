@@ -6,7 +6,8 @@ module Admin
     load_and_authorize_resource
 
     def index
-      @accommodations = @accommodations.includes(:placements)
+      @q = Accommodation.search(params[:q])
+      @accommodations = @q.result(distinct: true).includes(:placements)
     end
 
     def new
