@@ -5,6 +5,11 @@ module Admin
     load_and_authorize_resource
     include Concerns::ReservationActions
 
+    def index
+      @q = Reservation.search(params[:q])
+      @reservations = @q.result(distinct: true)
+    end
+
     def cancel
       @reservation.cancel
       respond_with @reservation do |format|

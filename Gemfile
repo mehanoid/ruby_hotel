@@ -47,6 +47,9 @@ gem 'active_attr'
 # Active Record queries
 gem 'squeel', github: 'ernie/squeel'
 
+# Search
+gem 'ransack'
+
 # authorization
 gem 'devise'
 gem 'devise-i18n'

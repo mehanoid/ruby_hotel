@@ -1,28 +1,42 @@
 h1 Брони
 .row
   .span12
-    = link_to 'Новая бронь', new_admin_reservation_path, class: :btn
-br
-.row
-  .span12
-    -if @reservations.any?
-      table.table
-        tr
-          th Код брони
-          th Фамилия
-          th Имя
-          th Отчество
-          th Номер
-          th Дата заезда
-          th Дата выезда
-        - @reservations.each do |reservation|
-          tr.row-link.reservation class=(:for_accommodation if reservation.can_create_accomodation?)
-            td = link_to reservation.id, [:admin, reservation]
-            td = reservation.client.last_name
-            td = reservation.client.first_name
-            td = reservation.client.middle_name
-            td = reservation.room.number
-            td = l reservation.arrival
-            td = l reservation.departure
-    - else
-      p Список активных броней пуст
+    .row
+      .span10
+        .row
+          .span10
+            = link_to 'Новая бронь', new_admin_reservation_path, class: :btn
+        br
+        .row
+          .span10
+            -if @reservations.any?
+              table.table
+                tr
+                  th Код брони
+                  th Фамилия
+                  th Имя
+                  th Отчество
+                  th Дата заезда
+                  th Дата выезда
+                - @reservations.each do |reservation|
+                  tr.row-link.reservation class=(:for_accommodation if reservation.can_create_accomodation?)
+                    td = link_to reservation.id, [:admin, reservation]
+                    td = reservation.client.last_name
+                    td = reservation.client.first_name
+                    td = reservation.client.middle_name
+                    td = l reservation.arrival
+                    td = l reservation.departure
+            - else
+              p Не найдено ни одной активной брони
+      .span2
+        = search_form_for [:admin, @q] do |f|
+          .form-inputs
+            = f.label :id_eq, 'Номер брони'
+            = f.number_field :id_eq
+            = f.label :client_last_name_cont, 'Фамилия'
+            = f.text_field :client_last_name_cont
+            = f.label :client_first_name_cont, 'Имя'
+            = f.text_field :client_first_name_cont
+            = f.label :client_middle_name_cont, 'Отчество'
+            = f.text_field :client_middle_name_cont
+          = f.submit 'Поиск', class: :btn
