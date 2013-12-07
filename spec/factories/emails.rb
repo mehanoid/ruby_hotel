@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :email do
-    address 'ivan@gmail.com'
+    address 'client@example.com'
   end
 end

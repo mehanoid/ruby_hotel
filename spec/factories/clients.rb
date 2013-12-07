@@ -2,9 +2,25 @@
 
 FactoryGirl.define do
   factory :client do
-    first_name 'Иван'
-    middle_name 'Иванович'
-    last_name 'Иванов'
+    trait :ivan do
+      first_name 'Иван'
+      middle_name 'Иванович'
+      last_name 'Иванов'
+    end
+
+    trait :petr do
+      first_name 'Пётр'
+      middle_name 'Петрович'
+      last_name 'Петров'
+    end
+
+    trait :alexandr do
+      first_name 'Александр'
+      middle_name 'Сергеевич'
+      last_name 'Пушкин'
+    end
+
+    ivan
     contact_information
 
     trait :with_nested_attributes do
