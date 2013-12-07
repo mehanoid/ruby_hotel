@@ -29,7 +29,7 @@ class Reservation < ActiveRecord::Base
     save
   end
 
-  def can_create_accomodation?
+  def ready_for_accomodation?
     arrival.today?
   end
 

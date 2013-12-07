@@ -5,7 +5,7 @@ h1 Данные брони
     = link_to 'Назад', admin_reservations_path, class: :btn
   .span6
     = link_to 'Аннулировать', cancel_admin_reservation_path, class: :btn, data: { confirm: 'Вы действительно хотите аннулировать эту бронь?',  'confirm-proceed-class' => 'btn-danger' }, method: :patch
-    - if @reservation.can_create_accomodation?
+    - if can?(:create, Accommodation) && @reservation.ready_for_accomodation?
       = link_to 'Заселить', new_admin_accommodation_path(reservation_id: @reservation.id), class: :btn
 br
 = render 'reservations/reservation', reservation: @reservation
