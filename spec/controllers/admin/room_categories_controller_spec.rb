@@ -23,7 +23,7 @@ describe Admin::RoomCategoriesController do
   # This should return the minimal set of attributes required to create a valid
   # RoomCategory. As you add validations to RoomCategory, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {room_category: {name: 'Люкс'}} }
+  let(:valid_attributes) { {room_category: attributes_for(:room_category)} }
   let(:invalid_attributes) { {room_category: {neme: ''}} }
 
   # This should return the minimal set of values that should be in the session

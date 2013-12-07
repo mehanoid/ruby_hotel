@@ -19,6 +19,10 @@ class Accommodation < ActiveRecord::Base
     placements.last.departure
   end
 
+  def cost
+    placements.sum(:cost)
+  end
+
   def room
     placements.last.room
   end
@@ -31,8 +35,8 @@ class Accommodation < ActiveRecord::Base
     end
   end
 
-  def finish
-    placements.last.finish
+  def finish!
+    placements.last.finish!
   end
 
   def client_attributes=(attributes)

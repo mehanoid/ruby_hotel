@@ -35,6 +35,7 @@ ru:
       room_category:
         name: Название
         description: Описание
+        price: Стоимость суток проживания (в рублях)
       room:
         number: №
       reservation:

@@ -18,11 +18,13 @@ class Placement < ActiveRecord::Base
     end
   end
 
+  before_validation :set_cost
+
   scope :active, -> { where finished: false }
 
   default_scope { active }
 
-  def finish
+  def finish!
     self.finished = true
     save
   end
@@ -32,5 +34,9 @@ class Placement < ActiveRecord::Base
     if arrival && !arrival.today?
       errors[:arrival] << "Дата заезда должна быть сегодняшним числом, а не #{arrival}"
     end
+  end
+
+  def set_cost
+    self.cost = (departure - arrival) * room.category.price
   end
 end

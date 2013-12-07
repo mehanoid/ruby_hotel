@@ -34,7 +34,7 @@ module Admin
     end
 
     def finish
-      @accommodation.finish
+      @accommodation.finish!
       respond_with @accommodation do |format|
         format.html { redirect_to admin_accommodations_url }
       end

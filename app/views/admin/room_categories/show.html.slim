@@ -11,6 +11,9 @@ h1 = @room_category.name
   .span12
     p = simple_format @room_category.description
     p
+      b> Стоимость за сутки:
+      | #{@room_category.price} рублей
+    p
       = link_to admin_room_category_rooms_path(@room_category) do
         strong> Число номеров:
         = @room_category.rooms.count
