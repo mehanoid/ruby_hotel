@@ -96,5 +96,5 @@ ru:
           notice: Категория удалена
   roles:
     admin: Системный адмминистратор
-    receptionist: Администратор отеля
+    receptionist: Администратор гостиницы
     reservation_manager: Менеджер по бронированию

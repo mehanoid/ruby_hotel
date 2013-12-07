@@ -1,20 +1,22 @@
 h1 Данные заселения
 
-p
-  strong> Номер:
-  = "№#{@accommodation.room.number}"
-p
-  strong> Дата заезда:
-  = l @accommodation.arrival, format: :long
-p
-  strong> Дата выезда:
-  = l @accommodation.departure, format: :long
-
-h3 Данные о клиенте
-= render 'clients/client', client: @accommodation.client
-
 .row
-  .span6
+  .span4
     = link_to 'Назад', admin_accommodations_path, class: :btn
-  .span6
+  .span2
     = link_to 'Выселить', finish_admin_accommodation_path, class: :btn, data: { confirm: 'Вы действительно хотите выполнить выселение?',  'confirm-proceed-class' => 'btn-danger' }, method: :patch
+br
+.row
+  .span12
+    p
+      strong> Номер:
+      = "№#{@accommodation.room.number}"
+    p
+      strong> Дата заезда:
+      = l @accommodation.arrival, format: :long
+    p
+      strong> Дата выезда:
+      = l @accommodation.departure, format: :long
+
+    h3 Данные о клиенте
+    = render 'clients/client', client: @accommodation.client

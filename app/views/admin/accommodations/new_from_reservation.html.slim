@@ -1,34 +1,35 @@
 h1 Новое заселение
+.row
+  .span2
+    = link_to 'Назад', collection_path, class: :btn
+br
+.row
+  .span12
+    = simple_form_for([:admin, @accommodation]) do |f|
+      = f.error_notification
+      - @accommodation.base_errors.each do |error|
+        .alert.alert-error = error
 
-= simple_form_for([:admin, @accommodation]) do |f|
-  = f.error_notification
-  - @accommodation.base_errors.each do |error|
-    .alert.alert-error = error
+      .form-inputs
+        = f.input :reservation_id, as: :hidden
 
-  .form-inputs
-    = f.input :reservation_id, as: :hidden
+        = f.simple_fields_for(:client) do |cf|
+          = cf.input :last_name
+          = cf.input :first_name
+          = cf.input :middle_name
+          = cf.input :birthday, as: :string, input_html: { class: 'datepicker' }, required: true
+          fieldset
+            legend Паспортные данные
+            = cf.simple_fields_for (:passport) do |pf|
+              = pf.input :number
+              = pf.input :date_of_issue, as: :string, input_html: { class: 'datepicker' }
+              = pf.input :issuing_authority
+          fieldset
+            legend Контактные данные
+            = cf.simple_fields_for (:contact_information) do |cif|
+              = cif.simple_fields_for (:phones) do |pf|
+                = pf.input :number
+              = cif.simple_fields_for (:emails) do |ef|
+                = ef.input :address, required: false
 
-    = f.simple_fields_for(:client) do |cf|
-      = cf.input :last_name
-      = cf.input :first_name
-      = cf.input :middle_name
-      = cf.input :birthday, as: :string, input_html: { class: 'datepicker' }, required: true
-      fieldset
-        legend Паспортные данные
-        = cf.simple_fields_for (:passport) do |pf|
-          = pf.input :number
-          = pf.input :date_of_issue, as: :string, input_html: { class: 'datepicker' }
-          = pf.input :issuing_authority
-      fieldset
-        legend Контактные данные
-        = cf.simple_fields_for (:contact_information) do |cif|
-          = cif.simple_fields_for (:phones) do |pf|
-            = pf.input :number
-          = cif.simple_fields_for (:emails) do |ef|
-            = ef.input :address, required: false
-
-  .row
-    .span2
-      = link_to 'Назад', collection_path, class: :btn
-    .span1
       = f.button :submit, 'Сохранить'
