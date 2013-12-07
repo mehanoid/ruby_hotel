@@ -10,11 +10,11 @@ html
   body class=([controller_name, action_name])
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container
+        .container-fluid
           ul.nav
             li = link_to 'Номера', root_path
             li = link_to 'Онлайн-бронирование', new_reservation_path
-    .container
+    .container-fluid
       = render 'layouts/messages'
       #content
         = yield

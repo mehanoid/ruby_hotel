@@ -10,7 +10,7 @@ html
   body class=([controller_name, action_name])
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container
+        .container-fluid
           = link_to 'Управление отелем', admin_root_path, class: 'brand'
           ul.nav
             -if can?(:manage, User)
@@ -22,7 +22,7 @@ html
               li = link_to 'Проживающие клиенты', admin_accommodations_path
           ul.nav.pull-right
             li = link_to('Выход', destroy_user_session_path, method: :delete)
-    .container
+    .container-fluid
       = render 'layouts/messages'
       #content
         = yield
