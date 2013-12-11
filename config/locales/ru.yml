@@ -40,11 +40,11 @@ ru:
       room:
         number: №
       reservation:
-        room_category_id: Категория комнаты
+        room_category: Категория номера
         arrival: Дата заезда
         departure: Дата выезда
       placement:
-        room_category_id: Категория комнаты
+        room_category_id: Категория номера
         arrival: Дата заезда
         departure: Дата выезда
       user:

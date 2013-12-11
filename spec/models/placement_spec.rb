@@ -6,16 +6,13 @@ describe Placement do
     it 'hide placement from active placements' do
       expect {
         placement.finish!
-      }.to change{Placement.count}.by(-1)
+      }.to change { Placement.count }.by(-1)
     end
   end
 
   describe 'cost' do
     let!(:category) { create(:room_category_with_rooms, price: 1000) }
-    let!(:placement) {
-      create(:placement, room: category.rooms.first,
-             arrival: Date.today, departure: 3.days.from_now)
-    }
+    let!(:placement) { create(:placement, room_category_id: category.id, departure: 3.days.from_now) }
 
     it 'is cost for 3 days' do
       placement.cost.should eq 3000

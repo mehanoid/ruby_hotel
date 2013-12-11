@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :reservation do
     arrival { Date.today }
     departure { arrival + 5.days }
-    association :room, factory: :room_with_category
+    association :room_category, factory: :room_category_with_rooms
     client
 
     trait :with_nested_attributes do

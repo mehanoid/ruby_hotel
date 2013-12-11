@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :placement do
-    association :room, factory: :room_with_category
+    room_category_id { create(:room_category_with_rooms)}
     arrival { Date.today }
     departure { arrival + 5.days }
   end

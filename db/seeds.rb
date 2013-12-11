@@ -17,12 +17,12 @@ if Rails.env == 'development'
   FactoryGirl.create(:room_category_with_rooms, :junior, rooms_count: 5)
   FactoryGirl.create(:room_category_with_rooms, :deluxe, rooms_count: 1)
 
-  FactoryGirl.create(:reservation, room: nil, room_category_id: RoomCategory.first,
+  FactoryGirl.create(:reservation, room_category: RoomCategory.first,
                      client: (FactoryGirl.create(:client, :ivan)))
-  FactoryGirl.create(:reservation, room: nil, room_category_id: RoomCategory.first,
+  FactoryGirl.create(:reservation, room_category: RoomCategory.first,
                      arrival: 5.days.from_now, departure: 10.days.from_now,
                      client: (FactoryGirl.create(:client, :petr)))
-  FactoryGirl.create(:reservation, room: nil, room_category_id: RoomCategory.first,
+  FactoryGirl.create(:reservation, room_category: RoomCategory.first,
                      arrival: 3.days.from_now, departure: 12.days.from_now,
                      client: (FactoryGirl.create(:client, :alexandr)))
 end

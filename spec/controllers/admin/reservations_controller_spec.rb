@@ -28,7 +28,7 @@ describe Admin::ReservationsController do
   # Reservation. As you add validations to Reservation, be sure to
   # adjust the attributes here as well.
   let(:category) { create(:room_category_with_rooms) }
-  let(:valid_attributes) { attributes_for(:reservation, :with_nested_attributes, room: nil, room_category_id: category.id) }
+  let(:valid_attributes) { attributes_for(:reservation, :with_nested_attributes, room_category_id: category.id) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

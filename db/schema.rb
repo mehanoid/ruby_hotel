@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211145235) do
+ActiveRecord::Schema.define(version: 20131211172016) do
 
   create_table "accommodations", force: true do |t|
     t.datetime "created_at"
@@ -88,11 +88,13 @@ ActiveRecord::Schema.define(version: 20131211145235) do
     t.date     "departure"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "canceled",   default: false
+    t.boolean  "canceled",         default: false
     t.integer  "client_id"
+    t.integer  "room_category_id"
   end
 
   add_index "reservations", ["client_id"], name: "index_reservations_on_client_id"
+  add_index "reservations", ["room_category_id"], name: "index_reservations_on_room_category_id"
   add_index "reservations", ["room_id"], name: "index_reservations_on_room_id"
 
   create_table "room_categories", force: true do |t|

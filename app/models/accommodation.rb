@@ -8,7 +8,6 @@ class Accommodation < ActiveRecord::Base
 
   validates :client, :placements, presence: true
 
-  before_validation :set_arrival, on: :create
   before_create :cancel_reservation
 
   def arrival
@@ -53,7 +52,7 @@ class Accommodation < ActiveRecord::Base
     @reservation_id = id
     return unless id
     @reservation = Reservation.find(id)
-    placements.build(arrival: @reservation.arrival, departure: @reservation.departure, room: @reservation.room)
+    placements.build(reservation: @reservation)
     self.client = @reservation.client
     client.assign_attributes(@client_attributes)
   end
@@ -78,10 +77,4 @@ class Accommodation < ActiveRecord::Base
     @reservation.try(:cancel)
   end
 
-  def set_arrival
-    placement = placements.try(:first)
-    if placement && !placement.arrival
-      placement.arrival = Date.today
-    end
-  end
 end

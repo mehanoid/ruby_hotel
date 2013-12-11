@@ -25,9 +25,10 @@ end
 Допустим(/^есть свободные номера за выбранный период$/) do
 end
 
-Допустим(/^нет свободных номеров за выбранный период$/) do
-  Room.all.each do |room|
-    create(:reservation, room: room, arrival: arrival, departure: departure)
+Допустим(/^нет свободных номеров за выбранный период в категории "([^"]*)"$/) do |category_name|
+  category = RoomCategory.find_by_name(category_name)
+  category.rooms.count.times do
+    create(:placement, room_category_id: category, departure: departure)
   end
 end
 

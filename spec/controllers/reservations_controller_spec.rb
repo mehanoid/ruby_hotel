@@ -24,8 +24,7 @@ describe ReservationsController do
   # Reservation. As you add validations to Reservation, be sure to
   # adjust the attributes here as well.
   let(:category) { create(:room_category_with_rooms) }
-
-  let(:valid_attributes) { attributes_for(:reservation, :with_nested_attributes, room: nil, room_category_id: category.id) }
+  let(:valid_attributes) { attributes_for(:reservation, :with_nested_attributes, room_category_id: category.id) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -72,13 +71,13 @@ describe ReservationsController do
       end
 
       it 'assigns a newly created reservation as @reservation' do
-        post :create, {:reservation => valid_attributes}, valid_session
+        post :create, {reservation: valid_attributes}, valid_session
         assigns(:reservation).should be_a(Reservation)
         assigns(:reservation).should be_persisted
       end
 
       it 'redirects to the created reservation' do
-        post :create, {:reservation => valid_attributes}, valid_session
+        post :create, {reservation: valid_attributes}, valid_session
         response.should redirect_to(Reservation.last)
       end
     end
@@ -92,7 +91,7 @@ describe ReservationsController do
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        post :create, {:reservation => {room: 'invalid value'}}, valid_session
+        post :create, {reservation: {room: 'invalid value'}}, valid_session
         response.should render_template('new')
       end
     end

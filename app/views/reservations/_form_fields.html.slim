@@ -1,5 +1,5 @@
 .form-inputs
-  = form.input :room_category_id, as: :select, collection: RoomCategory.all, prompt: 'Выберите категорию', required: true
+  = form.association :room_category
 
   = form.label :arrival
   = form.input :arrival, as: :hidden, input_html: { class: 'reservation_arrival' }
