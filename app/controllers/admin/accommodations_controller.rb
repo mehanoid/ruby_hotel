@@ -59,6 +59,7 @@ module Admin
                       }
                   ],
                   passport_attributes: [
+                      :document_type,
                       :number,
                       :date_of_issue,
                       :issuing_authority

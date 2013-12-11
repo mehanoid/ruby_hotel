@@ -3,7 +3,7 @@
     = link_to 'Назад', collection_path, class: :btn
 br
 .row
-  .span12
+  .span6
     = simple_form_for([:admin, @accommodation]) do |f|
       = f.error_notification
       - @accommodation.base_errors.each do |error|
@@ -23,8 +23,9 @@ br
           = cf.input :middle_name
           = cf.input :birthday, as: :string, input_html: { class: 'datepicker' }, required: true
           fieldset
-            legend Паспортные данные
+            legend Документ удостоверения личности
             = cf.simple_fields_for (:passport) do |pf|
+              = pf.input :document_type, collection: Passport::DOCUMENT_TYPES
               = pf.input :number
               = pf.input :date_of_issue, as: :string, input_html: { class: 'datepicker' }
               = pf.input :issuing_authority

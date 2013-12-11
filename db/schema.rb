@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131207160818) do
+ActiveRecord::Schema.define(version: 20131211145235) do
 
   create_table "accommodations", force: true do |t|
     t.datetime "created_at"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20131207160818) do
     t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "document_type"
   end
 
   add_index "passports", ["client_id"], name: "index_passports_on_client_id"

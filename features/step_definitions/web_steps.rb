@@ -4,7 +4,13 @@ end
 
 Если(/заполняю форму следующими данными:$/) do |table|
   table.hashes.each do |hash|
-    fill_in hash['Поле'], with: hash['Значение']
+    field = hash['Поле']
+    value = hash['Значение']
+    begin
+      fill_in field, with: value
+    rescue
+      select value, from: field
+    end
   end
 end
 

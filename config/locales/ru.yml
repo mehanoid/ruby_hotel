@@ -31,6 +31,7 @@ ru:
       client: Клиент
       contact_information: Контактная информация
       phone: Телефон
+      passport: Документ удостоверения личности
     attributes:
       room_category:
         name: Название
@@ -55,7 +56,8 @@ ru:
         middle_name: Отчество
         birthday: Дата рождения
       passport:
-        number: Номер паспорта
+        document_type: Тип документа
+        number: Номер документа
         date_of_issue: Дата выдачи
         issuing_authority: Кем выдан
       phone:
