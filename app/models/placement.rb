@@ -9,9 +9,7 @@ class Placement < ActiveRecord::Base
 
   validates :room_category_id, presence: true, unless: :room_id?
 
-  before_validation :set_room_from_room_category, on: :create
-  before_validation :set_arrival, on: :create
-  before_validation :set_data_from_reservation, on: :create
+  before_validation :set_room_from_room_category, :set_arrival, :set_data_from_reservation, on: :create
   before_save :set_cost
 
   scope :active, -> { where finished: false }

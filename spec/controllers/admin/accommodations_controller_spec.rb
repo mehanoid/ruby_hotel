@@ -28,7 +28,7 @@ describe Admin::AccommodationsController do
   # Accommodation. As you add validations to Accommodation, be sure to
   # adjust the attributes here as well.
   let!(:category) { create(:room_category_with_rooms) }
-  let!(:reservation) { create(:reservation, room: category.rooms.first) }
+  let!(:reservation) { create(:reservation, room_category: category) }
   let(:accommodation_attributes) { {} }
 
   # This should return the minimal set of values that should be in the session

@@ -2,7 +2,7 @@ class Accommodation < ActiveRecord::Base
   include Concerns::NestedClientBuilder
 
   belongs_to :client
-  has_many :placements, inverse_of: :accommodation
+  has_many :placements, inverse_of: :accommodation, dependent: :destroy
 
   accepts_nested_attributes_for :client, :placements
 

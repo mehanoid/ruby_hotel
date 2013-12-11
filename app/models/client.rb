@@ -1,8 +1,8 @@
 class Client < ActiveRecord::Base
-  has_one :contact_information
-  has_one :passport
-  has_many :reservations
-  has_many :accommodations
+  has_one :contact_information, dependent: :destroy
+  has_one :passport, dependent: :destroy
+  has_many :reservations, dependent: :nullify
+  has_many :accommodations, dependent: :nullify
 
   accepts_nested_attributes_for :passport, :contact_information
 

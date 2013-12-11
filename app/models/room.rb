@@ -1,6 +1,5 @@
 class Room < ActiveRecord::Base
   belongs_to :category, class_name: 'RoomCategory'
-  has_many :reservations, dependent: :nullify
   has_many :placements, dependent: :nullify
 
   validates :number, uniqueness: true, numericality: { only_integer: true }

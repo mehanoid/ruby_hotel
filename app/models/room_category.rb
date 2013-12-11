@@ -3,7 +3,7 @@ class RoomCategory < ActiveRecord::Base
   validates :price, presence: true
 
   has_many :rooms, foreign_key: :category_id, inverse_of: :category, dependent: :destroy
-  has_many :reservations
+  has_many :reservations, dependent: :nullify
 
   def available_arrival_dates(range_length: 2.months)
     range = Date.today .. Date.today + range_length - 1.day

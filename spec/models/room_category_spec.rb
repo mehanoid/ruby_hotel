@@ -144,7 +144,7 @@ describe RoomCategory do
 
     describe 'if only one room is reserved' do
       before do
-        create(:reservation, room: first_room, arrival: Date.parse('2013-10-06'), departure: Date.parse('2013-10-15'))
+        create(:reservation, room_category: subject, arrival: Date.parse('2013-10-06'), departure: Date.parse('2013-10-15'))
       end
 
       describe 'available_arrival_dates' do

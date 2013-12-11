@@ -2,7 +2,6 @@ class Reservation < ActiveRecord::Base
   include Concerns::ArrivalDeparture
   include Concerns::NestedClientBuilder
 
-  belongs_to :room
   belongs_to :room_category
   belongs_to :client
 
