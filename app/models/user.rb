@@ -2,9 +2,11 @@ class User < ActiveRecord::Base
   extend Enumerize
 
   EMPLOYEES_ROLES = %w[receptionist reservation_manager admin].freeze.each(&:freeze)
-  ROLES = EMPLOYEES_ROLES
+  EMPLOYEES_ROLES_FOR_SELECT = Hash[*EMPLOYEES_ROLES.map { |role| [I18n.t("roles.#{role}"), role] }.flatten]
 
-  enumerize :role, in: ROLES, predicates: true
+  validates :role, presence: true
+
+  enumerize :role, in: EMPLOYEES_ROLES, predicates: true
 
   devise :database_authenticatable, :timeoutable,
          :recoverable, :trackable, :validatable

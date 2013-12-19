@@ -3,7 +3,7 @@
     = link_to 'Назад', collection_path, class: :btn
 br
 .row
-  .span12
+  .span6
     = simple_form_for([:admin, @user]) do |f|
       = f.error_notification
 
@@ -11,5 +11,6 @@ br
         = f.input :email, required: true
         = f.input :password, required: true
         = f.input :password_confirmation, required: true
+        = f.input :role, collection: User::EMPLOYEES_ROLES_FOR_SELECT
 
       = f.button :submit, 'Сохранить'

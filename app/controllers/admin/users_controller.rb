@@ -8,7 +8,7 @@ module Admin
     private
 
     def permitted_params
-      params.permit(user: [:email, :password, :password_confirmation])
+      params.permit(user: [:email, :password, :password_confirmation, :role])
     end
 
   end

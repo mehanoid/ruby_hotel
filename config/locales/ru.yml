@@ -50,6 +50,7 @@ ru:
       user:
         password: Пароль
         password_confirmation: Подтверждение пароля
+        role: Роль
       client:
         last_name: Фамилия
         first_name: Имя
@@ -98,6 +99,6 @@ ru:
         destroy:
           notice: Категория удалена
   roles:
-    admin: Системный адмминистратор
+    admin: Системный администратор
     receptionist: Администратор гостиницы
     reservation_manager: Менеджер по бронированию
