@@ -9,7 +9,7 @@
 if Rails.env == 'development'
   require 'factory_girl_rails'
 
-  User::ROLES.each do |role|
+  User::EMPLOYEES_ROLES.each do |role|
     FactoryGirl.create(:user, role: role, email: "#{role}@example.com")
   end
 
