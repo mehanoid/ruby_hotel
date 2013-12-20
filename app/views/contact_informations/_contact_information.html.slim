@@ -2,10 +2,10 @@
   -if contact_information.phones
     h5 Номера телефонов:
     ul.phones
-    - contact_information.phones.each do |phone|
-      li = phone.number
+      - contact_information.phones.each do |phone|
+        li = phone.number
   -if contact_information.emails
     h5 Адреса электронной почты:
     ul.emails
-    - contact_information.emails.each do |email|
-      li = email.address
+      - contact_information.emails.each do |email|
+        li = email.address
