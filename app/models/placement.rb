@@ -16,6 +16,7 @@ class Placement < ActiveRecord::Base
 
   default_scope { active }
 
+  # Выполняет выселение
   def finish!
     self.finished = true
     save
@@ -23,6 +24,7 @@ class Placement < ActiveRecord::Base
 
   private
 
+  # Устанавливает данные для размещения с использованием брони
   def set_data_from_reservation
     if reservation
       self.departure = reservation.departure
@@ -30,14 +32,18 @@ class Placement < ActiveRecord::Base
     end
   end
 
+  # Вычисляет и сохраняет стоимость проживания
   def set_cost
     self.cost = (departure - arrival) * room.category.price if arrival && departure && room
   end
 
+  # Устанавливает в качестве даты заселения сегодняшнее число
   def set_arrival
     self.arrival = Date.today
   end
 
+  # Используется в случае заселения без предварительной брони.
+  # Берёт первый номер из числа свободных номеров, если такие имеются
   def set_room_from_room_category
     if room_category_id.present?
       category = RoomCategory.find(room_category_id)

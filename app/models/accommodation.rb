@@ -10,22 +10,28 @@ class Accommodation < ActiveRecord::Base
 
   before_create :cancel_reservation
 
+  # Дата заселения равна дате заселения, указанной в первом размещении
   def arrival
     placements.first.arrival
   end
 
+  # Дата выселения равна дате выселения, указанной в последнем размещении
   def departure
     placements.last.departure
   end
 
+  # Возвращает стоимость заселения, которая расчитывается
+  # как сумма стоимостей отдельных размещений
   def cost
     placements.sum(:cost)
   end
 
+  # Возвращает текущий занятый номер
   def room
     placements.last.room
   end
 
+  # Используется для вывода сообщений об ошибках
   def base_errors
     if placements.any?
       errors[:base] + placements.map { |pl| pl.errors[:base] }.sum
@@ -34,10 +40,12 @@ class Accommodation < ActiveRecord::Base
     end
   end
 
+  # Выполняет выселение
   def finish!
     placements.last.finish!
   end
 
+  # Проверяет, является ли дата заселения сегодняшним числом
   def ready_for_finish?
     departure <= Date.today
   end
@@ -48,6 +56,7 @@ class Accommodation < ActiveRecord::Base
     client.assign_attributes(attributes)
   end
 
+  # При получении номера брони создаёт из этой брони размещение
   def reservation_id=(id)
     @reservation_id = id
     return unless id
@@ -63,16 +72,19 @@ class Accommodation < ActiveRecord::Base
 
   attr_reader :reservation_id
 
+  # Выполняет валидацию, что при заселении все данные о клиенте должны быть обязательно введены
   before_validation do |accommodation|
     accommodation.client.all_data_should_be_present = true if accommodation.client
   end
 
+  # Определяет активные заселения
   scope :active, -> { joins(:placements).where { placements.finished == false }.distinct }
 
   default_scope { active }
 
   private
 
+  # При выполнении заселения мы отменяем только что использованную бронь
   def cancel_reservation
     @reservation.try(:cancel)
   end
