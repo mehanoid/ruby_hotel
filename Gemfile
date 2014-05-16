@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -9,7 +9,7 @@ gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
-gem 'compass-rails',  '~> 2.0.alpha.0'
+gem 'compass-rails',  '~> 1.1.3'
 gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'twitter-bootstrap-rails-confirm'
 
