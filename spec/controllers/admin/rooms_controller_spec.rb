@@ -21,7 +21,6 @@ require 'spec_helper'
 describe Admin::RoomsController do
 
   let!(:category) { create(:room_category) }
-  let!(:room) { create(:room, category: category)}
   let(:valid_attributes) { attributes_for(:room) }
 
   # This should return the minimal set of values that should be in the session
@@ -35,6 +34,7 @@ describe Admin::RoomsController do
 
   describe 'GET index' do
     it 'assigns all rooms as @rooms' do
+      room = create(:room, category: category)
       get :index, {room_category_id: category}, valid_session
       assigns(:rooms).should eq([room])
     end
@@ -85,9 +85,8 @@ describe Admin::RoomsController do
   end
 
   describe 'DELETE destroy_multiple' do
-    before do
-      request.env['HTTP_REFERER'] = 'where_i_came_from'
-    end
+    before { request.env['HTTP_REFERER'] = 'where_i_came_from' }
+    let!(:room) { create(:room, category: category)}
 
     it 'destroys the requested rooms' do
       expect {

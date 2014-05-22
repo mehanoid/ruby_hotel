@@ -8,10 +8,10 @@ class Client < ActiveRecord::Base
 
   validates :first_name, :last_name, :middle_name, :contact_information, presence: true
   validates :passport, :birthday, presence: true, if: -> c do
-    c.accommodations.any? || c.all_data_should_be_present
+    c.accommodations.any? || c.full_validation
   end
 
-  attr_accessor :all_data_should_be_present
+  attr_accessor :full_validation
 
   before_validation do |client|
     client.build_contact_information unless client.contact_information

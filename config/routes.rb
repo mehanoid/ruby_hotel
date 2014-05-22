@@ -13,7 +13,7 @@ RubyHotel::Application.routes.draw do
   namespace :admin do
     root 'home#show'
 
-    resources :reservations do
+    resources :reservations, only: %i[new create show index] do
       patch :cancel, on: :member
     end
 

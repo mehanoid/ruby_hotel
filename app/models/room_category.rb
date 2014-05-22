@@ -72,7 +72,7 @@ class RoomCategory < ActiveRecord::Base
 
   # Возвращает список номеров, в которых никто не проживает
   def not_occupied_rooms(arrival, departure)
-    rooms.where { |q| (q.id.not_in occupied_rooms(arrival, departure).select(:id)) }
+    rooms.where.not(id: occupied_rooms(arrival, departure))
   end
 
   # Возвращяет массив, содержащий и брони, и размещения, период проживания у которых

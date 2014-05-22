@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.1'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -45,7 +45,7 @@ gem 'simple_form', '~> 3.0.0'
 gem 'active_attr'
 
 # Active Record queries
-gem 'squeel', github: 'ernie/squeel'
+# gem 'squeel', github: 'kiela/squeel'
 
 # Search
 gem 'ransack'
@@ -87,7 +87,8 @@ group :development do
   gem 'guard', '~> 2.2.3'
   gem 'guard-livereload'
   gem 'rack-livereload'
-  gem 'zeus'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 
   gem 'hirb'
 

@@ -1,21 +1,24 @@
 class Accommodation < ActiveRecord::Base
   include Concerns::NestedClientBuilder
 
-  belongs_to :client
+  belongs_to :client, validate: true
   has_many :placements, inverse_of: :accommodation, dependent: :destroy
 
-  accepts_nested_attributes_for :client, :placements
+  accepts_nested_attributes_for :placements
+  attr_writer :client_attributes
+  attr_reader :reservation_id
 
   validates :client, :placements, presence: true
 
   before_create :cancel_reservation
+  before_validation :set_data
 
-  # Дата заселения равна дате заселения, указанной в первом размещении
+  # Дата заселения, равная дате заселения, указанной в первом размещении
   def arrival
     placements.first.arrival
   end
 
-  # Дата выселения равна дате выселения, указанной в последнем размещении
+  # Дата выселения, равная дате выселения, указанной в последнем размещении
   def departure
     placements.last.departure
   end
@@ -26,7 +29,7 @@ class Accommodation < ActiveRecord::Base
     placements.sum(:cost)
   end
 
-  # Возвращает текущий занятый номер
+  # Текущий занятый номер
   def room
     placements.last.room
   end
@@ -45,44 +48,41 @@ class Accommodation < ActiveRecord::Base
     placements.last.finish!
   end
 
-  # Проверяет, является ли дата заселения сегодняшним числом
-  def ready_for_finish?
+  # Проверяет, истёк ли срок проживания
+  def expired?
     departure <= Date.today
   end
 
-  def client_attributes=(attributes)
-    @client_attributes = attributes
-    self.client ||= Client.new
-    client.assign_attributes(attributes)
-  end
-
-  # При получении номера брони создаёт из этой брони размещение
+  # Находит и запоминает использованную бронь
   def reservation_id=(id)
     @reservation_id = id
     return unless id
     @reservation = Reservation.find(id)
-    placements.build(reservation: @reservation)
-    self.client = @reservation.client
-    client.assign_attributes(@client_attributes)
   end
 
   def all_placements
     placements.unscoped
   end
 
-  attr_reader :reservation_id
-
-  # Выполняет валидацию, что при заселении все данные о клиенте должны быть обязательно введены
-  before_validation do |accommodation|
-    accommodation.client.all_data_should_be_present = true if accommodation.client
-  end
-
-  # Определяет активные заселения
-  scope :active, -> { joins(:placements).where { placements.finished == false }.distinct }
+  # Активные заселения
+  scope :active, -> { joins(:placements).where(placements: {finished: false}).distinct }
 
   default_scope { active }
 
   private
+
+  def set_data
+    # Получение данные для размещения из брони
+    if @reservation
+      placements.build(reservation: @reservation)
+      self.client = @reservation.client
+    else
+      build_client unless client
+    end
+
+    client.assign_attributes(@client_attributes) if @client_attributes
+    client.full_validation = true
+  end
 
   # При выполнении заселения мы отменяем только что использованную бронь
   def cancel_reservation

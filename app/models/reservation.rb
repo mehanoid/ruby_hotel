@@ -15,7 +15,7 @@ class Reservation < ActiveRecord::Base
 
   # Определяет, что активными являются брони, которые не были отменены,
   # и дата заселения у которых не раньше, чем сегодня
-  scope :active, -> { where { (canceled == false) & (arrival >= Date.today) } }
+  scope :active, -> { where(canceled: false).where('arrival >= ?', Date.today) }
 
   default_scope { active.order(:arrival) }
 

@@ -20,7 +20,7 @@ h1 Проживающие клиенты
                   th Дата заезда
                   th Дата выезда
                 - @accommodations.each do |accommodation|
-                  tr.row-link.accommodation class=(:ready_for_finish if accommodation.ready_for_finish?)
+                  tr.row-link.accommodation class=(:ready_for_finish if accommodation.expired?)
                     td = link_to accommodation.client.last_name, [:admin, accommodation]
                     td = accommodation.client.first_name
                     td = accommodation.client.middle_name
