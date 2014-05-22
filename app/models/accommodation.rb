@@ -72,7 +72,7 @@ class Accommodation < ActiveRecord::Base
   private
 
   def set_data
-    # Получение данные для размещения из брони
+    # Получение данных для размещения из брони
     if @reservation
       placements.build(reservation: @reservation)
       self.client = @reservation.client
@@ -80,6 +80,7 @@ class Accommodation < ActiveRecord::Base
       build_client unless client
     end
 
+    # Установка данных клиента
     client.assign_attributes(@client_attributes) if @client_attributes
     client.full_validation = true
   end
