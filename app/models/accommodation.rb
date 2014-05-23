@@ -5,13 +5,11 @@ class Accommodation < ActiveRecord::Base
   has_many :placements, inverse_of: :accommodation, dependent: :destroy
 
   accepts_nested_attributes_for :placements
-  attr_writer :client_attributes
-  attr_reader :reservation_id
 
   validates :client, :placements, presence: true
 
   before_create :cancel_reservation
-  before_validation :set_data
+  # before_validation :set_data
 
   # Дата заселения, равная дате заселения, указанной в первом размещении
   def arrival
@@ -53,11 +51,21 @@ class Accommodation < ActiveRecord::Base
     departure <= Date.current
   end
 
-  # Находит и запоминает использованную бронь
+  attr_reader :reservation_id
+
   def reservation_id=(id)
+    # Получение данных для размещения из брони
     @reservation_id = id
-    return unless id
-    @reservation = Reservation.find(id)
+    @reservation = Reservation.find_by_id(id)
+    if @reservation
+      self.placements = [Placement.new(reservation: @reservation)]
+    end
+    set_client_data
+  end
+
+  def client_attributes=(attributes)
+    @client_attributes = attributes
+    set_client_data
   end
 
   def all_placements
@@ -71,16 +79,13 @@ class Accommodation < ActiveRecord::Base
 
   private
 
-  def set_data
-    # Получение данных для размещения из брони
+  # Установка данных клиента с использованием данных брони, если она есть
+  def set_client_data
     if @reservation
-      placements.build(reservation: @reservation)
       self.client = @reservation.client
     else
-      build_client unless client
+      build_client
     end
-
-    # Установка данных клиента
     client.assign_attributes(@client_attributes) if @client_attributes
     client.full_validation = true
   end

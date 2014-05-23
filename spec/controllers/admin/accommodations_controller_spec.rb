@@ -53,9 +53,18 @@ describe Admin::AccommodationsController do
   end
 
   describe 'GET new' do
-    it 'assigns a new accommodation as @accommodation' do
-      get :new, {}, valid_session
-      assigns(:accommodation).should be_a_new(Accommodation)
+    describe 'with reservation' do
+      it 'assigns a new accommodation as @accommodation' do
+        get :new, {reservation_id: reservation.id}, valid_session
+        assigns(:accommodation).should be_a_new(Accommodation)
+      end
+    end
+
+    describe 'without reservation' do
+      it 'assigns a new accommodation as @accommodation' do
+        get :new, {}, valid_session
+        assigns(:accommodation).should be_a_new(Accommodation)
+      end
     end
   end
 
