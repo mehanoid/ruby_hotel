@@ -39,7 +39,7 @@ class Placement < ActiveRecord::Base
 
   # Устанавливает в качестве даты заселения сегодняшнее число
   def set_arrival
-    self.arrival = Date.today
+    self.arrival = Date.current
   end
 
   # Используется в случае заселения без предварительной брони.

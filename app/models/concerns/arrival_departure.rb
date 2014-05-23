@@ -29,7 +29,7 @@ module Concerns
 
     # проверка того, что дата заселения не находится в прошлом
     def arrival_no_earlier_than_today
-      if arrival && arrival < Date.today
+      if arrival && arrival < Date.current
         errors.add(:arrival, 'не может быть в прошлом')
       end
     end

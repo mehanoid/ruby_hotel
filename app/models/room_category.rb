@@ -7,7 +7,7 @@ class RoomCategory < ActiveRecord::Base
 
   # Возвращает список дат, доступных для заезда
   def available_arrival_dates(range_length: 2.months)
-    range = Date.today .. Date.today + range_length - 1.day
+    range = Date.current .. Date.current + range_length - 1.day
     reservations_and_placements = reservations_and_placements_for_range(range)
 
     available_dates = range.select do |date|
@@ -17,9 +17,9 @@ class RoomCategory < ActiveRecord::Base
   end
 
   # Возвращает список дат, доступных для выезда
-  def available_departure_dates(arrival: Date.today, range_length: 2.months)
-    range_start = Date.today
-    range_end = Date.today + range_length
+  def available_departure_dates(arrival: Date.current, range_length: 2.months)
+    range_start = Date.current
+    range_end = Date.current + range_length
     unless arrival.in? range_start..range_end
       return [[], nil]
     end

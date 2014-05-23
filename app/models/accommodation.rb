@@ -50,7 +50,7 @@ class Accommodation < ActiveRecord::Base
 
   # Проверяет, истёк ли срок проживания
   def expired?
-    departure <= Date.today
+    departure <= Date.current
   end
 
   # Находит и запоминает использованную бронь
