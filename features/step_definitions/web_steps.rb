@@ -39,17 +39,17 @@ end
 end
 
 То(/должен увидеть "([^"]*)"$/) do |text|
-  page.should have_content text
+  expect(page).to have_content text
 end
 
 То(/не должен видеть "([^"]*)"$/) do |text|
-  page.should_not have_content text
+  expect(page).not_to have_content text
 end
 
 То(/должен увидеть следующие сообщения об ошибках заполнения формы:$/) do |table|
   # table is a table.hashes.keys # => [:поле, :сообщение]
   table.hashes.each do |field|
     elem = find 'div.control-group', text: field['Поле']
-    elem.should have_content field['Сообщение']
+    expect(elem).to have_content field['Сообщение']
   end
 end

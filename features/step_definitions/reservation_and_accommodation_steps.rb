@@ -56,5 +56,5 @@ end
 end
 
 То(/^я не должен видеть аннулированную бронь в общем списке$/) do
-  page.should_not have_content(@reservation_text)
+  expect(page).not_to have_content(@reservation_text)
 end
