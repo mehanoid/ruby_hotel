@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211214122) do
+ActiveRecord::Schema.define(version: 20140602155439) do
 
   create_table "accommodations", force: true do |t|
     t.datetime "created_at"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20131211214122) do
   end
 
   add_index "rooms", ["category_id"], name: "index_rooms_on_category_id"
+  add_index "rooms", ["number"], name: "index_rooms_on_number"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
