@@ -7,7 +7,7 @@ describe Reservation do
     let!(:active_reservation) { create(:reservation) }
 
     it 'returns active reservations' do
-      Reservation.all.should eq [active_reservation]
+      expect(Reservation.all).to eq [active_reservation]
     end
   end
 end

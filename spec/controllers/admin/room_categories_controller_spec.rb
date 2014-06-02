@@ -39,7 +39,7 @@ describe Admin::RoomCategoriesController do
     it 'assigns all room_categories as @room_categories' do
       room_category = create(:room_category)
       get :index, {}, valid_session
-      assigns(:room_categories).should eq([room_category])
+      expect(assigns(:room_categories)).to eq([room_category])
     end
   end
 
@@ -47,14 +47,14 @@ describe Admin::RoomCategoriesController do
     it 'assigns the requested room_category as @room_category' do
       room_category = create(:room_category)
       get :show, {:id => room_category.to_param}, valid_session
-      assigns(:room_category).should eq(room_category)
+      expect(assigns(:room_category)).to eq(room_category)
     end
   end
 
   describe 'GET new' do
     it 'assigns a new room_category as @room_category' do
       get :new, {}, valid_session
-      assigns(:room_category).should be_a_new(RoomCategory)
+      expect(assigns(:room_category)).to be_a_new(RoomCategory)
     end
   end
 
@@ -62,7 +62,7 @@ describe Admin::RoomCategoriesController do
     it 'assigns the requested room_category as @room_category' do
       room_category = create(:room_category)
       get :edit, {:id => room_category.to_param}, valid_session
-      assigns(:room_category).should eq(room_category)
+      expect(assigns(:room_category)).to eq(room_category)
     end
   end
 
@@ -76,13 +76,13 @@ describe Admin::RoomCategoriesController do
 
       it 'assigns a newly created room_category as @room_category' do
         post :create, valid_attributes, valid_session
-        assigns(:room_category).should be_a(RoomCategory)
-        assigns(:room_category).should be_persisted
+        expect(assigns(:room_category)).to be_a(RoomCategory)
+        expect(assigns(:room_category)).to be_persisted
       end
 
       it 'redirects to the created room_category' do
         post :create, valid_attributes, valid_session
-        response.should redirect_to([:admin, RoomCategory.last])
+        expect(response).to redirect_to([:admin, RoomCategory.last])
       end
     end
 
@@ -90,13 +90,13 @@ describe Admin::RoomCategoriesController do
       it 'assigns a newly created but unsaved room_category as @room_category' do
         # Trigger the behavior that occurs when invalid params are submitted
         post :create, invalid_attributes, valid_session
-        assigns(:room_category).should be_a_new(RoomCategory)
+        expect(assigns(:room_category)).to be_a_new(RoomCategory)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         post :create, invalid_attributes, valid_session
-        response.should render_template('new')
+        expect(response).to render_template('new')
       end
     end
   end
@@ -111,17 +111,17 @@ describe Admin::RoomCategoriesController do
         # submitted in the request.
         #RoomCategory.any_instance.should_receive(:update)
         put :update, { id: room_category.id, room_category: {name: 'Суперлюкс'} }, valid_session
-        room_category.reload.name.should eq 'Суперлюкс'
+        expect(room_category.reload.name).to eq 'Суперлюкс'
       end
 
       it 'assigns the requested room_category as @room_category' do
         put :update, {:id => room_category.to_param, :room_category => valid_attributes}, valid_session
-        assigns(:room_category).should eq(room_category)
+        expect(assigns(:room_category)).to eq(room_category)
       end
 
       it 'redirects to the room_category' do
         put :update, {:id => room_category.to_param, :room_category => valid_attributes}, valid_session
-        response.should redirect_to([:admin, room_category])
+        expect(response).to redirect_to([:admin, room_category])
       end
     end
 
@@ -129,13 +129,13 @@ describe Admin::RoomCategoriesController do
       it 'assigns the room_category as @room_category' do
         # Trigger the behavior that occurs when invalid params are submitted
         put :update, {:id => room_category.to_param, :room_category => {name: ''}}, valid_session
-        assigns(:room_category).should eq(room_category)
+        expect(assigns(:room_category)).to eq(room_category)
       end
 
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         put :update, {:id => room_category.to_param, :room_category => {name: ''}}, valid_session
-        response.should render_template('edit')
+        expect(response).to render_template('edit')
       end
     end
   end
@@ -150,7 +150,7 @@ describe Admin::RoomCategoriesController do
 
     it 'redirects to the room_categories list' do
       delete :destroy, {:id => room_category.to_param}, valid_session
-      response.should redirect_to(admin_room_categories_url)
+      expect(response).to redirect_to(admin_room_categories_url)
     end
   end
 

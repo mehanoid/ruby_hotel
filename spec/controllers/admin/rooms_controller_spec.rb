@@ -36,14 +36,14 @@ describe Admin::RoomsController do
     it 'assigns all rooms as @rooms' do
       room = create(:room, category: category)
       get :index, {room_category_id: category}, valid_session
-      assigns(:rooms).should eq([room])
+      expect(assigns(:rooms)).to eq([room])
     end
   end
 
   describe 'GET new' do
     it 'assigns a new rooms form as @rooms_form' do
       get :new, {room_category_id: category.id}, valid_session
-      assigns(:rooms_form).should be_a(RoomsForm)
+      expect(assigns(:rooms_form)).to be_a(RoomsForm)
     end
   end
 
@@ -60,12 +60,12 @@ describe Admin::RoomsController do
 
       it 'assigns a newly created rooms form as @rooms_form' do
         post :create, valid_params, valid_session
-        assigns(:rooms_form).should be_a(RoomsForm)
+        expect(assigns(:rooms_form)).to be_a(RoomsForm)
       end
 
       it 'redirects to the rooms category' do
         post :create, valid_params, valid_session
-        response.should redirect_to([:admin, category])
+        expect(response).to redirect_to([:admin, category])
       end
     end
 
@@ -74,12 +74,12 @@ describe Admin::RoomsController do
 
       it 'assigns a newly created but unsaved rooms form as @rooms_form' do
         post :create, invalid_params, valid_session
-        assigns(:rooms_form).should be_a(RoomsForm)
+        expect(assigns(:rooms_form)).to be_a(RoomsForm)
       end
 
       it "re-renders the 'new' template" do
         post :create, invalid_params, valid_session
-        response.should render_template('new')
+        expect(response).to render_template('new')
       end
     end
   end
@@ -96,7 +96,7 @@ describe Admin::RoomsController do
 
     it 'redirects back' do
       delete :destroy_multiple, {room_category_id: category, rooms_for_destroy: [room.id]}, valid_session
-      response.should redirect_to('where_i_came_from')
+      expect(response).to redirect_to('where_i_came_from')
     end
   end
 

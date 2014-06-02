@@ -18,7 +18,7 @@ describe RoomCategory do
         end
 
         it 'returns first room' do
-          free_room.should eq first_room
+          expect(free_room).to eq first_room
         end
       end
 
@@ -28,7 +28,7 @@ describe RoomCategory do
         end
 
         it 'returns second room' do
-          free_room.should eq second_room
+          expect(free_room).to eq second_room
         end
 
         context 'with two reservations before and after given period' do
@@ -38,7 +38,7 @@ describe RoomCategory do
           end
 
           it 'returns second room' do
-            free_room.should eq second_room
+            expect(free_room).to eq second_room
           end
         end
 
@@ -48,7 +48,7 @@ describe RoomCategory do
           end
 
           it 'returns nil' do
-            free_room.should be_nil
+            expect(free_room).to be_nil
           end
         end
       end
@@ -60,7 +60,7 @@ describe RoomCategory do
         end
 
         it 'returns nil' do
-          free_room.should be_nil
+          expect(free_room).to be_nil
         end
       end
     end
@@ -80,7 +80,7 @@ describe RoomCategory do
           end
 
           it 'returns second room' do
-            reserved_room.should eq second_room
+            expect(reserved_room).to eq second_room
           end
         end
       end
@@ -100,8 +100,8 @@ describe RoomCategory do
         it 'returns dates available for arrival' do
           available_dates, range = subject.available_arrival_dates(range_length: 20.days)
 
-          range.should eq Date.parse('2013-10-01') .. Date.parse('2013-10-20')
-          available_dates.should eq (Date.parse('2013-10-01')..Date.parse('2013-10-05')).to_a +
+          expect(range).to eq Date.parse('2013-10-01') .. Date.parse('2013-10-20')
+          expect(available_dates).to eq (Date.parse('2013-10-01')..Date.parse('2013-10-05')).to_a +
                                         (Date.parse('2013-10-15')..Date.parse('2013-10-20')).to_a
         end
       end
@@ -110,8 +110,8 @@ describe RoomCategory do
         it 'returns dates available for departure' do
           available_dates, range = subject.available_departure_dates(arrival: Date.parse('2013-10-04'), range_length: 20.days)
 
-          range.should eq Date.parse('2013-10-05') .. Date.parse('2013-10-21')
-          available_dates.should eq (Date.parse('2013-10-05')..Date.parse('2013-10-06')).to_a
+          expect(range).to eq Date.parse('2013-10-05') .. Date.parse('2013-10-21')
+          expect(available_dates).to eq (Date.parse('2013-10-05')..Date.parse('2013-10-06')).to_a
         end
       end
     end
@@ -127,8 +127,8 @@ describe RoomCategory do
         it 'returns dates available for arrival' do
           available_dates, range = subject.available_arrival_dates(range_length: 20.days)
 
-          range.should eq Date.parse('2013-10-01') .. Date.parse('2013-10-20')
-          available_dates.should eq (Date.parse('2013-10-15')..Date.parse('2013-10-20')).to_a
+          expect(range).to eq Date.parse('2013-10-01') .. Date.parse('2013-10-20')
+          expect(available_dates).to eq (Date.parse('2013-10-15')..Date.parse('2013-10-20')).to_a
         end
       end
 
@@ -136,8 +136,8 @@ describe RoomCategory do
         it 'returns dates available for departure' do
           available_dates, range = subject.available_departure_dates(arrival: Date.parse('2013-10-16'), range_length: 20.days)
 
-          range.should eq Date.parse('2013-10-17') .. Date.parse('2013-10-21')
-          available_dates.should eq (Date.parse('2013-10-17')..Date.parse('2013-10-21')).to_a
+          expect(range).to eq Date.parse('2013-10-17') .. Date.parse('2013-10-21')
+          expect(available_dates).to eq (Date.parse('2013-10-17')..Date.parse('2013-10-21')).to_a
         end
       end
     end
@@ -151,7 +151,7 @@ describe RoomCategory do
         it 'returns all dates' do
           available_dates, _ = subject.available_arrival_dates(range_length: 20.days)
 
-          available_dates.should eq (Date.parse('2013-10-01')..Date.parse('2013-10-20')).to_a
+          expect(available_dates).to eq (Date.parse('2013-10-01')..Date.parse('2013-10-20')).to_a
         end
       end
 
@@ -159,7 +159,7 @@ describe RoomCategory do
         it 'returns all dates' do
           available_dates, _ = subject.available_departure_dates(arrival: Date.parse('2013-10-04'), range_length: 20.days)
 
-          available_dates.should eq (Date.parse('2013-10-05')..Date.parse('2013-10-21')).to_a
+          expect(available_dates).to eq (Date.parse('2013-10-05')..Date.parse('2013-10-21')).to_a
         end
       end
     end

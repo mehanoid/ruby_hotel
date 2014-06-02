@@ -6,7 +6,7 @@ describe RoomCategoriesController do
     it 'assigns all room_categories as @room_categories' do
       room_category = create(:room_category)
       get :index
-      assigns(:room_categories).should eq([room_category])
+      expect(assigns(:room_categories)).to eq([room_category])
     end
   end
 
@@ -14,7 +14,7 @@ describe RoomCategoriesController do
     pending do
       it 'returns http success' do
         get 'available_arrival_dates'
-        response.should be_success
+        expect(response).to be_success
       end
     end
   end

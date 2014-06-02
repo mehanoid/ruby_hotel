@@ -15,7 +15,7 @@ describe Placement do
     let!(:placement) { create(:placement, room_category_id: category.id, departure: 3.days.from_now) }
 
     it 'is cost for 3 days' do
-      placement.cost.should eq 3000
+      expect(placement.cost).to eq 3000
     end
   end
 end

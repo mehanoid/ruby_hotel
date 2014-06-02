@@ -7,7 +7,7 @@ describe Accommodation do
     let(:reservation) { create(:reservation, room_category: category) }
     it 'should have one placement' do
       Accommodation.create!(reservation_id: reservation.id, client_attributes: attributes_for(:client_for_accommodation))
-      Accommodation.first.placements.count.should eq 1
+      expect(Accommodation.first.placements.count).to eq 1
     end
   end
 end

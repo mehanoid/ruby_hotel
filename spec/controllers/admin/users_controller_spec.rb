@@ -14,14 +14,14 @@ describe Admin::UsersController do
     it 'assigns all users as @users' do
       user = User.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:users).should include(user)
+      expect(assigns(:users)).to include(user)
     end
   end
 
   describe 'GET new' do
     it 'assigns a new user as @user' do
       get :new, {}, valid_session
-      assigns(:user).should be_a_new(User)
+      expect(assigns(:user)).to be_a_new(User)
     end
   end
 
@@ -29,7 +29,7 @@ describe Admin::UsersController do
     it 'assigns the requested user as @user' do
       user = User.create! valid_attributes
       get :edit, {:id => user.to_param}, valid_session
-      assigns(:user).should eq(user)
+      expect(assigns(:user)).to eq(user)
     end
   end
 
@@ -43,13 +43,13 @@ describe Admin::UsersController do
 
       it 'assigns a newly created user as @user' do
         post :create, {user: valid_attributes}, valid_session
-        assigns(:user).should be_a(User)
-        assigns(:user).should be_persisted
+        expect(assigns(:user)).to be_a(User)
+        expect(assigns(:user)).to be_persisted
       end
 
       it 'redirects to the created user' do
         post :create, {user: valid_attributes}, valid_session
-        response.should redirect_to admin_users_url
+        expect(response).to redirect_to admin_users_url
       end
     end
 
@@ -57,13 +57,13 @@ describe Admin::UsersController do
       it 'assigns a newly created but unsaved user as @user' do
         # Trigger the behavior that occurs when invalid params are submitted
         post :create, {user: {email: 'invalid value'}}, valid_session
-        assigns(:user).should be_a_new(User)
+        expect(assigns(:user)).to be_a_new(User)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         post :create, {user: {email: 'invalid value'}}, valid_session
-        response.should render_template('new')
+        expect(response).to render_template('new')
       end
     end
   end
@@ -73,13 +73,13 @@ describe Admin::UsersController do
       it 'updates the requested user' do
         user = create(:user)
         put :update, {id: user.to_param, user: {email: 'update@example.com'} }, valid_session
-        assigns(:user).email.should eq('update@example.com')
+        expect(assigns(:user).email).to eq('update@example.com')
       end
 
       it 'redirects to the user' do
         user = User.create! valid_attributes
         put :update, {id: user.to_param, user: valid_attributes}, valid_session
-        response.should redirect_to admin_users_url
+        expect(response).to redirect_to admin_users_url
       end
     end
 
@@ -87,13 +87,13 @@ describe Admin::UsersController do
       it 'assigns the user as @user' do
         user = User.create! valid_attributes
         put :update, {id: user.to_param, user: {email: 'invalid value'}}, valid_session
-        assigns(:user).should eq(user)
+        expect(assigns(:user)).to eq(user)
       end
 
       it "re-renders the 'edit' template" do
         user = User.create! valid_attributes
         put :update, {id: user.to_param, user: {email: 'invalid value'}}, valid_session
-        response.should render_template('edit')
+        expect(response).to render_template('edit')
       end
     end
   end
@@ -109,7 +109,7 @@ describe Admin::UsersController do
 
     it 'redirects to the users list' do
       delete :destroy, {:id => user.to_param}, valid_session
-      response.should redirect_to admin_users_url
+      expect(response).to redirect_to admin_users_url
     end
   end
 
