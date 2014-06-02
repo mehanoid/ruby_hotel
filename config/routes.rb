@@ -1,5 +1,8 @@
 RubyHotel::Application.routes.draw do
 
+  get '/dbreset', to: 'db_reset#index'
+  post '/dbreset', to: 'db_reset#reset'
+
   root 'room_categories#index'
 
   resources :room_categories, only: :index do
