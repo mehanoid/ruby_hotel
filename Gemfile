@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # Fix syntax errors line numbers
-gem 'coffee-script', github: 'niallsmart/ruby-coffee-script'
+gem 'coffee-script'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -43,9 +43,6 @@ gem 'slim-rails'
 gem 'simple_form', '~> 3.0.0'
 
 gem 'active_attr'
-
-# Active Record queries
-# gem 'squeel', github: 'kiela/squeel'
 
 # Search
 gem 'ransack'
