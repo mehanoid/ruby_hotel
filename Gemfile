@@ -80,6 +80,8 @@ gem 'unicorn'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# factory_girl also added to production for providing demo data
+gem 'factory_girl_rails'
 
 group :development do
   gem 'better_errors'
@@ -101,7 +103,6 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
 end
 
 group :test do
