@@ -22,6 +22,7 @@ html
               li = link_to 'Проживающие клиенты', admin_accommodations_path
           ul.nav.pull-right
             li = link_to('Выход', destroy_user_session_path, method: :delete)
+            = render 'layouts/github_link'
     .container-fluid
       = render 'layouts/messages'
       #content

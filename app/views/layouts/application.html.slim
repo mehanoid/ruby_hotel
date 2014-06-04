@@ -14,6 +14,8 @@ html
           ul.nav
             li = link_to 'Номера', root_path
             li = link_to 'Онлайн-бронирование', new_reservation_path
+          ul.nav.pull-right
+            = render 'layouts/github_link'
     .container-fluid
       = render 'layouts/messages'
       #content
