@@ -26,6 +26,7 @@ class RoomCategory < ActiveRecord::Base
     range = arrival + 1.day .. range_end
     reservations_and_placements = reservations_and_placements_for_range(range)
 
+    rooms_count = rooms.count
     available_dates = range.select do |date|
       rooms.count > reservations_and_placements.count { |r| r.overlaps_with?(arrival, date) }
     end
