@@ -1,4 +1,11 @@
 h3 = room_category.name
+b> Внешний вид номера:
+- if room_category.name == "Стандарт"
+  p = image_tag("standart.jpg", size: '400')
+- if room_category.name == "Полулюкс"
+  p = image_tag("polulux.jpg", size: '400')
+- if room_category.name == "Люкс"
+  p = image_tag("lux.jpg", size: '400')
 p = simple_format room_category.description
 p
   b> Стоимость за сутки:
